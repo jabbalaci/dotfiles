@@ -1,0 +1,33 @@
+javascript <<EOF
+next_image = function(){
+var l = content.document.location; 
+var h = l.href; 
+if (/^(.*)\?PostID=(\d+)(#\d+)?$/.test(h)) { 
+    var i = RegExp.$2 * 1 + 1; 
+    l.href = RegExp.$1 + "?PostID=" + i + "#" + i; 
+} 
+else if (/^(.*\D0*?)((09\d*)|([1-9]\d*))(.*)$/.test(h)) { 
+    l.href = RegExp.$1 + (RegExp.$2 * 1 + 1) + RegExp.$5; 
+} 
+else {
+    alert("?"); 
+} 
+};
+EOF
+
+javascript <<EOF
+previous_image = function(){
+var l = content.document.location; 
+var h = l.href; 
+if (/^(.*)\?PostID=(\d+)(#\d+)?$/.test(h)) { 
+    var i = RegExp.$2 * 1 - 1; 
+    l.href = RegExp.$1 + "?PostID=" + i + "#" + i; 
+} 
+else if (/^(.*\D0*?)((09\d*)|([1-9]\d*))(.*)$/.test(h)) { 
+    l.href = RegExp.$1 + (RegExp.$2 * 1 - 1) + RegExp.$5; 
+} 
+else {
+    alert("?"); 
+} 
+};
+EOF

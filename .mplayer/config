@@ -1,0 +1,7 @@
+# Write your default config options here!
+
+fs = "1"
+#aspect = "16:9"
+subfont-text-scale = "3"
+subcp = "iso-8859-2"
+prefer-ipv4 = yes

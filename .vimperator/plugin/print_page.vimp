@@ -1,0 +1,32 @@
+javascript <<EOF
+print_page = function(){
+    var webBrowserPrint = window.content.QueryInterface(Components.interfaces.nsIInterfaceRequestor)
+    .getInterface(Components.interfaces.nsIWebBrowserPrint);
+
+    var PSSVC = Components.classes["@mozilla.org/gfx/printsettings-service;1"]
+    .getService(Components.interfaces.nsIPrintSettingsService);
+
+    var printSettings = PSSVC.newPrintSettings;
+    
+    printSettings.printToFile = true;
+    printSettings.toFileName  = "/tmp/00000001.pdf";
+    printSettings.printSilent = true;
+    printSettings.outputFormat = Components.interfaces.nsIPrintSettings.kOutputFormatPDF;
+    
+    printSettings.printBGColors   = true;
+    printSettings.printBGImages   = false;
+    var showHeaders               = false;
+
+    if (showHeaders === false) {
+        //lets hide those ugly default headers
+        printSettings.footerStrCenter = '';
+        printSettings.footerStrLeft   = '';
+        printSettings.footerStrRight  = '';
+        printSettings.headerStrCenter = '';
+        printSettings.headerStrLeft   = '';
+        printSettings.headerStrRight  = '';
+    }
+
+    webBrowserPrint.print(printSettings, null);
+};
+EOF

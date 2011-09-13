@@ -1,0 +1,45 @@
+"
+" Config file of Jabba Laci
+" Last change: 2011.05.02. (yyyy.mm.dd.)
+" jabba.laci@gmail.com
+"
+" location of this file: $HOME/.vimperatorrc
+"
+
+" To provide the most authentic Vim experience, the menubar, navigation bar, and bookmark bars are hidden.
+" This is how to get them back.
+" set guioptions+=mTB
+
+set runtimepath=/home/jabba/.vimperator
+
+" show tabs
+" set showtabline=1
+
+map T :tabopen!
+
+" copy page title to the clipboard (with ALT+y)
+" http://www.mozdev.org/pipermail/vimperator/2008-October/002546.html
+:map <A-y> :js util.copyToClipboard(content.document.title, true)<cr>
+
+" Next Image and Previous Image bookmarklets for vimperator
+" u - up (next image), d - down (previous image)
+:map <silent> <A-u> :js next_image()<cr>
+:map <silent> <A-d> :js previous_image()<cr>
+
+" print page
+:map <silent> <A-p> :js print_page()<cr>
+
+" Disable vimperator keys on certain sites.
+" for Gmail: 'c' means 'compose mail' (instead of Vimperator's caret)
+" toggle with Shift+ESC if you need
+"autocmd LocationChange .* :js modes.passAllKeys = /mail\.google\.com\/mail/.test(buffer.URL)
+
+" javascript <<EOF
+" (function(){
+"     window.setTimeout(
+"     function(){
+"       print_page()
+"     }
+"     ,10000)}
+" )();
+" EOF

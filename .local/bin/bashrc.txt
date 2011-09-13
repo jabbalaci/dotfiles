@@ -1,0 +1,5 @@
+# https://github.com/huyng/bashmarks
+source ~/.local/bin/bashmarks.sh
+# http://linuxgazette.net/109/misc/marinov/acd_func.html
+source ~/.local/bin/acd_func.sh
+alias ll='cd --'

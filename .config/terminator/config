@@ -1,0 +1,25 @@
+[global_config]
+  window_state = maximise
+  title_transmit_bg_color = "#4a9e52"
+  tab_position = bottom
+[keybindings]
+  new_tab = <Control>t
+  next_tab = <Shift>Right
+  full_screen = <Shift><Control>F11
+  prev_tab = <Shift>Left
+[profiles]
+  [[default]]
+    background_darkness = 0.84
+    palette = "#000000:#aa0000:#00aa00:#aa5500:#0000aa:#aa00aa:#00aaaa:#aaaaaa:#555555:#ff5555:#55ff55:#ffff55:#5555ff:#ff55ff:#55ffff:#ffffff"
+    background_type = transparent
+    scrollbar_position = hidden
+  [[jabba]]
+[layouts]
+  [[default]]
+    [[[child1]]]
+      type = Terminal
+      parent = window0
+    [[[window0]]]
+      type = Window
+      parent = ""
+[plugins]

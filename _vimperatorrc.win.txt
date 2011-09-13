@@ -1,0 +1,18 @@
+"
+" Config file of Jabba Laci
+" Last change: 2011.08.08. (yyyy.mm.dd.)
+" jabba.laci@gmail.com
+"
+" location of this file: "C:\Documents and Settings\USER_NAME\_vimperatorrc"
+" under Windows 7: "C:\Users\USER_NAME\_vimperatorrc"
+"
+
+" To provide the most authentic Vim experience, the menubar, navigation bar, and bookmark bars are hidden.
+" This is how to get them back.
+"set guioptions+=mTB
+
+map T :tabopen!
+
+" copy page title to the clipboard (with ALT+y)
+" http://www.mozdev.org/pipermail/vimperator/2008-October/002546.html
+:map <silent> <A-y> :js util.copyToClipboard(content.document.title, true)<cr>
