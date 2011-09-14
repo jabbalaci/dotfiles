@@ -174,6 +174,8 @@ if has("autocmd")
 	 
 endif " has("autocmd")
 
+" Ignore these files when completing
+set wildignore+=*.o,*.obj,.git,*.pyc
 
 "############################################################################
 "#  START: Jabba's own config :)
@@ -574,6 +576,11 @@ vmap <Leader>rs :<C-U>set lz<CR>:let ai=&ai<CR>:set noai<CR>`>maa<CR><Esc>`<i<CR
 set foldmethod=indent
 set foldlevel=99
 
+set matchpairs+=<:>         " show matching <> (html mainly) as well
+
+" don't outdent hashes
+inoremap # #
+
 " Window Splits
 " -------------
 " Vertical Split : Ctrl+w + v
@@ -622,8 +629,11 @@ let g:pep8_map='<leader>8'
 " have a new window open with the whole documentation page for it.
 au FileType python set omnifunc=pythoncomplete#Complete
 let g:SuperTabDefaultCompletionType = "context"
-set completeopt=menuone,longest
-"set completeopt=menuone,longest,preview
+"set completeopt=menuone,longest
+set completeopt=menuone,longest,preview
+" close preview window automatically when we move around
+autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
+autocmd InsertLeave * if pumvisible() == 0|pclose|endif
 
 " File Browser
 " ------------
@@ -659,3 +669,9 @@ nmap <leader>a <Esc>:Ack!
 "     activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
 "     execfile(activate_this, dict(__file__=activate_this))
 " EOF
+
+" Paste from clipboard
+map <leader>p "+gP
+
+" Quit window on <leader>q
+nnoremap <leader>q :q<CR>
