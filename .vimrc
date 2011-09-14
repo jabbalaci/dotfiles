@@ -47,6 +47,11 @@ set spellfile=~/.vim/spellfile.{encoding}.add
 set filetype=on
 colorscheme elflord
 
+"To define a mapping which uses the 'mapleader' variable, the special string
+"'<Leader>' can be used.  It is replaced with the string value of 'mapleader'.
+"If 'mapleader' is not set or empty, a backslash is used instead.
+let mapleader = ","
+
 " by http://sontek.net/turning-vim-into-a-modern-python-ide
 filetype off
 call pathogen#runtime_append_all_bundles()
@@ -56,10 +61,12 @@ call pathogen#helptags()
 filetype plugin on
 set ofu=syntaxcomplete#Complete
 
-" tabs
+" buffers
 set showtabline=2
-map <C-p> :tabp<cr>
-map <C-n> :tabn<cr>
+" previous, next, close
+map <C-p> :bp<cr>       
+map <C-n> :bn<cr>
+map <leader>q :bd<CR>
 
 " For Win32 GUI: remove 't' flag from 'guioptions': no tearoff menu entries
 " let &guioptions = substitute(&guioptions, "t", "", "g")
@@ -181,11 +188,6 @@ set wildignore+=*.o,*.obj,.git,*.pyc
 "#  START: Jabba's own config :)
 "############################################################################
 
-"To define a mapping which uses the 'mapleader' variable, the special string
-"'<Leader>' can be used.  It is replaced with the string value of 'mapleader'.
-"If 'mapleader' is not set or empty, a backslash is used instead.
-let mapleader = ","
-
 "this way Y is more logical
 map Y y$
 "delete everything till the beginning of the line
@@ -197,9 +199,6 @@ map ds d
 "If you decide that you don't really like being without your the toolbar or menus, issue the following:
 "set guioptions+=T "bring back toolbar
 "set guioptions+=m "bring back menu
-
-"VimTip 258: how long is the current word?
-nmap <C-L> :echo 'word' expand("<cword>") '  wordlen =' strlen(expand("<cword>"))<CR>
 
 "VimTip 224: Shifting blocks visually
 :vnoremap < <gv
@@ -672,6 +671,3 @@ nmap <leader>a <Esc>:Ack!
 
 " Paste from clipboard
 map <leader>p "+gP
-
-" Quit window on <leader>q
-nnoremap <leader>q :q<CR>
