@@ -1,5 +1,5 @@
 " Config file of Jabba Laci (jabba.laci@gmail.com)
-" Last change: 2011.08.10. (yyyy.mm.dd.)
+" Last change: 2011.09.13. (yyyy.mm.dd.)
 "
 " To use it, copy it to
 "     for Unix and OS/2:      ~/.vimrc
@@ -9,7 +9,7 @@
 " This must be first, because it changes other options as a side effect.
 "
 " VimTips: http://vim.sf.net/tip_index.php
-
+" Turning Vim into a modern Python IDE: http://sontek.net/turning-vim-into-a-modern-python-ide
 
 set nocompatible
 set autoindent
@@ -46,6 +46,11 @@ set mousemodel=popup
 set spellfile=~/.vim/spellfile.{encoding}.add
 set filetype=on
 colorscheme elflord
+
+" by http://sontek.net/turning-vim-into-a-modern-python-ide
+filetype off
+call pathogen#runtime_append_all_bundles()
+call pathogen#helptags()
 
 " http://vim.wikia.com/wiki/Omni_completion
 filetype plugin on
@@ -199,9 +204,9 @@ nmap <C-L> :echo 'word' expand("<cword>") '  wordlen =' strlen(expand("<cword>")
 :vnoremap > >gv
 
 "VimTip 468: display date-and-time on status line
+"20110913: %{fugitive#statusline()} added
 set ruler
-set rulerformat=%55(%{strftime('%Y\ %b\ %d\ \ \ \ %H:%M')}\ %8l,%-6(%c%V%)\ %P%)
-
+set rulerformat=%55(%{strftime('%Y\ %b\ %d\ \ \ \ %H:%M')}\ %8l,%-6(%c%V%)\ %P%)%{fugitive#statusline()}
 
 "############################################################################
 "#  Function keys
@@ -454,22 +459,22 @@ map <Leader>F ma[[k"xyy`a:echo @x<CR>
 "iab }// } // END: <esc>10h%$?\w\+\s*(<cr>"xy/\s*(<cr>/{<cr>:nohl<cr>%$"xpa
 "If you now end the function with '}//', the follwoing string will be automatically generated: '} //END: functionname'
 
-" VimTip 346: Wrap text in HTML/XML tags after prompting for the tag name
-" Tag Select/Wrapper
-" These mappings and TagSelection function will allow you to place 
-" an XML tag around either the current word, or the current selected text 
-nmap <Leader>t viw<Leader>t 
-vnoremap <Leader>t <Esc>:call TagSelection()<CR>
-"
-function! TagSelection()
-  let l:tag = input("Tag name: ")
-  " exec "normal `>a</" . l:tag . ">\e"
-  " Strip off all but the first work in the tag for the end tag
-  exec "normal `>a</" . 
-              \ substitute( l:tag, '[ \t"]*\(\<\w*\>\).*', '\1>\e', "" )
-  exec "normal `<i" 
-              \ substitute( l:tag, '[ \t"]*\(\<.*\)', '<\1>\e', "" )
-endfunction
+" " VimTip 346: Wrap text in HTML/XML tags after prompting for the tag name
+" " Tag Select/Wrapper
+" " These mappings and TagSelection function will allow you to place 
+" " an XML tag around either the current word, or the current selected text 
+" nmap <Leader>t viw<Leader>t 
+" vnoremap <Leader>t <Esc>:call TagSelection()<CR>
+" "
+" function! TagSelection()
+"   let l:tag = input("Tag name: ")
+"   " exec "normal `>a</" . l:tag . ">\e"
+"   " Strip off all but the first work in the tag for the end tag
+"   exec "normal `>a</" . 
+"               \ substitute( l:tag, '[ \t"]*\(\<\w*\>\).*', '\1>\e', "" )
+"   exec "normal `<i" 
+"               \ substitute( l:tag, '[ \t"]*\(\<.*\)', '<\1>\e', "" )
+" endfunction
 
 "VimTip 384: Easily switch between source and header file
 nmap <Leader>s :find %:t:r.c<cr>
@@ -563,3 +568,94 @@ vmap <Leader>rs :<C-U>set lz<CR>:let ai=&ai<CR>:set noai<CR>`>maa<CR><Esc>`<i<CR
 "   call delete(a:fname)
 "   return v:shell_error
 " endfunc
+
+" Code Folding, type 'za' to open and close a fold
+" ------------
+set foldmethod=indent
+set foldlevel=99
+
+" Window Splits
+" -------------
+" Vertical Split : Ctrl+w + v
+" Horizontal Split: Ctrl+w + s
+" Close current windows: Ctrl+w + q
+" Ctrl+<movement> keys to move around the windows:
+map <c-j> <c-w>j
+map <c-k> <c-w>k
+map <c-l> <c-w>l
+map <c-h> <c-w>h
+
+ " Configure CTRL-arrow keys to move between windows (miniBufExplorer plugin)
+let g:miniBufExplMapWindowNavArrows = 1
+
+" Snippets
+" --------
+" open a python file and type 'def<tab>' 
+" It should stub out a method definition for you and allow you to tab through and fill out the arguments.
+
+" Task lists
+" ----------
+" Now you can hit <leader>td to open your task list and hit 'q' to close it.
+" You can also hit enter on the task to jump to the buffer and line that it is placed on.
+map <leader>td <Plug>TaskList
+
+" Revision History
+" ----------------
+"map <leader>g :GundoToggle<CR>
+
+" Syntax Highlighting and Validation
+" ----------------------------------
+syntax on                   " syntax highlighing
+filetype on                 " try to detect filetypes
+filetype plugin indent on   " enable loading indent file for filetype
+let g:pyflakes_use_quickfix = 0
+
+" Pep8
+" ----
+" jump to each of the pep8 violations in the quickfix window
+let g:pep8_map='<leader>8'
+
+" Tab Completion and Documentation
+" --------------------------------
+" We also enabled the pydoc plugin at the beginning with all the submodules;
+" that gives us the ability to hit <leader>pw when our cursor is on a module and
+" have a new window open with the whole documentation page for it.
+au FileType python set omnifunc=pythoncomplete#Complete
+let g:SuperTabDefaultCompletionType = "context"
+set completeopt=menuone,longest
+"set completeopt=menuone,longest,preview
+
+" File Browser
+" ------------
+map <leader>n :NERDTreeToggle<CR>
+
+" switch between buffers
+" Configure (SHIFT)-CTRL-TAB to switch through open windows (miniBufExplorer plugin)
+"let g:miniBufExplMapCTabSwitchBufs = 1
+
+" Refactoring and Go to definition
+" --------------------------------
+map <leader>j :RopeGotoDefinition<CR>
+map <leader>r :RopeRename<CR>
+
+" Searching
+" ---------
+let g:ackprg="ack-grep -H --nocolor --nogroup --column"
+nmap <leader>a <Esc>:Ack!
+
+" Integration with Git
+" --------------------
+
+" Virtualenv
+" ----------
+" Add the virtualenv's site-packages to vim path
+" py << EOF
+" import os.path
+" import sys
+" import vim
+" if 'VIRTUAL_ENV' in os.environ:
+"     project_base_dir = os.environ['VIRTUAL_ENV']
+"     sys.path.insert(0, project_base_dir)
+"     activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
+"     execfile(activate_this, dict(__file__=activate_this))
+" EOF
