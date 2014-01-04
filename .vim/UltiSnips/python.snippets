@@ -1,0 +1,61 @@
+snippet "^def main" "main function" r
+def main():
+    $0pass
+
+##############################################################################
+
+if __name__ == "__main__":
+    main()
+endsnippet
+
+snippet "c(\d+)" "# N times" r
+`!p snip.rv = '#' * int(match.group(1))`
+$0
+endsnippet
+
+snippet ifmain "strange condition before calling main" b!
+$0if __name__ == "__main__":
+    main()
+endsnippet
+
+snippet alap "basic skeleton, Python 2" b
+#!/usr/bin/env python
+# encoding: utf-8
+
+
+def main():
+    $0pass
+
+##############################################################################
+
+if __name__ == "__main__":
+    main()
+endsnippet
+
+snippet alap2 "basic skeleton, Python 2 with transition to Python 3" b
+#!/usr/bin/env python
+# encoding: utf-8
+
+from __future__ import (absolute_import, division,
+                        print_function, unicode_literals)
+
+
+def main():
+    $0pass
+
+##############################################################################
+
+if __name__ == "__main__":
+    main()
+endsnippet
+
+snippet future "__future__ imports for Python 2 to Python 3 transition" b
+from __future__ import (absolute_import, division,
+                        print_function, unicode_literals)
+$0
+endsnippet
+
+snippet imp "load_source via imp" b
+TODO...
+$0
+endsnippet

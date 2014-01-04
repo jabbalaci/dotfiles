@@ -1,0 +1,15 @@
+{
+	"color_scheme": "Packages/User/Espresso Soda.tmTheme",
+	"font_size": 12,
+	"ignored_packages":
+	[
+		"SublimeCodeIntel",
+		"Vintage",
+		"Theme - Soda",
+		"SublimeWebColors",
+		"SublimeREPL",
+		"SublimeRope",
+		"SublimeLinter"
+	],
+	"translate_tabs_to_spaces": true
+}

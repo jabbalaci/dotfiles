@@ -1,18 +1,6 @@
 Some important (mainly config) files from my HOME directory.
 
-Things to do after cloning:
-
-# (1) clone submodules in .vim/bundle
-git submodule init
-git submodule update
-git submodule foreach git submodule init
-git submodule foreach git submodule update
-
-# (2) compile some necessary parts
-cd .vim/bundle/command-t
-rake make
-
-# (3) install the following
+# install the following
 sudo pip install pyflakes
 sudo pip install pep8
 sudo apt-get install ack-grep

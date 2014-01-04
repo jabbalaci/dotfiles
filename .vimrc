@@ -1,5 +1,5 @@
 " Config file of Jabba Laci (jabba.laci@gmail.com)
-" Last change: 2011.09.13. (yyyy.mm.dd.)
+" Last change: 2013.12.18. (yyyy.mm.dd.)
 "
 " To use it, copy it to
 "     for Unix and OS/2:      ~/.vimrc
@@ -11,25 +11,72 @@
 " VimTips: http://vim.sf.net/tip_index.php
 " Turning Vim into a modern Python IDE: http://sontek.net/turning-vim-into-a-modern-python-ide
 
-set nocompatible
+"===================================
+" https://github.com/gmarik/vundle =
+"===================================
+set nocompatible              " be iMproved
+filetype off                  " required!
+
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+
+" let Vundle manage Vundle
+" required!
+Bundle 'gmarik/vundle'
+
+" My bundles here:
+"
+" original repos on GitHub
+Bundle 'tpope/vim-fugitive'
+Bundle 'SirVer/ultisnips'
+Bundle 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
+Bundle 'scrooloose/nerdtree'
+Bundle 'klen/python-mode'
+Bundle 'davidhalter/jedi-vim'
+Bundle 'atweiden/vim-dragvisuals'
+Bundle 'tpope/vim-surround'
+Bundle 'fisadev/vim-isort'
+" non-GitHub repos
+"Bundle 'git://git.wincent.com/command-t.git'
+" Git repos on your local machine (i.e. when working on your own plugin)
+"Bundle 'file:///Users/gmarik/path/to/plugin'
+" ...
+
+" Powerline setup
+"set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 10
+"set guifont=DejaVu\ Sans\ Mono
+set laststatus=2
+
+filetype plugin indent on     " required!
+"
+" Brief help
+" :BundleList          - list configured bundles
+" :BundleInstall(!)    - install (update) bundles
+" :BundleSearch(!) foo - search (or refresh cache first) for foo
+" :BundleClean(!)      - confirm (or auto-approve) removal of unused bundles
+"
+" see :h vundle for more details or wiki for FAQ
+" NOTE: comments after Bundle commands are not allowed.
+
+
 set autoindent
-set backspace=2		" (bs) allow backspacing over everything in insert mode
+set backspace=2         " (bs) allow backspacing over everything in insert mode
 set backup
 set backupext=~
-set viminfo='20,\"50	" (vi) read/write a .viminfo file, don't store more
-			            " than 50 lines of registers
-set history=50		   " (hi) keep 50 lines of command line history
-set ruler		      " (ru) show the cursor position all the time
-set complete=.,b,u,i " (cpt) complete mode insertion search for pattern i                        
-                     " the current buffer, then in other loaded buffer,
-                     " then unloaded buffer, then included files
-set nowrap           " do not wrap lines
-"set textwidth=78    " width of text
-set incsearch        " (is)  Highlight match while typing search pattern
-set hls					" highlight search
-set noinfercase      " (inf) Adjust case of match for keyword completion
-set noinsertmode     " (im)  Start the edit of a file in Insert mode
-set joinspaces       " (js)  Two spaces after a period with a join commanset more
+set viminfo='20,\"50    " (vi) read/write a .viminfo file, don't store more
+                        " than 50 lines of registers
+set history=50          " (hi) keep 50 lines of command line history
+set ruler               " (ru) show the cursor position all the time
+set complete=.,b,u,i    " (cpt) complete mode insertion search for pattern i
+                        " the current buffer, then in other loaded buffer,
+                        " then unloaded buffer, then included files
+set nowrap              " do not wrap lines
+"set textwidth=78       " width of text
+set incsearch           " (is)  Highlight match while typing search pattern
+set hls                 " highlight search
+set noinfercase         " (inf) Adjust case of match for keyword completion
+set noinsertmode        " (im)  Start the edit of a file in Insert mode
+set joinspaces          " (js)  Two spaces after a period with a join commanset more
 set secure
 set smartindent
 set showcmd
@@ -44,8 +91,14 @@ set fileformat=unix
 set fileformats=unix
 set mousemodel=popup
 set spellfile=~/.vim/spellfile.{encoding}.add
-set filetype=on
-colorscheme elflord
+
+set t_Co=256
+if filereadable($HOME."/LIGHT_BACKGROUND")
+    "colorscheme trivial256    " for light background
+    colorscheme proton
+else
+    colorscheme advantage     " for dark background
+endif
 
 "To define a mapping which uses the 'mapleader' variable, the special string
 "'<Leader>' can be used.  It is replaced with the string value of 'mapleader'.
@@ -53,9 +106,9 @@ colorscheme elflord
 let mapleader = ","
 
 " by http://sontek.net/turning-vim-into-a-modern-python-ide
-filetype off
-call pathogen#runtime_append_all_bundles()
-call pathogen#helptags()
+"filetype off
+"call pathogen#runtime_append_all_bundles()
+"call pathogen#helptags()
 
 " http://vim.wikia.com/wiki/Omni_completion
 filetype plugin on
@@ -64,7 +117,7 @@ set ofu=syntaxcomplete#Complete
 " buffers
 set showtabline=2
 " previous, next, close
-map <C-p> :bp<cr>       
+map <C-p> :bp<cr>
 map <C-n> :bn<cr>
 map <leader>q :bd<CR>
 
@@ -178,7 +231,7 @@ if has("autocmd")
     \ if line("'\"") > 0 && line("'\"") <= line("$") |
     \   exe "normal g`\"" |
     \ endif
-	 
+
 endif " has("autocmd")
 
 " Ignore these files when completing
@@ -206,8 +259,8 @@ map ds d
 
 "VimTip 468: display date-and-time on status line
 "20110913: %{fugitive#statusline()} added
-set ruler
-set rulerformat=%55(%{strftime('%Y\ %b\ %d\ \ \ \ %H:%M')}\ %8l,%-6(%c%V%)\ %P%)%{fugitive#statusline()}
+"set ruler
+"set rulerformat=%55(%{strftime('%Y\ %b\ %d\ \ \ \ %H:%M')}\ %8l,%-6(%c%V%)\ %P%)%{fugitive#statusline()}
 
 "############################################################################
 "#  Function keys
@@ -216,14 +269,15 @@ set rulerformat=%55(%{strftime('%Y\ %b\ %d\ \ \ \ %H:%M')}\ %8l,%-6(%c%V%)\ %P%)
 "switch spell check on/off (grammar check)
 setlocal spell spelllang=en_us      "let's use English by default
 set nospell                         "by default spell is off
-map <F2> :set spell!<CR>            
+map <F2> :set spell!<CR>
 
 "show/hide invisible characters
 map <F3> :set list!<CR>
 
 "To launch the explorer in the directory of the file currently edited.
 "always split the window
-map   <F4>  :Sexplore<CR>
+"map   <F4>  :Sexplore<CR>
+map   <F4>  :NERDTreeToggle<CR>
 
 " taglist
 " http://vim.sourceforge.net/scripts/script.php?script_id=273
@@ -302,7 +356,39 @@ map <C-h> :call VIMRCWhere()<CR>
 
 "VimTip 163: Toggle Search Highlighting
 " Map H to toggle search highlighting
-map H :let &hlsearch = !&hlsearch<CR>
+"map H :let &hlsearch = !&hlsearch<CR>
+"map H :set cursorline!<CR>:let &hlsearch = !&hlsearch<CR>
+map H :set cursorline! hlsearch!<CR>
+
+" blink_search.vim - Blink search pattern after n and N
+" Maintainer: Noah Frederick
+if exists("g:loaded_blink_search") || v:version < 700 || &cp
+  finish
+endif
+let g:loaded_blink_search = 1
+
+nnoremap <silent> n nzz:call <SID>BlinkCurrentMatch()<CR>
+nnoremap <silent> N Nzz:call <SID>BlinkCurrentMatch()<CR>
+"nnoremap <silent> n nzz n:call <SID>BlinkCurrentMatch()<CR>
+"nnoremap <silent> N Nzz N:call <SID>BlinkCurrentMatch()<CR>
+
+function! s:BlinkCurrentMatch()
+  let target = '\c\%#'.@/
+  let match = matchadd('IncSearch', target)
+  redraw
+  sleep 100m
+  call matchdelete(match)
+  redraw
+endfunction
+" end of blink_search.vim
+
+" centre the screen on the current search result
+"nnoremap n nzz
+"nnoremap N Nzz
+nnoremap * *zz
+nnoremap # #zz
+nnoremap g* g*zz
+nnoremap g# g#zz
 
 "VimTip 427: Fast window resizing with +/- keys (horizontal); and / and * keys (vertical)
 if bufwinnr(1)
@@ -368,20 +454,20 @@ set visualbell
 set t_vb=
 
 "VimTip 88: How to maximize vim on entry (win32)
-if has("win32") 
-	au GUIEnter * simalt ~x
+if has("win32")
+    au GUIEnter * simalt ~x
 endif
 
 "VimTip 305: Best of VIM Tips (VIM's best Features)
-"MAKE IT EASY TO UPDATE/RELOAD_vimrc 
+"MAKE IT EASY TO UPDATE/RELOAD_vimrc
 if has("unix")
 "src: source rc file
 "erc: edit rc file
-	nmap <Leader>src :source $HOME/.vimrc<CR>
-	nmap <Leader>erc :e $HOME/.vimrc<CR>
+    nmap <Leader>src :source $HOME/.vimrc<CR>
+    nmap <Leader>erc :e $HOME/.vimrc<CR>
 else
-	nmap <Leader>src :source $VIM/_gvimrc<CR>
-	nmap <Leader>erc :e $VIM/_gvimrc<CR>
+    nmap <Leader>src :source $VIM/_gvimrc<CR>
+    nmap <Leader>erc :e $VIM/_gvimrc<CR>
 endif
 
 "VimTip 20: Are *.swp and *~ files littering your working directory?
@@ -396,29 +482,29 @@ endif
 "VimTip 256: Opening current Vim file in your Windows browser
 "open current file in browser
 if has("unix")
-	"bf: browse file
-	map <Leader>bf   :update<CR>:silent !start mozilla file://%:p<CR>
+    "bf: browse file
+    map <Leader>bf   :update<CR>:silent !start mozilla file://%:p<CR>
 else
-	map <Leader>bf   :update<CR>:silent !start "E:/Program Files/Internet Explorer/iexplore.exe " file://%:p<CR>
+    map <Leader>bf   :update<CR>:silent !start "E:/Program Files/Internet Explorer/iexplore.exe " file://%:p<CR>
 " I don't know why it does not work with Mozilla
 " map <Leader>f   :update<CR>:silent !start "D:/Program Files/mozilla.org/Mozilla/mozilla.exe " file://%:p<CRset mouseshape=n:pencil>
 " execute "map <Leader>f   :update<CR>:silent !start \"D:/Program Files/mozilla.org/Mozilla/mozilla.exe\" " . expand("%:p") . "<CR>"
 endif
 "open http link under cursor in your browser
 if has("unix")
-	map <Leader>ol   :update<CR>:silent !start mozilla <cWORD><CR>
+    map <Leader>ol   :update<CR>:silent !start mozilla <cWORD><CR>
 else
-	map <Leader>ol   :update<CR>:silent !start "E:/Program Files/mozilla.org/Mozilla/mozilla.exe " <cWORD><CR>
+    map <Leader>ol   :update<CR>:silent !start "E:/Program Files/mozilla.org/Mozilla/mozilla.exe " <cWORD><CR>
 endif
 
 "VimTip 394: pop up menu for checking the meaning of the word from internet
 if has("unix")
-	nme <silent> PopUp.&Dic :sil! !start mozilla -nosplash "http://www.m-w.com/cgi-bin/dictionary?book=Dictionary&va=<cword>"<CR>
-	"vd: view dictionary
-	map <Leader>vd          :sil! !start mozilla -nosplash "http://www.m-w.com/cgi-bin/dictionary?book=Dictionary&va=<cword>"<CR>
+    nme <silent> PopUp.&Dic :sil! !start mozilla -nosplash "http://www.m-w.com/cgi-bin/dictionary?book=Dictionary&va=<cword>"<CR>
+    "vd: view dictionary
+    map <Leader>vd          :sil! !start mozilla -nosplash "http://www.m-w.com/cgi-bin/dictionary?book=Dictionary&va=<cword>"<CR>
 else
-	nme <silent> PopUp.&Dic :sil! !start "E:/Program Files/Internet Explorer/iexplore.exe " -nohome "http://www.m-w.com/cgi-bin/dictionary?book=Dictionary&va=<cword>"<CR>
-	map <Leader>vd          :sil! !start "E:/Program Files/Internet Explorer/iexplore.exe " -nohome "http://www.m-w.com/cgi-bin/dictionary?book=Dictionary&va=<cword>"<CR>
+    nme <silent> PopUp.&Dic :sil! !start "E:/Program Files/Internet Explorer/iexplore.exe " -nohome "http://www.m-w.com/cgi-bin/dictionary?book=Dictionary&va=<cword>"<CR>
+    map <Leader>vd          :sil! !start "E:/Program Files/Internet Explorer/iexplore.exe " -nohome "http://www.m-w.com/cgi-bin/dictionary?book=Dictionary&va=<cword>"<CR>
 endif
 
 
@@ -441,6 +527,21 @@ autocmd Syntax json sou ~/.vim/syntax/json.vim
 " json_reformat is part of yajl: http://lloyd.github.com/yajl/
 autocmd FileType json set equalprg=json_reformat
 
+" https://github.com/Glench/Vim-Jinja2-Syntax
+" Figure out which type of hilighting to use for html.
+fun! s:SelectHTML()
+let n = 1
+while n < 50 && n <= line("$")
+  " check for jinja
+  if getline(n) =~ '{%\s*\(end.*\|extends\|block\|macro\|set\|if\|for\|include\|trans\)\>'
+    set ft=jinja
+    return
+  endif
+    let n = n + 1
+  endwhile
+endfun
+autocmd BufNewFile,BufRead *.jinja2,*.jinja,*.html,*.htm,*.nunjucks  call s:SelectHTML()
+
 "******
 "Ruby
 "******
@@ -462,18 +563,18 @@ map <Leader>F ma[[k"xyy`a:echo @x<CR>
 
 " " VimTip 346: Wrap text in HTML/XML tags after prompting for the tag name
 " " Tag Select/Wrapper
-" " These mappings and TagSelection function will allow you to place 
-" " an XML tag around either the current word, or the current selected text 
-" nmap <Leader>t viw<Leader>t 
+" " These mappings and TagSelection function will allow you to place
+" " an XML tag around either the current word, or the current selected text
+" nmap <Leader>t viw<Leader>t
 " vnoremap <Leader>t <Esc>:call TagSelection()<CR>
 " "
 " function! TagSelection()
 "   let l:tag = input("Tag name: ")
 "   " exec "normal `>a</" . l:tag . ">\e"
 "   " Strip off all but the first work in the tag for the end tag
-"   exec "normal `>a</" . 
+"   exec "normal `>a</" .
 "               \ substitute( l:tag, '[ \t"]*\(\<\w*\>\).*', '\1>\e', "" )
-"   exec "normal `<i" 
+"   exec "normal `<i"
 "               \ substitute( l:tag, '[ \t"]*\(\<.*\)', '<\1>\e', "" )
 " endfunction
 
@@ -522,7 +623,7 @@ vmap <Leader>rs :<C-U>set lz<CR>:let ai=&ai<CR>:set noai<CR>`>maa<CR><Esc>`<i<CR
 " "############################################################################
 " "#  coutures specific stuff
 " "############################################################################
-" 
+"
 " syntax on
 " set  nohlsearch
 " "fixdel
@@ -545,7 +646,7 @@ vmap <Leader>rs :<C-U>set lz<CR>:let ai=&ai<CR>:set noai<CR>`>maa<CR><Esc>`<i<CR
 " set t_k;=[21~
 " set t_F1=[23~
 " set t_F2=[24~
-" 
+"
 " "to have normal colors under AIX with putty
 " if has("terminfo")
 " set t_Co=8
@@ -556,13 +657,13 @@ vmap <Leader>rs :<C-U>set lz<CR>:let ai=&ai<CR>:set noai<CR>`>maa<CR><Esc>`<i<CR
 "   set t_Sf=[3%dm
 "   set t_Sb=[4%dm
 " endif
-" 
+"
 " "############################################################################
 " "#  printing without header (for coutures)
 " "############################################################################
-" 
+"
 " set printoptions+=header:0
-" 
+"
 " set printexpr=PrintFile(v:fname_in)
 " function! PrintFile(fname)
 "   call system("lpr -h " . a:fname)
@@ -596,7 +697,7 @@ let g:miniBufExplMapWindowNavArrows = 1
 
 " Snippets
 " --------
-" open a python file and type 'def<tab>' 
+" open a python file and type 'def<tab>'
 " It should stub out a method definition for you and allow you to tab through and fill out the arguments.
 
 " Task lists
@@ -611,10 +712,10 @@ map <leader>td <Plug>TaskList
 
 " Syntax Highlighting and Validation
 " ----------------------------------
-syntax on                   " syntax highlighing
-filetype on                 " try to detect filetypes
-filetype plugin indent on   " enable loading indent file for filetype
-let g:pyflakes_use_quickfix = 0
+"syntax on                   " syntax highlighing
+"filetype on                 " try to detect filetypes
+"filetype plugin indent on   " enable loading indent file for filetype
+"let g:pyflakes_use_quickfix = 0
 
 " Pep8
 " ----
@@ -626,17 +727,17 @@ let g:pep8_map='<leader>8'
 " We also enabled the pydoc plugin at the beginning with all the submodules;
 " that gives us the ability to hit <leader>pw when our cursor is on a module and
 " have a new window open with the whole documentation page for it.
-au FileType python set omnifunc=pythoncomplete#Complete
-let g:SuperTabDefaultCompletionType = "context"
-"set completeopt=menuone,longest
-set completeopt=menuone,longest,preview
-" close preview window automatically when we move around
-autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
-autocmd InsertLeave * if pumvisible() == 0|pclose|endif
+"au FileType python set omnifunc=pythoncomplete#Complete
+"let g:SuperTabDefaultCompletionType = "context"
+""set completeopt=menuone,longest
+"set completeopt=menuone,longest,preview
+"" close preview window automatically when we move around
+"autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
+"autocmd InsertLeave * if pumvisible() == 0|pclose|endif
 
 " File Browser
 " ------------
-map <leader>n :NERDTreeToggle<CR>
+"map <leader>n :NERDTreeToggle<CR>
 
 " switch between buffers
 " Configure (SHIFT)-CTRL-TAB to switch through open windows (miniBufExplorer plugin)
@@ -644,13 +745,13 @@ map <leader>n :NERDTreeToggle<CR>
 
 " Refactoring and Go to definition
 " --------------------------------
-map <leader>j :RopeGotoDefinition<CR>
-map <leader>r :RopeRename<CR>
+"map <leader>j :RopeGotoDefinition<CR>
+"map <leader>r :RopeRename<CR>
 
 " Searching
 " ---------
-let g:ackprg="ack-grep -H --nocolor --nogroup --column"
-nmap <leader>a <Esc>:Ack!
+"let g:ackprg="ack-grep -H --nocolor --nogroup --column"
+"nmap <leader>a <Esc>:Ack!
 
 " Integration with Git
 " --------------------
@@ -671,3 +772,141 @@ nmap <leader>a <Esc>:Ack!
 
 " Paste from clipboard
 map <leader>p "+gP
+
+"http://www.reddit.com/r/programming/comments/1ss67w/vim_in_the_hands_of_a_real_maniac/
+"Vim in the hands of a Real Maniac
+
+"====[ Make the 81st column stand out ]====================
+
+"    " EITHER the entire 81st column, full-screen...
+"    highlight ColorColumn ctermbg=magenta
+"    set colorcolumn=81
+
+    " OR ELSE just the 81st column of wide lines...
+    highlight ColorColumn ctermbg=magenta
+    call matchadd('ColorColumn', '\%121v', 100)    " I set it to 120
+"    call matchadd('ColorColumn', '\%81v', 100)
+
+"=====[ Highlight matches when jumping to next ]=============
+"
+"    " This rewires n and N to do the highlighing...
+"    nnoremap <silent> n   n:call HLNext(0.4)<cr>
+"    nnoremap <silent> N   N:call HLNext(0.4)<cr>
+"
+"    " OR ELSE ring the match in red...
+"    function! HLNext (blinktime)
+"        highlight RedOnRed ctermfg=red ctermbg=red
+"        let [bufnum, lnum, col, off] = getpos('.')
+"        let matchlen = strlen(matchstr(strpart(getline('.'),col-1),@/))
+"        echo matchlen
+"        let ring_pat = (lnum > 1 ? '\%'.(lnum-1).'l\%>'.max([col-4,1]) .'v\%<'.(col+matchlen+3).'v.\|' : '')
+"                \ . '\%'.lnum.'l\%>'.max([col-4,1]) .'v\%<'.col.'v.'
+"                \ . '\|'
+"                \ . '\%'.lnum.'l\%>'.max([col+matchlen-1,1]) .'v\%<'.(col+matchlen+3).'v.'
+"                \ . '\|'
+"                \ . '\%'.(lnum+1).'l\%>'.max([col-4,1]) .'v\%<'.(col+matchlen+3).'v.'
+"        let ring = matchadd('RedOnRed', ring_pat, 101)
+"        redraw
+"        exec 'sleep ' . float2nr(a:blinktime * 1000) . 'm'
+"        call matchdelete(ring)
+"        redraw
+"    endfunction
+
+"====[ Make tabs, trailing whitespace, and non-breaking spaces visible ]======
+
+    exec "set listchars=tab:\uBB\uBB,trail:\uB7,nbsp:~"
+    set list
+
+"====[ dragvisuals ]======
+
+    runtime bundle/vim-dragvisuals/dragvisuals.vim
+    vmap  <expr>  h        DVB_Drag('left')
+    vmap  <expr>  l        DVB_Drag('right')
+    vmap  <expr>  j        DVB_Drag('down')
+    vmap  <expr>  k        DVB_Drag('up')
+    vmap  <expr>  D        DVB_Duplicate()
+
+    " Remove any introduced trailing whitespace after moving...
+    let g:DVB_TrimWS = 1
+
+
+"=================
+" Other settings =
+"=================
+" (http://unlogic.co.uk/posts/vim-python-ide.html)
+" Use l to toggle display of whitespace
+nmap l :set list!<CR>
+" And set some nice chars to do it with
+"set listchars=tab:»\ ,eol:¬
+" automatically change window's cwd to file's dir
+set autochdir
+
+
+"==============
+" Python-mode =
+"==============
+" remove automatic line numbers and put everything else back
+let g:pymode_options = 0
+setlocal complete+=t
+setlocal formatoptions-=t
+"if v:version > 702 && !&relativenumber
+"    setlocal number
+"endif
+setlocal nowrap
+setlocal textwidth=79
+setlocal commentstring=#%s
+setlocal define=^\s*\\(def\\\\|class\\)
+
+" from http://unlogic.co.uk/posts/vim-python-ide.html
+" TODO: customize it to my needs
+" Activate rope
+" Keys:
+" K             Show python docs
+"   Rope autocomplete
+" g     Rope goto definition
+" d     Rope show documentation
+" f     Rope find occurrences
+" b     Set, unset breakpoint (g:pymode_breakpoint enabled)
+" [[            Jump on previous class or function (normal, visual, operator modes)
+" ]]            Jump on next class or function (normal, visual, operator modes)
+" [M            Jump on previous class or method (normal, visual, operator modes)
+" ]M            Jump on next class or method (normal, visual, operator modes)
+"let g:pymode_rope = 1
+let g:pymode_rope = 0    " use jedi-vim instead
+
+" Documentation
+let g:pymode_doc = 1
+let g:pymode_doc_key = 'K'
+
+"Linting
+let g:pymode_lint = 1
+"let g:pymode_lint_checker = "pyflakes,pep8"
+let g:pymode_lint_checkers = ["pyflakes", "pep8"]
+" Auto check on save
+let g:pymode_lint_write = 1
+
+" Support virtualenv
+let g:pymode_virtualenv = 1
+
+" Enable breakpoints plugin
+let g:pymode_breakpoint = 1
+let g:pymode_breakpoint_key = 'b'
+
+" syntax highlighting
+let g:pymode_syntax = 1
+let g:pymode_syntax_all = 1
+let g:pymode_syntax_indent_errors = g:pymode_syntax_all
+let g:pymode_syntax_space_errors = g:pymode_syntax_all
+
+" Don't autofold code
+let g:pymode_folding = 0
+
+" jedi-vim customizations
+autocmd FileType python setlocal completeopt-=preview
+let g:jedi#popup_on_dot = 0
+
+" remove trailing whitespaces
+autocmd BufWritePre *.py :%s/\s\+$//e
+autocmd BufWritePre *.txt :%s/\s\+$//e
+autocmd BufWritePre *.tex :%s/\s\+$//e
+
