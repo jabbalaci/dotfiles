@@ -13,6 +13,8 @@
 # Files
 data.location=~/.task
 
+color=on
+
 # Color theme (uncomment one to use)
 #include /usr/share/task/light-16.theme
 #include /usr/share/task/light-256.theme
@@ -25,16 +27,19 @@ include /usr/share/task/dark-violets-256.theme
 #include /usr/share/task/dark-yellow-green.theme
 #include /usr/share/task/dark-gray-256.theme
 
-color.alternate=on gray3
+#color.alternate=on gray6
+#color.alternate=on rgb115
+color.alternate=on color8
 
 dateformat=Y/m/d
 dateformat.annotation=Y/m/d
 dateformat.edit=Y/m/d H:N
 dateformat.info=Y/m/d H:N
 dateformat.report=Y/m/d
+
 weekstart=monday
-color=on
 journal.time=on
+search.case.sensitive=no
 
 report.jabba.columns=id,project,priority,start,due,recur,due.countdown,entry.age,urgency,depends,tags,description
 report.jabba.description=Lists all pending tasks

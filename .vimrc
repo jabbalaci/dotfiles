@@ -909,4 +909,4 @@ let g:jedi#popup_on_dot = 0
 autocmd BufWritePre *.py :%s/\s\+$//e
 autocmd BufWritePre *.txt :%s/\s\+$//e
 autocmd BufWritePre *.tex :%s/\s\+$//e
-
+autocmd BufWritePre *.html :%s/\s\+$//e
