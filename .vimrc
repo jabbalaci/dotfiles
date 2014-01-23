@@ -36,6 +36,8 @@ Bundle 'davidhalter/jedi-vim'
 Bundle 'atweiden/vim-dragvisuals'
 Bundle 'tpope/vim-surround'
 Bundle 'fisadev/vim-isort'
+Bundle 'elzr/vim-json'
+let g:vim_json_syntax_conceal = 0
 " non-GitHub repos
 "Bundle 'git://git.wincent.com/command-t.git'
 " Git repos on your local machine (i.e. when working on your own plugin)
@@ -520,12 +522,12 @@ autocmd BufRead,BufNewFile *.phps sou $VIMRUNTIME/syntax/php.vim
 autocmd BufRead,BufNewFile *.jws sou $VIMRUNTIME/syntax/java.vim
 autocmd BufRead,BufNewFile *.d sou $VIMRUNTIME/syntax/d.vim
 
-"pretty-print JSON files
-autocmd BufRead,BufNewFile *.json set filetype=json
-" json.vim is here: http://www.vim.org/scripts/script.php?script_id=1945
-autocmd Syntax json sou ~/.vim/syntax/json.vim
-" json_reformat is part of yajl: http://lloyd.github.com/yajl/
-autocmd FileType json set equalprg=json_reformat
+" "pretty-print JSON files
+" autocmd BufRead,BufNewFile *.json set filetype=json
+" " json.vim is here: http://www.vim.org/scripts/script.php?script_id=1945
+" autocmd Syntax json sou ~/.vim/syntax/json.vim
+" " json_reformat is part of yajl: http://lloyd.github.com/yajl/
+" autocmd FileType json set equalprg=json_reformat
 
 " https://github.com/Glench/Vim-Jinja2-Syntax
 " Figure out which type of hilighting to use for html.
@@ -910,3 +912,5 @@ autocmd BufWritePre *.py :%s/\s\+$//e
 autocmd BufWritePre *.txt :%s/\s\+$//e
 autocmd BufWritePre *.tex :%s/\s\+$//e
 autocmd BufWritePre *.html :%s/\s\+$//e
+autocmd BufWritePre *.md :%s/\s\+$//e
+autocmd BufWritePre *.json :%s/\s\+$//e
