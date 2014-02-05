@@ -1,5 +1,5 @@
 " Config file of Jabba Laci (jabba.laci@gmail.com)
-" Last change: 2013.12.18. (yyyy.mm.dd.)
+" Last change: 2014.02.05. (yyyy.mm.dd.)
 "
 " To use it, copy it to
 "     for Unix and OS/2:      ~/.vimrc
@@ -31,7 +31,8 @@ Bundle 'tpope/vim-fugitive'
 Bundle 'SirVer/ultisnips'
 Bundle 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
 Bundle 'scrooloose/nerdtree'
-Bundle 'klen/python-mode'
+Bundle 'scrooloose/syntastic'
+"Bundle 'klen/python-mode'
 Bundle 'davidhalter/jedi-vim'
 Bundle 'atweiden/vim-dragvisuals'
 Bundle 'tpope/vim-surround'
@@ -39,6 +40,9 @@ Bundle 'fisadev/vim-isort'
 Bundle 'elzr/vim-json'
 let g:vim_json_syntax_conceal = 0
 Bundle 'jnwhiteh/vim-golang'
+Bundle 'tpope/vim-endwise'
+Bundle 'plasticboy/vim-markdown'
+let g:vim_markdown_folding_disabled=1
 " non-GitHub repos
 "Bundle 'git://git.wincent.com/command-t.git'
 " Git repos on your local machine (i.e. when working on your own plugin)
@@ -622,58 +626,6 @@ imap <Leader>fne   <C-R>=expand("%:t:r")<CR>
 "how to inverse a string in visual mode
 vmap <Leader>rs :<C-U>set lz<CR>:let ai=&ai<CR>:set noai<CR>`>maa<CR><Esc>`<i<CR><Esc>jmz:'a+1,'z-1s/./&\r/g<CR>:'a+1,'z-1g/^/m'a<CR>:'a,'zj!<CR>:let &ai=ai<CR>:set nolz<CR>
 
-
-" "############################################################################
-" "#  coutures specific stuff
-" "############################################################################
-"
-" syntax on
-" set  nohlsearch
-" "fixdel
-" "fix PgUp, PgDn, Home, End, Del, Insert, function keys (F1-F12)
-" set t_kP=[5~
-" set t_kN=[6~
-" set t_kh=[1~
-" set t_@7=[4~
-" set t_kD=[3~
-" set t_kI=[2~
-" set t_k1=[[A
-" set t_k2=[[B
-" set t_k3=[[C
-" set t_k4=[[D
-" set t_k5=[[E
-" set t_k6=[17~
-" set t_k7=[18~
-" set t_k8=[19~
-" set t_k9=[20~
-" set t_k;=[21~
-" set t_F1=[23~
-" set t_F2=[24~
-"
-" "to have normal colors under AIX with putty
-" if has("terminfo")
-" set t_Co=8
-"   set t_Sf=[3%p1%dm
-"   set t_Sb=[4%p1%dm
-" else
-"   set t_Co=8
-"   set t_Sf=[3%dm
-"   set t_Sb=[4%dm
-" endif
-"
-" "############################################################################
-" "#  printing without header (for coutures)
-" "############################################################################
-"
-" set printoptions+=header:0
-"
-" set printexpr=PrintFile(v:fname_in)
-" function! PrintFile(fname)
-"   call system("lpr -h " . a:fname)
-"   call delete(a:fname)
-"   return v:shell_error
-" endfunc
-
 " Code Folding, type 'za' to open and close a fold
 " ------------
 set foldmethod=indent
@@ -719,11 +671,6 @@ map <leader>td <Plug>TaskList
 "filetype on                 " try to detect filetypes
 "filetype plugin indent on   " enable loading indent file for filetype
 "let g:pyflakes_use_quickfix = 0
-
-" Pep8
-" ----
-" jump to each of the pep8 violations in the quickfix window
-let g:pep8_map='<leader>8'
 
 " Tab Completion and Documentation
 " --------------------------------
@@ -832,7 +779,6 @@ set list
     " Remove any introduced trailing whitespace after moving...
     let g:DVB_TrimWS = 1
 
-
 "=================
 " Other settings =
 "=================
@@ -844,79 +790,17 @@ nmap l :set list!<CR>
 " automatically change window's cwd to file's dir
 set autochdir
 
-
-"==============
-" Python-mode =
-"==============
-" remove automatic line numbers and put everything else back
-let g:pymode_options = 0
-setlocal complete+=t
-setlocal formatoptions-=t
-"if v:version > 702 && !&relativenumber
-"    setlocal number
-"endif
-setlocal nowrap
-setlocal textwidth=79
-setlocal commentstring=#%s
-setlocal define=^\s*\\(def\\\\|class\\)
-
-" from http://unlogic.co.uk/posts/vim-python-ide.html
-" TODO: customize it to my needs
-" Activate rope
-" Keys:
-" K             Show python docs
-"   Rope autocomplete
-" g     Rope goto definition
-" d     Rope show documentation
-" f     Rope find occurrences
-" b     Set, unset breakpoint (g:pymode_breakpoint enabled)
-" [[            Jump on previous class or function (normal, visual, operator modes)
-" ]]            Jump on next class or function (normal, visual, operator modes)
-" [M            Jump on previous class or method (normal, visual, operator modes)
-" ]M            Jump on next class or method (normal, visual, operator modes)
-"let g:pymode_rope = 1
-let g:pymode_rope = 0    " use jedi-vim instead
-
-" Documentation
-let g:pymode_doc = 1
-let g:pymode_doc_key = 'K'
-
-"Linting
-let g:pymode_lint = 1
-"let g:pymode_lint_checker = "pyflakes,pep8"
-let g:pymode_lint_checkers = ["pyflakes", "pep8"]
-" Auto check on save
-let g:pymode_lint_write = 1
-
-" Support virtualenv
-let g:pymode_virtualenv = 1
-
-" Enable breakpoints plugin
-let g:pymode_breakpoint = 1
-let g:pymode_breakpoint_key = 'b'
-
-" syntax highlighting
-let g:pymode_syntax = 1
-let g:pymode_syntax_all = 1
-let g:pymode_syntax_indent_errors = g:pymode_syntax_all
-let g:pymode_syntax_space_errors = g:pymode_syntax_all
-
-" Don't autofold code
-let g:pymode_folding = 0
-
-" jedi-vim customizations
-autocmd FileType python setlocal completeopt-=preview
-let g:jedi#popup_on_dot = 0
-
-" autoformat *.go files with "gofmt" upon save
-autocmd BufWritePre *.go :Fmt
-
 " remove trailing whitespaces
-autocmd BufWritePre *.py :%s/\s\+$//e
 autocmd BufWritePre *.txt :%s/\s\+$//e
-autocmd BufWritePre *.tex :%s/\s\+$//e
-autocmd BufWritePre *.html :%s/\s\+$//e
 autocmd BufWritePre *.md :%s/\s\+$//e
-autocmd BufWritePre *.json :%s/\s\+$//e
-autocmd BufWritePre *.c :%s/\s\+$//e
 autocmd BufWritePre *.h :%s/\s\+$//e
+autocmd BufWritePre *.tex :%s/\s\+$//e
+
+" use Ctrl+Space for autocompletion
+" http://stackoverflow.com/questions/510503
+inoremap <expr> <C-Space> pumvisible() \|\| &omnifunc == '' ?
+\ "\<lt>C-n>" :
+\ "\<lt>C-x>\<lt>C-o><c-r>=pumvisible() ?" .
+\ "\"\\<lt>c-n>\\<lt>c-p>\\<lt>c-n>\" :" .
+\ "\" \\<lt>bs>\\<lt>C-n>\"\<CR>"
+imap <C-@> <C-Space>
