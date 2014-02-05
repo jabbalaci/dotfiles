@@ -38,6 +38,7 @@ Bundle 'tpope/vim-surround'
 Bundle 'fisadev/vim-isort'
 Bundle 'elzr/vim-json'
 let g:vim_json_syntax_conceal = 0
+Bundle 'jnwhiteh/vim-golang'
 " non-GitHub repos
 "Bundle 'git://git.wincent.com/command-t.git'
 " Git repos on your local machine (i.e. when working on your own plugin)
@@ -816,8 +817,8 @@ map <leader>p "+gP
 
 "====[ Make tabs, trailing whitespace, and non-breaking spaces visible ]======
 
-    exec "set listchars=tab:\uBB\uBB,trail:\uB7,nbsp:~"
-    set list
+exec "set listchars=tab:\uBB\uBB,trail:\uB7,nbsp:~"
+set list
 
 "====[ dragvisuals ]======
 
@@ -907,6 +908,9 @@ let g:pymode_folding = 0
 autocmd FileType python setlocal completeopt-=preview
 let g:jedi#popup_on_dot = 0
 
+" autoformat *.go files with "gofmt" upon save
+autocmd BufWritePre *.go :Fmt
+
 " remove trailing whitespaces
 autocmd BufWritePre *.py :%s/\s\+$//e
 autocmd BufWritePre *.txt :%s/\s\+$//e
@@ -914,3 +918,5 @@ autocmd BufWritePre *.tex :%s/\s\+$//e
 autocmd BufWritePre *.html :%s/\s\+$//e
 autocmd BufWritePre *.md :%s/\s\+$//e
 autocmd BufWritePre *.json :%s/\s\+$//e
+autocmd BufWritePre *.c :%s/\s\+$//e
+autocmd BufWritePre *.h :%s/\s\+$//e
