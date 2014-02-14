@@ -38,11 +38,10 @@ Bundle 'atweiden/vim-dragvisuals'
 Bundle 'tpope/vim-surround'
 Bundle 'fisadev/vim-isort'
 Bundle 'elzr/vim-json'
-let g:vim_json_syntax_conceal = 0
 Bundle 'jnwhiteh/vim-golang'
 Bundle 'tpope/vim-endwise'
 Bundle 'plasticboy/vim-markdown'
-let g:vim_markdown_folding_disabled=1
+Bundle 'jiangmiao/auto-pairs'
 " non-GitHub repos
 "Bundle 'git://git.wincent.com/command-t.git'
 " Git repos on your local machine (i.e. when working on your own plugin)
@@ -98,6 +97,8 @@ set fileformat=unix
 set fileformats=unix
 set mousemodel=popup
 set spellfile=~/.vim/spellfile.{encoding}.add
+set scrolloff=2 " Show 2 lines of context around the cursor.
+set title " Set the terminal's title
 
 set t_Co=256
 if filereadable($HOME."/LIGHT_BACKGROUND")
@@ -548,12 +549,6 @@ while n < 50 && n <= line("$")
   endwhile
 endfun
 autocmd BufNewFile,BufRead *.jinja2,*.jinja,*.html,*.htm,*.nunjucks  call s:SelectHTML()
-
-"******
-"Ruby
-"******
-"use a different indenting for Ruby files (2 spaces)
-autocmd FileType ruby setlocal sts=2 et
 
 "LaTeX things
 "this ends a begin tag
