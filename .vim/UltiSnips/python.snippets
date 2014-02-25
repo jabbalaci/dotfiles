@@ -24,7 +24,7 @@ snippet alap "basic skeleton, Python 2" b
 
 
 def main():
-    $0pass
+    $0print 'Py2'
 
 ##############################################################################
 
@@ -41,7 +41,21 @@ from __future__ import (absolute_import, division,
 
 
 def main():
-    $0pass
+    $0print('Py2→3')
+
+##############################################################################
+
+if __name__ == "__main__":
+    main()
+endsnippet
+
+snippet alap3 "basic skeleton for Python 3" b
+#!/usr/bin/env python3
+# encoding: utf-8
+
+
+def main():
+    $0print('Py3')
 
 ##############################################################################
 
