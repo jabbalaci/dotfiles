@@ -42,6 +42,7 @@ Bundle 'jnwhiteh/vim-golang'
 Bundle 'tpope/vim-endwise'
 Bundle 'plasticboy/vim-markdown'
 Bundle 'jiangmiao/auto-pairs'
+Bundle 'majutsushi/tagbar'
 " non-GitHub repos
 "Bundle 'git://git.wincent.com/command-t.git'
 " Git repos on your local machine (i.e. when working on your own plugin)
@@ -279,8 +280,8 @@ setlocal spell spelllang=en_us      "let's use English by default
 set nospell                         "by default spell is off
 map <F2> :set spell!<CR>
 
-"show/hide invisible characters
-map <F3> :set list!<CR>
+"show/hide tagbar
+map <F3> :TagbarToggle<CR>
 
 "To launch the explorer in the directory of the file currently edited.
 "always split the window
