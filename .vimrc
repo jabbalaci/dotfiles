@@ -43,6 +43,7 @@ Bundle 'tpope/vim-endwise'
 Bundle 'plasticboy/vim-markdown'
 Bundle 'jiangmiao/auto-pairs'
 Bundle 'majutsushi/tagbar'
+Bundle 'Glench/Vim-Jinja2-Syntax'
 " non-GitHub repos
 "Bundle 'git://git.wincent.com/command-t.git'
 " Git repos on your local machine (i.e. when working on your own plugin)
@@ -535,21 +536,6 @@ autocmd BufRead,BufNewFile *.d sou $VIMRUNTIME/syntax/d.vim
 " autocmd Syntax json sou ~/.vim/syntax/json.vim
 " " json_reformat is part of yajl: http://lloyd.github.com/yajl/
 " autocmd FileType json set equalprg=json_reformat
-
-" https://github.com/Glench/Vim-Jinja2-Syntax
-" Figure out which type of hilighting to use for html.
-fun! s:SelectHTML()
-let n = 1
-while n < 50 && n <= line("$")
-  " check for jinja
-  if getline(n) =~ '{%\s*\(end.*\|extends\|block\|macro\|set\|if\|for\|include\|trans\)\>'
-    set ft=jinja
-    return
-  endif
-    let n = n + 1
-  endwhile
-endfun
-autocmd BufNewFile,BufRead *.jinja2,*.jinja,*.html,*.htm,*.nunjucks  call s:SelectHTML()
 
 "LaTeX things
 "this ends a begin tag
