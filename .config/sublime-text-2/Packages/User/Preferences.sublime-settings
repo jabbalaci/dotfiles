@@ -9,7 +9,8 @@
 		"SublimeWebColors",
 		"SublimeREPL",
 		"SublimeRope",
-		"SublimeLinter"
+		"SublimeLinter",
+		"Jedi - Python autocompletion"
 	],
 	"translate_tabs_to_spaces": true
 }
