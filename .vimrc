@@ -17,45 +17,46 @@
 set nocompatible              " be iMproved
 filetype off                  " required!
 
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
 
 " let Vundle manage Vundle
 " required!
-Bundle 'gmarik/vundle'
+Plugin 'gmarik/Vundle.vim'
 
 " My bundles here:
 "
 " original repos on GitHub
-Bundle 'tpope/vim-fugitive'
-Bundle 'SirVer/ultisnips'
-Bundle 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
-Bundle 'scrooloose/nerdtree'
-Bundle 'scrooloose/syntastic'
-"Bundle 'klen/python-mode'
-Bundle 'davidhalter/jedi-vim'
-Bundle 'atweiden/vim-dragvisuals'
-Bundle 'tpope/vim-surround'
-Bundle 'fisadev/vim-isort'
-Bundle 'elzr/vim-json'
-Bundle 'jnwhiteh/vim-golang'
-Bundle 'tpope/vim-endwise'
-Bundle 'plasticboy/vim-markdown'
-Bundle 'jiangmiao/auto-pairs'
-Bundle 'majutsushi/tagbar'
-Bundle 'Glench/Vim-Jinja2-Syntax'
+Plugin 'tpope/vim-fugitive'
+Plugin 'SirVer/ultisnips'
+Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
+Plugin 'scrooloose/nerdtree'
+Plugin 'scrooloose/syntastic'
+"Plugin 'klen/python-mode'
+Plugin 'davidhalter/jedi-vim'
+Plugin 'atweiden/vim-dragvisuals'
+Plugin 'tpope/vim-surround'
+Plugin 'fisadev/vim-isort'
+Plugin 'elzr/vim-json'
+Plugin 'jnwhiteh/vim-golang'
+Plugin 'tpope/vim-endwise'
+Plugin 'plasticboy/vim-markdown'
+Plugin 'jiangmiao/auto-pairs'
+Plugin 'majutsushi/tagbar'
+Plugin 'Glench/Vim-Jinja2-Syntax'
 " non-GitHub repos
-"Bundle 'git://git.wincent.com/command-t.git'
+"Plugin 'git://git.wincent.com/command-t.git'
 " Git repos on your local machine (i.e. when working on your own plugin)
-"Bundle 'file:///Users/gmarik/path/to/plugin'
+"Plugin 'file:///Users/gmarik/path/to/plugin'
 " ...
+call vundle#end()
+filetype plugin indent on     " required!
 
 " Powerline setup
 "set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 10
 "set guifont=DejaVu\ Sans\ Mono
 set laststatus=2
 
-filetype plugin indent on     " required!
 "
 " Brief help
 " :BundleList          - list configured bundles
