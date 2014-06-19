@@ -308,13 +308,13 @@ map <F7> :set number!<CR>
 " http://vim.sourceforge.net/scripts/script.php?script_id=273
 map <F8> :TlistToggle<CR>
 
-:set pastetoggle=<F10>
+:set pastetoggle=<F9>
 
 "quit
-map   <F11> :q<CR>
+map   <F10> :q<CR>
 
 "synchronisation from start
-map <F9> :syntax sync fromstart<CR>
+"map <F9> :syntax sync fromstart<CR>
 
 
 "############################################################################
