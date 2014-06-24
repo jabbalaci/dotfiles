@@ -131,6 +131,12 @@ on_function()
     a=`pwd`
     f=${a##*/}
     workon $f
+    if [ $? -ne 0 ]; then
+        a=`pwd`
+        a=`dirname $a`
+        f=${a##*/}
+        workon $f
+    fi
 }
 alias on=on_function
 
