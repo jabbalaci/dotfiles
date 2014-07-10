@@ -9,7 +9,13 @@ export LESS='-R'
 
 export JAVA_HOME=/opt/java
 export JDK_HOME=$JAVA_HOME
-PATH=$JAVA_HOME/bin:$PATH:$HOME/bin:$HOME/bin.python
+export PATH=$JAVA_HOME/bin:$PATH
+
+SPIDEROAK="$HOME/SpiderOak Hive"
+MY_BIN=$MY_BIN:"$HOME/bin.shared"
+MY_BIN=$MY_BIN:"$HOME/bin.python"
+MY_BIN=$MY_BIN:"$HOME/bin.secret"
+export PATH=$PATH:$MY_BIN
 
 export GOPATH=$HOME/Dropbox/go
 export GO=$GOPATH/src/github.com/jabbalaci

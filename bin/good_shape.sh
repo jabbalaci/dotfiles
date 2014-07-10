@@ -1,5 +1,7 @@
 #!/usr/bin/bash
 
+# good_shape.sh
+
 sudo dpkg --configure -a\
 && sudo apt-get -f install\
 && sudo apt-get --fix-missing install\
