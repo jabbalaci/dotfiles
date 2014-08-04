@@ -12,7 +12,7 @@ export JDK_HOME=$JAVA_HOME
 export PATH=$JAVA_HOME/bin:$PATH
 
 SPIDEROAK="$HOME/SpiderOak Hive"
-MY_BIN=$MY_BIN:"$HOME/bin.shared"
+MY_BIN=$MY_BIN:"$HOME/bin"
 MY_BIN=$MY_BIN:"$HOME/bin.python"
 MY_BIN=$MY_BIN:"$HOME/bin.secret"
 export PATH=$PATH:$MY_BIN
@@ -138,10 +138,11 @@ on_function()
     f=${a##*/}
     workon $f
     if [ $? -ne 0 ]; then
-        a=`pwd`
-        a=`dirname $a`
+        bak=`pwd`
+        a=`dirname $bak`
         f=${a##*/}
         workon $f
+        cd $bak
     fi
 }
 alias on=on_function
