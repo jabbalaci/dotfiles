@@ -90,7 +90,6 @@ alias kr='krusader &'
 alias kill9='kill -9'
 alias sshow_r='feh -zsZFD 5 .'
 alias sshow_n='feh -FD 5 .'
-alias ed='$HOME/bin/st'
 alias rukkola='okular $HOME/Dropbox/books/_postai_dijszabas/Tarifatabla_20120801.pdf 2>/dev/null &'
 alias tm='tmux'
 alias t='cls; rlwrap task'
@@ -120,7 +119,6 @@ alias pip_pypy='/opt/pypy/bin/pip'
 # fi
 # }
 # alias workon=func_workon
-alias off='deactivate'
 mkdir_go()
 {
 if [[ -z "$1" ]]
@@ -146,6 +144,8 @@ on_function()
     fi
 }
 alias on=on_function
+alias off='deactivate'
+alias h='$HOME/python/PrimCom/h.py'
 
 # .xsession-errors can grow huge... remove it
 if [ ! -h $HOME/.xsession-errors ]
@@ -169,6 +169,14 @@ source ~/.bash_prompt
 # virtualenvwrapper
 export WORKON_HOME=$HOME/.virtualenvs
 export PROJECT_HOME=$HOME/webapps
+export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
+export VIRTUALENVWRAPPER_VIRTUALENV=/usr/local/bin/virtualenv
 source /usr/local/bin/virtualenvwrapper.sh
+
+# autoenv
+# https://github.com/kennethreitz/autoenv
+# installation:
+# git clone git://github.com/kennethreitz/autoenv.git ~/.autoenv
+source ~/.autoenv/activate.sh
 
 # /usr/games/fortune | /usr/games/cowthink

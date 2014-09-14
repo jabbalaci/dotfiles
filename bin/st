@@ -1,0 +1,4 @@
+#!/bin/sh
+
+# call ST2 with parameters in the background
+/opt/Sublime\ Text\ 2/sublime_text "$@" &

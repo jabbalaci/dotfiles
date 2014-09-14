@@ -1,0 +1,24 @@
+#!/usr/bin/perl -w
+
+use strict;
+use Cwd;
+
+my $WORK_DIR=$ENV{HOME}."/bin/queueRar/work";
+my ($last, $i, $curr, $outFile);
+
+$last = 0;
+foreach $i (<$WORK_DIR/*.job.*>)
+{
+   if ($i =~ m#$WORK_DIR/(.*)\.job\..*#) {
+      $last = $1;
+   }
+}
+
+# OK, this is the filename to be created
+$curr = sprintf("%03s", $last + 1);
+$outFile = "$WORK_DIR/$curr.job.txt";
+
+open F1, ">$outFile" || die("$0: cannot write to $outFile!\n");
+print F1 getcwd."\n";
+close F1;
+

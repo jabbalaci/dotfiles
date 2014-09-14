@@ -1,0 +1,77 @@
+#!/usr/bin/perl -w
+
+use strict;
+
+$| = 1;  # forced flush
+
+my $WORK_DIR=$ENV{HOME}."/bin/queueRar/work";
+my $EXT_RAR=$ENV{HOME}."/bin/extRar.pl";
+my ($i, $first, $dir, $cmd, $newName, $f);
+
+print <<END;
+############################################################
+##  RAR Queue 0.1, by Jabba Laci (jabba.laci\@gmail.com)
+############################################################
+END
+
+# eternal loop
+while (1)
+{
+   $f = checkJob();
+   if ($f == 0) { print "."; }   # forced flush needed here
+
+   sleep(2);
+}
+
+#############################################################################
+
+sub checkJob
+{
+   my $found = 0;
+
+   $first = "";
+   foreach $i (<$WORK_DIR/*.job.txt>)
+   {
+      $first = $i;
+      last;
+   }
+
+# if something is found
+   if ($first ne "")
+   {
+      $found = 1;
+      $dir = getDir($first);
+
+      print <<END;
+
+############################################################
+##  processing $dir...
+############################################################
+END
+
+      $cmd = "$EXT_RAR  \"$dir\"";
+      #print $cmd."\n";
+      system($cmd);
+
+      $newName = $first;
+      $newName =~ s#\.txt#\.old#;
+      rename($first, $newName);
+   }
+
+   return $found;
+}
+
+#############################################################################
+
+sub getDir
+{
+   my ($file) = (@_);
+   open F1, "<$file" || die("$0: cannot read $file!\n");
+   my $line = <F1>;
+   close F1;
+
+   chomp($line);
+
+   return $line;
+}
+
