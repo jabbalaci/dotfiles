@@ -1,0 +1,28 @@
+# Each letter represents a colour marker:
+#   k, r, g, y, b, m, c, w, d
+# which stands for:
+#   blacK, Red, Green, Yellow, Blue, Magenta, Cyan, White, Default
+# Capital letters represent bold
+# Copy to ~/.bpython/foo.theme and set "color_scheme = foo" in
+# ~/.bpython/config
+
+[syntax]
+keyword = B
+name = r
+comment = b
+string = g
+error = r
+number = B
+operator = b
+paren = b
+punctuation = b
+token = g
+
+[interface]
+# XXX: gnome-terminal appears to be braindead. The cursor will disappear unless
+# you set the background colour to "d".
+background = d
+output = b
+main = b
+prompt = b
+prompt_more = g

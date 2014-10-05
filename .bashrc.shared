@@ -12,7 +12,7 @@ export JDK_HOME=$JAVA_HOME
 export PATH=$JAVA_HOME/bin:$PATH
 
 SPIDEROAK="$HOME/SpiderOak Hive"
-MY_BIN=$MY_BIN:"$HOME/bin"
+MY_BIN="$HOME/bin"
 MY_BIN=$MY_BIN:"$HOME/bin.python"
 MY_BIN=$MY_BIN:"$HOME/bin.secret"
 export PATH=$PATH:$MY_BIN
@@ -146,6 +146,7 @@ on_function()
 alias on=on_function
 alias off='deactivate'
 alias h='$HOME/python/PrimCom/h.py'
+alias ydl='youtube-dl'
 
 # .xsession-errors can grow huge... remove it
 if [ ! -h $HOME/.xsession-errors ]
