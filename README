@@ -1,6 +1,0 @@
-Some important (mainly config) files from my HOME directory.
-
-# install the following
-sudo pip install pyflakes
-sudo pip install pep8
-sudo apt-get install ack-grep
