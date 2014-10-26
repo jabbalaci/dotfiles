@@ -105,8 +105,8 @@ set title " Set the terminal's title
 
 set t_Co=256
 if filereadable($HOME."/LIGHT_BACKGROUND")
-    "colorscheme trivial256    " for light background
-    colorscheme proton
+    colorscheme trivial256    " for light background
+    "colorscheme proton
 else
     colorscheme advantage     " for dark background
 endif

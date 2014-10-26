@@ -1,0 +1,15 @@
+# -*- mode: snippet -*-
+# name: alap
+# key: alap
+# --
+#!/usr/bin/env python
+# encoding: utf-8
+
+
+def main():
+    $0print 'Py2'
+
+##############################################################################
+
+if __name__ == "__main__":
+    main()

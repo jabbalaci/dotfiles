@@ -2,8 +2,31 @@
 ## common settings ##
 #####################
 
+# classic version
+#export EDITOR=/usr/bin/emacsclient
+#export ALTERNATE_EDITOR=/usr/bin/emacs
+#export VIEWER=$EDITOR
 
-export EDITOR=/usr/bin/vim
+# own version
+#export EDITOR=/home/jabba/Dropbox/home/jabba/bin/EDITOR
+#export ALTERNATE_EDITOR=/home/jabba/Dropbox/home/jabba/bin/ALTERNATE_EDITOR
+#export VIEWER=$EDITOR
+
+#########################
+# START: Emacs settings #
+#########################
+export EDITOR=/home/jabba/Dropbox/home/jabba/bin/emacs_try_client_first
+export VIEWER=$EDITOR
+
+alias vi=$EDITOR
+alias e=vi
+alias em=vi
+
+export TERM="xterm-256color"
+#######################
+# END: Emacs settings #
+#######################
+
 # colored less using pygmentize
 export LESS='-R'
 
@@ -38,7 +61,7 @@ export PATH
 #PATH=$PATH:/opt/wkhtmltopdf
 #export PATH
 
-export PYTHONPATH=$PYTHONPATH:$HOME/python/lib/jabbapylib:$HOME/python/lib
+export PYTHONPATH=$PYTHONPATH:$HOME/python/lib/jabbapylib_project:$HOME/python/lib
 
 PYPY=/opt/pypy/bin
 PATH=$PATH:$PYPY
@@ -84,6 +107,7 @@ alias p='python'
 alias pudb='python -m pudb'
 alias p3='python3'
 alias bpy='bpython'
+alias bpy3='/home/jabba/.virtualenvs/bpython_python3/bin/bpython'
 alias ipy='ipython'
 alias th='echo "cls; cd `pwd`"'
 alias kr='krusader &'
@@ -154,7 +178,7 @@ then
     /bin/rm $HOME/.xsession-errors 2>/dev/null
     ln -s /dev/null $HOME/.xsession-errors 2>/dev/null
 fi
- 
+
 if [ ! -h $HOME/.xsession-errors.old ]
 then
     /bin/rm $HOME/.xsession-errors.old 2>/dev/null
@@ -181,3 +205,10 @@ source /usr/local/bin/virtualenvwrapper.sh
 source ~/.autoenv/activate.sh
 
 # /usr/games/fortune | /usr/games/cowthink
+
+#call_emacs() { emacs "$@" & }
+#call_emacsclient() { emacsclient -n "$@" & }
+#alias vi=call_emacs
+#alias e=call_emacs
+#alias em=call_emacs
+#alias ec=call_emacsclient

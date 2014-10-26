@@ -1,0 +1,4 @@
+emacs --batch --eval '(while t (print (eval (read))))'
+
+# inside Emacs:
+# M-x ielm

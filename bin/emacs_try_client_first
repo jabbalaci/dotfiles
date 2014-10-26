@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+function emacs_server_is_running()
+{
+    ps ux | grep "\bemacs\b" | grep -v grep >/dev/null
+}
+
+if emacs_server_is_running; then
+    emacsclient -n "$@" 2>/dev/null &
+else
+    emacs "$@" 2>/dev/null &
+fi

@@ -1,0 +1,2 @@
+emacsclient -n "$@" 2>/dev/null &
+# -n switch: http://stackoverflow.com/questions/268088/how-to-remove-the-prompt-for-killing-emacsclient-buffers
