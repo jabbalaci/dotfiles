@@ -5,6 +5,16 @@
 ;; Larger font. The value is in 1/10pt, so 100 will give you 10pt, etc.
     (set-face-attribute 'default nil :height 160)
 
+;; show tildes (~) for blank lines after the last line
+;; normal way: emacs uses a different symbol but it's very similar
+    (setq-default indicate-empty-lines t)
+;; extra: replace with tildes (~)
+;; http://redd.it/2kdztw
+;    (progn
+    (define-fringe-bitmap 'tilde [0 0 0 113 219 142 0 0] nil nil 'center)
+    (setcdr (assq 'empty-line fringe-indicator-alist) 'tilde) ;)
+    (set-fringe-bitmap-face 'tilde 'font-lock-function-name-face)
+
 ;; start maximized
     (custom-set-variables
      '(initial-frame-alist (quote ((fullscreen . maximized)))))
@@ -87,23 +97,45 @@
 ;; no blinking
     (blink-cursor-mode -1)
 
-;; dont clutter the modeline bar with minor modes indicators
-;    (add-to-list 'load-path "~/.emacs.d/elpa/diminish-20091203.1012")
-;    (require 'diminish)
-;    (diminish 'visual-line-mode)
-;    (after 'autopair (diminish 'autopair-mode))
-;    (after 'undo-tree (diminish 'undo-tree-mode))
-;    (after 'auto-complete (diminish 'auto-complete-mode))
-;    (after 'projectile (diminish 'projectile-mode))
-;    (after 'yasnippet (diminish 'yas-minor-mode))
-;    (after 'guide-key (diminish 'guide-key-mode))
-;    (after 'eldoc (diminish 'eldoc-mode))
-;    (after 'smartparens (diminish 'smartparens-mode))
-;    (after 'company (diminish 'company-mode))
-;    (after 'elisp-slime-nav (diminish 'elisp-slime-nav-mode))
-;    (after 'git-gutter+ (diminish 'git-gutter+-mode))
-;    (after 'magit (diminish 'magit-auto-revert-mode))
-;    (after 'hs-minor-mode (diminish 'hs-minor-mode))
+; ; dont clutter the modeline bar with minor modes indicators
+;     (add-to-list 'load-path "~/.emacs.d/elpa/diminish-20091203.1012")
+;     (require 'diminish)
+;     (diminish 'visual-line-mode)
+;     (after 'autopair (diminish 'autopair-mode))
+;     (after 'undo-tree (diminish 'undo-tree-mode))
+;     (after 'auto-complete (diminish 'auto-complete-mode))
+;     (after 'projectile (diminish 'projectile-mode))
+;     (after 'yasnippet (diminish 'yas-minor-mode))
+;     (after 'guide-key (diminish 'guide-key-mode))
+;     (after 'eldoc (diminish 'eldoc-mode))
+;     (after 'smartparens (diminish 'smartparens-mode))
+;     (after 'company (diminish 'company-mode))
+;     (after 'elisp-slime-nav (diminish 'elisp-slime-nav-mode))
+;     (after 'git-gutter+ (diminish 'git-gutter+-mode))
+;     (after 'magit (diminish 'magit-auto-revert-mode))
+;     (after 'hs-minor-mode (diminish 'hs-minor-mode))
+
+;; toggle fullscreen mode
+    (defun toggle-frame-fullscreen ()
+      "Toggle fullscreen mode of the selected frame.
+    Enable fullscreen mode of the selected frame or disable if it is
+    already fullscreen.  Ignore window manager screen decorations.
+    When turning on fullscreen mode, remember the previous value of the
+    maximization state in the temporary frame parameter `maximized'.
+    Restore the maximization state when turning off fullscreen mode.
+    See also `toggle-frame-maximized'."
+      (interactive)
+      (modify-frame-parameters
+       nil
+       `((maximized
+          . ,(unless (memq (frame-parameter nil 'fullscreen) '(fullscreen fullboth))
+           (frame-parameter nil 'fullscreen)))
+         (fullscreen
+          . ,(if (memq (frame-parameter nil 'fullscreen) '(fullscreen fullboth))
+             (if (eq (frame-parameter nil 'maximized) 'maximized)
+             'maximized)
+           'fullscreen)))))
+    (global-set-key (kbd "<f11>") 'toggle-frame-fullscreen)
 
 
 (provide 'init-interface)
