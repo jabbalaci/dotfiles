@@ -1,0 +1,24 @@
+# -*- mode: snippet -*-
+# name: fabric
+# key: fab
+# --
+#!/usr/bin/env python
+# encoding: utf-8
+
+from __future__ import (absolute_import, division,
+                        print_function, unicode_literals)
+
+from fabric.api import local
+
+
+def uptime():
+    $0local('uptime')
+
+
+def main():
+    pass
+
+##############################################################################
+
+if __name__ == "__main__":
+    main()

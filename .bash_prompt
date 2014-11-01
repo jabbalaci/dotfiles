@@ -38,7 +38,7 @@ YELLOW="\[\033[0;33m\]"
 GREEN="\[\033[0;32m\]"
 BLUE="\[\033[0;34m\]"
 PURPLE="\[\033[0;35m\]"
-CYAN="\[\033[0;36m\]"        
+CYAN="\[\033[0;36m\]"
 WHITE="\[\033[1;37m\]"
 COLOR_NONE="\[\e[0m\]"
 
@@ -144,7 +144,7 @@ function set_bash_prompt () {
   if $I_HAVE_LIGHT_BACKGROUND ; then
     PS1="${PYTHON_VIRTUALENV}${DARK_GRAY}\u@\h [\t] ${YELLOW}\w${COLOR_NONE} ${BRANCH}${PROMPT_SYMBOL} "
   else
-    PS1="${PYTHON_VIRTUALENV}${LIGHT_GREEN}\u@\h [\t] ${BOLD_YELLOW}\w${COLOR_NONE} ${BRANCH}${PROMPT_SYMBOL} "
+    PS1="${PYTHON_VIRTUALENV}${LIGHT_GREEN}\u@\h [\t] ${BOLD_PURPLE}\w${COLOR_NONE} ${BRANCH}${PROMPT_SYMBOL} "
   fi
 
   # add a separator line

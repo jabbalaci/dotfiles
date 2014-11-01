@@ -61,16 +61,13 @@ export PATH
 #PATH=$PATH:/opt/wkhtmltopdf
 #export PATH
 
-export PYTHONPATH=$PYTHONPATH:$HOME/python/lib/jabbapylib_project:$HOME/python/lib
+export PYTHONPATH=$HOME/python/lib/jabbapylib_project:$HOME/python/lib
 
 PYPY=/opt/pypy/bin
 PATH=$PATH:$PYPY
 export PATH
 
-#PYTHONPATH=$PYTHONPATH:/usr/local/lib/python2.7/dist-packages/spyderlib
-#export PYTHONPATH
-
-export PYTHONSTARTUP=$HOME/.pythonstartup.py
+#export PYTHONSTARTUP=$HOME/.pythonstartup.py
 
 # Android's Video directory
 export A='/media/jabba/2B9A-EB28/Video'
@@ -105,6 +102,7 @@ alias nh='nautilus . 2>/dev/null'
 alias gt='gthumb &'
 alias p='python'
 alias pudb='python -m pudb'
+alias p2='python2'
 alias p3='python3'
 alias bpy='bpython'
 alias bpy3='/home/jabba/.virtualenvs/bpython_python3/bin/bpython'
@@ -169,8 +167,9 @@ on_function()
 }
 alias on=on_function
 alias off='deactivate'
-alias h='$HOME/python/PrimCom/h.py'
+alias h='python2 $HOME/python/PrimCom/h.py'
 alias ydl='youtube-dl'
+alias black='gnome-screensaver-command -a'
 
 # .xsession-errors can grow huge... remove it
 if [ ! -h $HOME/.xsession-errors ]
@@ -191,12 +190,34 @@ export PATH="/usr/local/heroku/bin:$PATH"
 # https://gist.github.com/insin/1425703
 source ~/.bash_prompt
 
-# virtualenvwrapper
+# START: virtualenvwrapper (works with Ubuntu and Manjaro)
 export WORKON_HOME=$HOME/.virtualenvs
 export PROJECT_HOME=$HOME/webapps
 export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
-export VIRTUALENVWRAPPER_VIRTUALENV=/usr/local/bin/virtualenv
-source /usr/local/bin/virtualenvwrapper.sh
+if [ -f /usr/local/bin/virtualenv ]
+then
+    export VIRTUALENVWRAPPER_VIRTUALENV=/usr/local/bin/virtualenv
+else
+    if [ -f /usr/bin/virtualenv ]
+    then
+        export VIRTUALENVWRAPPER_VIRTUALENV=/usr/bin/virtualenv
+    else
+        echo "error: virtualenv not found"
+    fi
+fi
+#
+if [ -f /usr/local/bin/virtualenvwrapper.sh ]
+then
+    source /usr/local/bin/virtualenvwrapper.sh
+else
+    if [ -f /usr/bin/virtualenvwrapper.sh ]
+    then
+        source /usr/bin/virtualenvwrapper.sh
+    else
+        echo "error: virtualenvwrapper.sh not found"
+    fi
+fi
+# END: virtualenvwrapper
 
 # autoenv
 # https://github.com/kennethreitz/autoenv
@@ -204,11 +225,4 @@ source /usr/local/bin/virtualenvwrapper.sh
 # git clone git://github.com/kennethreitz/autoenv.git ~/.autoenv
 source ~/.autoenv/activate.sh
 
-# /usr/games/fortune | /usr/games/cowthink
-
-#call_emacs() { emacs "$@" & }
-#call_emacsclient() { emacsclient -n "$@" & }
-#alias vi=call_emacs
-#alias e=call_emacs
-#alias em=call_emacs
-#alias ec=call_emacsclient
+# fortune | cowthink
