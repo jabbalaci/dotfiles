@@ -21,6 +21,7 @@
 (require 'init-tabs)
 (require 'init-explorer)
 (require 'init-org)
+(require 'init-twitter)
 
 
 (provide 'init)
