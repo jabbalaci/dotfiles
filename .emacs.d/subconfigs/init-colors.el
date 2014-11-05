@@ -19,6 +19,17 @@
     ;(setq evil-operator-state-cursor '("red" hollow))
 
 ;; color themes
+;; reddit discussion: http://redd.it/2l4rbn
+;; There are 3 ways to load them. One of them should work :)
+;; 1)
+;;    (require 'afternoon-theme)
+;; 2)
+;;    (load-theme 'molokai t)
+;;    (require 'molokai-theme)
+;; 3)
+;;    (require 'moe-theme)
+;;    (moe-dark)
+
     ; zenburn
     ;(require 'color-theme-zenburn)
     ;(color-theme-zenburn)
@@ -36,6 +47,9 @@
     ;(ample-theme)
     ;(require 'ample-light-theme)
     ;(ample-light-theme)
+    ; badwolf
+    ;(add-to-list 'custom-theme-load-path "~/.emacs.d/elpa/color-theme-badwolf")
+    ;(load-theme 'badwolf t)
 
 ;; background colour
     ;(set-background-color "gray")

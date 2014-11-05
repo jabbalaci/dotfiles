@@ -15,6 +15,7 @@
 (require 'init-buffers)
 (require 'init-programming)
 (require 'init-python)
+(require 'init-clojure)
 (require 'init-colors)
 (require 'init-filetypes)
 (require 'init-autocomplete)

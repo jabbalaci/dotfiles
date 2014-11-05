@@ -4,8 +4,9 @@
 
 
 ;;;### (autoloads (httpd-serve-directory httpd-stop httpd-start)
-;;;;;;  "simple-httpd" "simple-httpd.el" (21574 11194 468819 162000))
-;;; Generated autoloads from simple-httpd.el
+;;;;;;  "simple-httpd" "../../../../../../../home/jabba/.emacs.d/elpa/simple-httpd-20140908.1908/simple-httpd.el"
+;;;;;;  "552cabcea3ab7391d69c1f465100d860")
+;;; Generated autoloads from ../../../../../../../home/jabba/.emacs.d/elpa/simple-httpd-20140908.1908/simple-httpd.el
 
 (autoload 'httpd-start "simple-httpd" "\
 Start the web server process. If the server is already
@@ -26,8 +27,9 @@ Start the web server with given `directory' as `httpd-root'.
 
 ;;;***
 
-;;;### (autoloads nil nil ("simple-httpd-pkg.el") (21574 11194 540754
-;;;;;;  360000))
+;;;### (autoloads nil nil ("../../../../../../../home/jabba/.emacs.d/elpa/simple-httpd-20140908.1908/simple-httpd-pkg.el"
+;;;;;;  "../../../../../../../home/jabba/.emacs.d/elpa/simple-httpd-20140908.1908/simple-httpd.el")
+;;;;;;  (21590 45209 722306 840000))
 
 ;;;***
 

@@ -9,6 +9,9 @@
     (require 'autopair)
     (autopair-global-mode)
 
+;; rainbow delimiters
+    (add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
+
 ;; surrounding, https://github.com/timcharper/evil-surround
     (require 'evil-surround)
     (global-evil-surround-mode 1)

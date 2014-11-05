@@ -30,7 +30,7 @@
 ;; a "run script" for Python 2
     (defun run-python2-script ()
       (interactive)
-      (shell-command (format "python %s" (buffer-name)) "*python-output*"))
+      (shell-command (format "python2 %s" (buffer-name)) "*python-output*"))
     (global-set-key (kbd "C-<f2>") 'run-python2-script) ; run with Python 2
 
 ;; a "run script" for Python 3
@@ -38,6 +38,7 @@
       (interactive)
       (shell-command (format "python3 %s" (buffer-name)) "*python-output*"))
     (global-set-key (kbd "C-<f3>") 'run-python3-script) ; run with Python 3
+
 
 (provide 'init-python)
 ;;; init-python.el ends here
