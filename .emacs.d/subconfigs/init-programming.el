@@ -21,6 +21,10 @@
     (setq-default tab-width 4)
     (setq indent-line-function 'insert-tab)
 
+;; 4 spaces for C-like languages
+    (setq c-default-style "linux"
+          c-basic-offset 4)
+
 ;; guess indentation settings from buffers
     (require 'dtrt-indent)
     (dtrt-indent-mode 1)

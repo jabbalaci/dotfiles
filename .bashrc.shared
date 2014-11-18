@@ -170,6 +170,7 @@ alias off='deactivate'
 alias h='python2 $HOME/python/PrimCom/h.py'
 alias ydl='youtube-dl'
 alias black='gnome-screensaver-command -a'
+alias r='ranger'
 
 # .xsession-errors can grow huge... remove it
 if [ ! -h $HOME/.xsession-errors ]
@@ -226,3 +227,7 @@ fi
 source ~/.autoenv/activate.sh
 
 # fortune | cowthink
+
+# wpython
+# it's in the PATH just temporarily during development
+export PATH=$PATH:$HOME/python/wpython
