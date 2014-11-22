@@ -25,6 +25,9 @@
     (setq c-default-style "linux"
           c-basic-offset 4)
 
+;; add newline to end of file upon save
+    (setq require-final-newline t)
+
 ;; guess indentation settings from buffers
     (require 'dtrt-indent)
     (dtrt-indent-mode 1)

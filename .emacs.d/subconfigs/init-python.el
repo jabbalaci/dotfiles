@@ -39,6 +39,10 @@
       (shell-command (format "python3 %s" (buffer-name)) "*python-output*"))
     (global-set-key (kbd "C-<f3>") 'run-python3-script) ; run with Python 3
 
+;; sort import lines
+;; https://github.com/paetzke/py-isort.el/issues/7
+    (require 'py-isort)
+    (define-key evil-visual-state-map (kbd "C-i") 'py-isort-region) ; sort selected imports
 
 (provide 'init-python)
 ;;; init-python.el ends here

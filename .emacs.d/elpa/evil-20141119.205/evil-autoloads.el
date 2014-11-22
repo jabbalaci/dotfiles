@@ -3,8 +3,8 @@
 ;;; Code:
 
 
-;;;### (autoloads (evil-mode) "evil" "evil.el" (21611 54967 507483
-;;;;;;  181000))
+;;;### (autoloads (evil-mode) "evil" "evil.el" (21615 32509 644322
+;;;;;;  703000))
 ;;; Generated autoloads from evil.el
 
 (defvar evil-mode nil "\
@@ -34,7 +34,7 @@ See `evil-local-mode' for more information on Evil-Local mode.
 ;;;;;;  "evil-common.el" "evil-core.el" "evil-digraphs.el" "evil-ex.el"
 ;;;;;;  "evil-integration.el" "evil-macros.el" "evil-maps.el" "evil-pkg.el"
 ;;;;;;  "evil-repeat.el" "evil-search.el" "evil-states.el" "evil-types.el"
-;;;;;;  "evil-vars.el") (21611 54968 776735 526000))
+;;;;;;  "evil-vars.el") (21615 32510 548985 810000))
 
 ;;;***
 

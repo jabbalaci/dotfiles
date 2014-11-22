@@ -9,7 +9,7 @@
 ;;       Bozhidar Batsov <bozhidar@batsov.com>
 ;; URL: http://github.com/clojure-emacs/clojure-mode
 ;; Keywords: languages clojure clojurescript lisp
-;; Version: 20141101.1
+;; Version: 20141120.1410
 ;; X-Original-Version: 3.1.0-cvs
 ;; Package-Requires: ((emacs "24.1"))
 
@@ -716,10 +716,7 @@ This function also returns nil meaning don't specify the indentation."
           ;; thing on that line has to be complete sexp since we are
           ;; inside the innermost containing sexp.
           (backward-prefix-chars)
-          (if (and (eq (char-after (point)) ?\[)
-                   (eq (char-after (elt state 1)) ?\())
-              (+ (current-column) 2) ;; this is probably inside a defn
-            (current-column)))
+          (current-column))
       (let* ((function (buffer-substring (point)
                                          (progn (forward-sexp 1) (point))))
              (open-paren (elt state 1))

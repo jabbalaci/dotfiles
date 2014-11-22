@@ -6,7 +6,7 @@
 ;; URL: https://github.com/bbatsov/projectile
 ;; Created: 2011-31-07
 ;; Keywords: project, convenience
-;; Version: 20141116.1114
+;; Version: 20141119.238
 ;; X-Original-Version: 0.11.0
 ;; Package-Requires: ((helm "1.4.0") (projectile "0.11.0") (cl-lib "0.3"))
 
@@ -368,7 +368,7 @@ CANDIDATE is the selected file.  Used when no file is explicitly marked."
                  (define-key map (kbd "<left>") 'helm-previous-source)
                  (define-key map (kbd "<right>") 'helm-next-source)
                  map))
-    (help-message . helm-find-file-help-message)
+    (help-message . helm-ff-help-message)
     (mode-line . helm-ff-mode-line-string)
     (type . file)
     (action . ,helm-projectile-file-actions))
@@ -386,7 +386,7 @@ CANDIDATE is the selected file.  Used when no file is explicitly marked."
                    (kbd "C-c f") 'helm-projectile-dired-files-new-action
                    (kbd "C-c a") 'helm-projectile-dired-files-add-action)
                  map))
-    (help-message . helm-find-file-help-message)
+    (help-message . helm-ff-help-message)
     (mode-line . helm-ff-mode-line-string)
     (type . file)
     (action . ,helm-projectile-file-actions))
@@ -401,7 +401,7 @@ CANDIDATE is the selected file.  Used when no file is explicitly marked."
     (coerce . helm-projectile-coerce-file)
     (candidates-in-buffer)
     (keymap . ,helm-projectile-find-file-map)
-    (help-message . helm-find-file-help-message)
+    (help-message . helm-ff-help-message)
     (mode-line . helm-ff-mode-line-string)
     (type . file)
     (action . ,helm-projectile-file-actions)))
@@ -501,7 +501,7 @@ CANDIDATE is the selected file.  Used when no file is explicitly marked."
     (coerce . helm-projectile-coerce-file)
     (candidates-in-buffer)
     (keymap . ,helm-generic-files-map)
-    (help-message . helm-find-file-help-message)
+    (help-message . helm-ff-help-message)
     (mode-line . helm-ff-mode-line-string)
     (type . file)
     (action . ,(cdr (helm-get-actions-from-type
@@ -574,7 +574,7 @@ Other file extensions can be customized with the variable `projectile-other-file
                                           (define-key map (kbd "<left>") 'helm-previous-source)
                                           (define-key map (kbd "<right>") 'helm-next-source)
                                           map))
-                             (help-message . helm-find-file-help-message)
+                             (help-message . helm-ff-help-message)
                              (mode-line . helm-ff-mode-line-string)
                              (type . file)
                              (action . ,helm-projectile-file-actions))

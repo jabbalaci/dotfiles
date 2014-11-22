@@ -4,3 +4,4 @@ minta
 *.elc
 *~
 *.pyc
+session.*

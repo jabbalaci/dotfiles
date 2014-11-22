@@ -4,7 +4,7 @@
 
 
 ;;;### (autoloads (helm-projectile) "helm-projectile" "helm-projectile.el"
-;;;;;;  (21611 54936 745307 450000))
+;;;;;;  (21615 32492 368322 814000))
 ;;; Generated autoloads from helm-projectile.el
 
 (autoload 'helm-projectile "helm-projectile" "\
@@ -19,8 +19,8 @@ If invoked outside of a project, displays a list of known projects to jump.
 
 ;;;***
 
-;;;### (autoloads nil nil ("helm-projectile-pkg.el") (21611 54936
-;;;;;;  921454 83000))
+;;;### (autoloads nil nil ("helm-projectile-pkg.el") (21615 32492
+;;;;;;  589959 606000))
 
 ;;;***
 

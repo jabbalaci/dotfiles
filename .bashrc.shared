@@ -70,7 +70,7 @@ export PATH
 #export PYTHONSTARTUP=$HOME/.pythonstartup.py
 
 # Android's Video directory
-export A='/media/jabba/2B9A-EB28/Video'
+export A='/media/jabba/FC1A-45A6/Video'
 export B='/media/jabba/GT70/Movies'
 
 PATH=$PATH:/opt/chromedriver
@@ -188,9 +188,6 @@ fi
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
 
-# https://gist.github.com/insin/1425703
-source ~/.bash_prompt
-
 # START: virtualenvwrapper (works with Ubuntu and Manjaro)
 export WORKON_HOME=$HOME/.virtualenvs
 export PROJECT_HOME=$HOME/webapps
@@ -228,6 +225,17 @@ source ~/.autoenv/activate.sh
 
 # fortune | cowthink
 
-# wpython
-# it's in the PATH just temporarily during development
-export PATH=$PATH:$HOME/python/wpython
+# colorize man pages
+# http://unix.stackexchange.com/questions/119/colors-in-man-pages
+export PAGER=most
+
+# https://gist.github.com/insin/1425703
+source ~/.bash_prompt
+
+# shopt settings (normalize Ubuntu and Manjaro)
+shopt -s cdspell
+shopt -s dotglob
+shopt -s hostcomplete
+shopt -s nocaseglob
+# required for "source .venv":
+shopt -u sourcepath
