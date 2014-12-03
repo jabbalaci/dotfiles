@@ -5,6 +5,10 @@
 #!/usr/bin/env python3
 # encoding: utf-8
 
+"""
+Python 3 project
+"""
+
 
 def main():
     $0print('Py3')

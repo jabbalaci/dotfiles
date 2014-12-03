@@ -4,8 +4,8 @@
 
 ;; yasnippet
 ;; should be loaded before auto complete so that they can work together
-;    (require 'yasnippet)
-;    (yas-global-mode 1)
+    (require 'yasnippet)
+    (yas-global-mode 1)
 ;
 ; ;; auto complete mod
 ; ;; should be loaded after yasnippet so that they can work together
