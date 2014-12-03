@@ -61,7 +61,7 @@ export PATH
 #PATH=$PATH:/opt/wkhtmltopdf
 #export PATH
 
-export PYTHONPATH=$HOME/python/lib/jabbapylib_project:$HOME/python/lib
+export PYTHONPATH=$HOME/python/lib/jabbapylib:$HOME/python/lib
 
 PYPY=/opt/pypy/bin
 PATH=$PATH:$PYPY
