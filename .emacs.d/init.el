@@ -16,8 +16,8 @@
 
 (require 'init-programming)
 (require 'init-python)
-(require 'init-clojure)
-(require 'init-nimrod)
+;(require 'init-clojure)
+;(require 'init-nimrod)
 
 (require 'init-colors)
 (require 'init-filetypes)
