@@ -12,20 +12,26 @@
 #export ALTERNATE_EDITOR=/home/jabba/Dropbox/home/jabba/bin/ALTERNATE_EDITOR
 #export VIEWER=$EDITOR
 
-#########################
-# START: Emacs settings #
-#########################
-export EDITOR=/home/jabba/Dropbox/home/jabba/bin/emacs_try_client_first
-export VIEWER=$EDITOR
+#############################
+# START: emacs/vim settings #
+#############################
+if [ -f $HOME/SLOW ];
+then
+    # if you have a slow machine
+    export EDITOR=/usr/bin/vim
+else
+    export EDITOR=/home/jabba/Dropbox/home/jabba/bin/emacs_try_client_first
+fi
 
+export VIEWER=$EDITOR
 alias vi=$EDITOR
 alias e=vi
 alias em=vi
 
 export TERM="xterm-256color"
-#######################
-# END: Emacs settings #
-#######################
+###########################
+# END: emacs/vim settings #
+###########################
 
 # colored less using pygmentize
 export LESS='-R'
