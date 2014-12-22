@@ -3,8 +3,8 @@
 ;;; Code:
 
 
-;;;### (autoloads (let-alist) "let-alist" "let-alist.el" (21652 1214
-;;;;;;  266631 19000))
+;;;### (autoloads (let-alist) "let-alist" "let-alist.el" (21655 59905
+;;;;;;  579586 594000))
 ;;; Generated autoloads from let-alist.el
 
 (autoload 'let-alist "let-alist" "\
@@ -17,16 +17,24 @@ For instance, the following code
   (let-alist alist
     (if (and .title .body)
         .body
-      .site))
+      .site
+      .site.contents))
 
-expands to
+essentially expands to
 
   (let ((.title (cdr (assq 'title alist)))
-        (.body (cdr (assq 'body alist)))
-        (.site (cdr (assq 'site alist))))
+        (.body  (cdr (assq 'body alist)))
+        (.site  (cdr (assq 'site alist)))
+        (.site.contents (cdr (assq 'contents (cdr (assq 'site alist))))))
     (if (and .title .body)
         .body
-      .site))
+      .site
+      .site.contents))
+
+If you nest `let-alist' invocations, the inner one can't access
+the variables of the outer one. You can, however, access alists
+inside the original alist by using dots inside the symbol, as
+displayed in the example above.
 
 \(fn ALIST &rest BODY)" nil t)
 
@@ -34,8 +42,8 @@ expands to
 
 ;;;***
 
-;;;### (autoloads nil nil ("let-alist-pkg.el") (21652 1214 332490
-;;;;;;  664000))
+;;;### (autoloads nil nil ("let-alist-pkg.el") (21655 59905 853276
+;;;;;;  239000))
 
 ;;;***
 

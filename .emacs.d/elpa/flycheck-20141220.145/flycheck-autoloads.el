@@ -6,7 +6,7 @@
 ;;;### (autoloads (flycheck-def-option-var flycheck-def-config-file-var
 ;;;;;;  flycheck-define-command-checker flycheck-define-error-level
 ;;;;;;  global-flycheck-mode flycheck-mode flycheck-info) "flycheck"
-;;;;;;  "flycheck.el" (21652 1217 790630 913000))
+;;;;;;  "flycheck.el" (21655 59908 623586 532000))
 ;;; Generated autoloads from flycheck.el
 
 (autoload 'flycheck-info "flycheck" "\
@@ -107,8 +107,11 @@ Define SYMBOL as generic syntax checker via
 to check the buffer.  SYMBOL and DOCSTRING are the same as for
 `flycheck-define-generic-checker'.
 
-The following PROPERTIES constitute a command syntax checker.
-Unless otherwise noted, all properties are mandatory.
+In addition to the properties understood by
+`flycheck-define-generic-checker', the following PROPERTIES
+constitute a command syntax checker.  Unless otherwise noted, all
+properties are mandatory.  Note that the default `:error-filter'
+of command checkers is `flycheck-sanitize-errors'.
 
 `:command COMMAND'
      The command to run for syntax checking.
@@ -160,10 +163,9 @@ Unless otherwise noted, all properties are mandatory.
      `flycheck-parse-with-patterns'.  In this case,
      `:error-patterns' is mandatory.
 
-In addition to these PROPERTIES, all properties from
-`flycheck-define-generic-checker' may be specified, except of
-`:start', `:interrupt', and `:print-doc'.  You may specify a
-custom `:verify' function, but you should take care to call
+Note that you may not give `:start', `:interrupt', and
+`:print-doc' for a command checker.  You can give a custom
+`:verify' function, but you should take care to call
 `flycheck-verify-command-checker' in a custom `:verify'
 function.
 
@@ -176,9 +178,9 @@ function.
 (autoload 'flycheck-def-config-file-var "flycheck" "\
 Define SYMBOL as config file variable for CHECKER, with default FILE-NAME.
 
-SYMBOL is declared as customizable, buffer-local variable using
-`defcustom', to provide a configuration file for the given syntax
-CHECKER.  CUSTOM-ARGS are forwarded to `defcustom'.
+SYMBOL is declared as customizable variable using `defcustom', to
+provide a configuration file for the given syntax CHECKER.
+CUSTOM-ARGS are forwarded to `defcustom'.
 
 FILE-NAME is the initial value of the new variable.  If omitted,
 the default value is nil.
@@ -193,10 +195,10 @@ argument to `flycheck-define-checker'.
 (autoload 'flycheck-def-option-var "flycheck" "\
 Define SYMBOL as option variable with INIT-VALUE for CHECKER.
 
-SYMBOL is declared as customizable, buffer-local variable using
-`defcustom', to provide an option for the given syntax CHECKER.
-INIT-VALUE is the initial value of the variable, and DOCSTRING is
-its docstring.  CUSTOM-ARGS are forwarded to `defcustom'.
+SYMBOL is declared as customizable variable using `defcustom', to
+provide an option for the given syntax CHECKER.  INIT-VALUE is
+the initial value of the variable, and DOCSTRING is its
+docstring.  CUSTOM-ARGS are forwarded to `defcustom'.
 
 Use this together with the `option', `option-list' and
 `option-flag' forms in the `:command' argument to
@@ -210,8 +212,8 @@ Use this together with the `option', `option-list' and
 
 ;;;***
 
-;;;### (autoloads nil nil ("flycheck-ert.el" "flycheck-pkg.el") (21652
-;;;;;;  1217 818498 255000))
+;;;### (autoloads nil nil ("flycheck-ert.el" "flycheck-pkg.el") (21655
+;;;;;;  59908 789858 424000))
 
 ;;;***
 

@@ -1,4 +1,13 @@
 (1
+ (org2jekyll .
+	     [(0 0 7)
+	      ((dash
+		(2 10 0))
+	       (s
+		(1 9 0))
+	       (deferred
+		   (0 3 2)))
+	      "Minor mode to publish org-mode post to jekyll without specific yaml" single])
  (zone-matrix .
 	      [(0 0 1)
 	       nil "Matrix themed Zone mode" tar])
@@ -81,7 +90,7 @@
 		 [(0 0 3)
 		  nil "Look up wxWidgets API by using local html manual." tar])
  (wsd-mode .
-	   [(0 1 0)
+	   [(0 2 0)
 	    nil "Emacs major-mode for www.websequencediagrams.com" tar])
  (ws-trim .
 	  [(1 4)
@@ -3472,7 +3481,7 @@
 	      [(0 1 4)
 	       nil "Egison editing mode" single])
  (editorconfig .
-	       [(0 3)
+	       [(0 4)
 		nil "EditorConfig Emacs extension" single])
  (edit-list .
 	    [(0 4)
@@ -3951,7 +3960,7 @@
 				     (3 0)))
 				   "Extra font-locking for Clojure mode" single])
  (clojure-mode .
-	       [(4 0 0)
+	       [(4 0 1)
 		((emacs
 		  (24 1)))
 		"Major mode for Clojure code" single])
@@ -3959,7 +3968,7 @@
 	       [(0 11)
 		nil "Clojure process in a buffer" single])
  (clojure-env .
-	      [(0 0 3)
+	      [(0 0 4)
 	       nil "manage clojure environments with Emacs" single])
  (cljsbuild-mode .
 		 [(0 2 0)
@@ -4007,7 +4016,7 @@
 	   (1 5)))
 	 "Client for IRC in Emacs" tar])
  (cider .
-	[(0 8 1)
+	[(0 8 2)
 	 ((clojure-mode
 	   (3 0 0))
 	  (cl-lib
@@ -4264,7 +4273,7 @@
 		  (1 11 5)))
 		"Space align various Clojure forms" single])
  (alchemist .
-	    [(0 10 1)
+	    [(0 11 1)
 	     ((emacs
 	       (24)))
 	     "Elixir tooling integration into emacs" tar])

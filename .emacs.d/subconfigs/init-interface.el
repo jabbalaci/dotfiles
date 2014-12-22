@@ -5,6 +5,13 @@
 ;; Larger font. The value is in 1/10pt, so 100 will give you 10pt, etc.
     (set-face-attribute 'default nil :height 160)
 
+;; change the color of selection to make it more visible
+    ;(set-face-attribute 'region nil :background "#666" :foreground "#ffffff")
+    ;(set-face-attribute 'region nil :background "#5454ff" :foreground "#000000")
+    ;(set-face-attribute 'region nil :background "#a7a7f6" :foreground "#000000")
+    ;(set-face-attribute 'region nil :background "#c4c4f3" :foreground "#000000")
+    (set-face-attribute 'region nil :background "#d9d9f8" :foreground "#000000")
+
 ;; show tildes (~) for blank lines after the last line
 ;; normal way: emacs uses a different symbol but it's very similar
     (setq-default indicate-empty-lines t)

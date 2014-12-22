@@ -95,7 +95,19 @@ alias cp='cp -i'
 alias mv='mv -i'
 alias d='ls -al'
 #alias mc='. /usr/share/mc/bin/mc-wrapper.sh'
-alias mc='. /usr/local/libexec/mc/mc-wrapper.sh'
+# START: mc-wrapper
+if [ -f /usr/local/libexec/mc/mc-wrapper.sh ]
+then
+    alias mc=". /usr/local/libexec/mc/mc-wrapper.sh"
+else
+    if [ -f /usr/lib/mc/mc-wrapper.sh ]
+    then
+        alias mc=". /usr/lib/mc/mc-wrapper.sh"
+    else
+        echo "error: mc-wrapper.sh not found"
+    fi
+fi
+# END: mc-wrapper
 alias run='chmod u+x'
 alias cpc='CWD_LAC=`pwd`'
 alias cdc='cd $CWD_LAC'
