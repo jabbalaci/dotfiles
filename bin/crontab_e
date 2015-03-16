@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+# if you use emacs, editing the crontab file can be problematic
+# with this trick you edit crontab with vim
+
+EDITOR=/usr/bin/vim
+
+crontab -e

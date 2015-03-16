@@ -2,11 +2,13 @@
 
 function emacs_server_is_running()
 {
-    ps ux | grep "\bemacs\b" | grep -v grep >/dev/null
+    ps ux | grep "[[:space:]]emacs\( \|$\)" | grep -v grep >/dev/null
 }
 
 if emacs_server_is_running; then
+#    echo "running"
     emacsclient -n "$@" 2>/dev/null &
 else
+#    echo "NOT running"
     emacs "$@" 2>/dev/null &
 fi

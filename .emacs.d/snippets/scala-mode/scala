@@ -1,0 +1,14 @@
+# -*- mode: snippet -*-
+# name: alap
+# key: alap
+# --
+#!/usr/bin/env scala
+
+import scala.collection.mutable
+import scala.collection.immutable
+
+def main() {
+  $0println("scala")
+}
+
+main()

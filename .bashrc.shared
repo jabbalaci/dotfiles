@@ -67,7 +67,7 @@ export PATH
 #PATH=$PATH:/opt/wkhtmltopdf
 #export PATH
 
-export PYTHONPATH=$HOME/python/lib/jabbapylib:$HOME/python/lib
+export PYTHONPATH=$HOME/python/lib/jabbapylib2
 
 PYPY=/opt/pypy/bin
 PATH=$PATH:$PYPY
@@ -189,6 +189,7 @@ alias h='python2 $HOME/python/PrimCom/h.py'
 alias ydl='youtube-dl'
 alias black='gnome-screensaver-command -a'
 alias r='ranger'
+alias scala='scala -Dscala.color'
 
 # .xsession-errors can grow huge... remove it
 if [ ! -h $HOME/.xsession-errors ]
@@ -257,3 +258,6 @@ shopt -s hostcomplete
 shopt -s nocaseglob
 # required for "source .venv":
 shopt -u sourcepath
+
+# Scala
+export PATH=$PATH:/opt/scala/bin

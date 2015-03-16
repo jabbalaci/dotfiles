@@ -142,7 +142,7 @@ function set_bash_prompt () {
 
   # Set the bash prompt variable.
   if $I_HAVE_LIGHT_BACKGROUND ; then
-    PS1="${PYTHON_VIRTUALENV}${DARK_GRAY}\u@\h [\t] ${YELLOW}\w${COLOR_NONE} ${BRANCH}${PROMPT_SYMBOL} "
+    PS1="${PYTHON_VIRTUALENV}${DARK_GRAY}\u@\h [\t] ${BOLD_PURPLE}\w${COLOR_NONE} ${BRANCH}${PROMPT_SYMBOL} "
   else
     PS1="${PYTHON_VIRTUALENV}${LIGHT_GREEN}\u@\h [\t] ${BOLD_PURPLE}\w${COLOR_NONE} ${BRANCH}${PROMPT_SYMBOL} "
   fi

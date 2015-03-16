@@ -1,5 +1,5 @@
 [merge]
-    tool = kdiff3
+    tool = meld
 [alias]
     mylog = log --pretty=format:'%h - %an, %ar : %s'
 
