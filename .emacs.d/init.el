@@ -16,8 +16,6 @@
 
 (require 'init-programming)
 (require 'init-python)
-;(require 'init-clojure)
-;(require 'init-nimrod)
 
 (require 'init-colors)
 (require 'init-filetypes)
@@ -25,8 +23,6 @@
 (require 'init-tabs)
 (require 'init-explorer)
 (require 'init-org)
-(require 'init-twitter)
-
 
 (provide 'init)
 ;;; init.el ends here
