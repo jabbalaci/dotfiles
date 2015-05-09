@@ -191,6 +191,10 @@ alias black='gnome-screensaver-command -a'
 alias r='ranger'
 alias scala='scala -Dscala.color'
 
+# https://github.com/nvbn/thefuck
+alias fuck='eval $(thefuck $(fc -ln -1)); history -r'
+export THEFUCK_REQUIRE_CONFIRMATION='true'
+
 # .xsession-errors can grow huge... remove it
 if [ ! -h $HOME/.xsession-errors ]
 then
