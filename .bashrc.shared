@@ -53,6 +53,10 @@ export GOLIB=$GOPATH/src/github.com/jabbalaci/jabbagolib
 PATH=$PATH:$GOPATH/bin
 export PATH
 
+# add wpython.py
+#PATH=$PATH:$HOME/Dropbox/python/Wpython
+#export PATH
+
 #function msdos_pwd
 #{
 #    local dir="`pwd`"
