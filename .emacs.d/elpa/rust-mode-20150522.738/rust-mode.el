@@ -1,7 +1,7 @@
 ;;; rust-mode.el --- A major emacs mode for editing Rust source code
 
 ;; Version: 0.2.0
-;; Package-Version: 20150518.537
+;; Package-Version: 20150522.738
 ;; Author: Mozilla
 ;; Url: https://github.com/rust-lang/rust-mode
 ;; Keywords: languages
@@ -640,7 +640,8 @@ This is written mainly to be used as `end-of-defun-function' for Rust."
               ;; didn't find a match
               (> angle-brackets 0)
               ;; we have no guarantee of a match, so give up eventually
-              (< (- start-point (point)) blink-matching-paren-distance)
+	      (or (not blink-matching-paren-distance)
+		  (< (- start-point (point)) blink-matching-paren-distance))
               ;; didn't hit the top of the buffer
               (> (point) (point-min))
               ;; didn't hit something else weird like a `;`

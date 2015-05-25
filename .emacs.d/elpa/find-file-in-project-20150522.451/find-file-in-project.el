@@ -5,7 +5,7 @@
 ;; Author: Phil Hagelberg, Doug Alcorn, and Will Farrington
 ;; Maintainer: Chen Bin <chenbin.sh@gmail.com>
 ;; URL: http://www.emacswiki.org/cgi-bin/wiki/FindFileInProject
-;; Package-Version: 20150516.351
+;; Package-Version: 20150522.451
 ;; Git: git://github.com/technomancy/find-file-in-project.git
 ;; Version: 3.5
 ;; Created: 2008-03-18
@@ -310,7 +310,7 @@ You can override this by setting the variable `ffip-project-root'."
 
 ;;;###autoload
 (defun ffip-get-project-root-directory ()
-  "Get the the full path of project root directory"
+  "Get the full path of project root directory"
   (expand-file-name (or ffip-project-root
                         (ffip-project-root))))
 

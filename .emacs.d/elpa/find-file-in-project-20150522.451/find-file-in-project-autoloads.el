@@ -5,8 +5,8 @@
 
 ;;;### (autoloads (find-file-in-project-by-selected ffip-get-project-root-directory
 ;;;;;;  find-file-in-project ffip-current-full-filename-match-pattern-p)
-;;;;;;  "find-file-in-project" "find-file-in-project.el" (21850 32108
-;;;;;;  716231 872000))
+;;;;;;  "find-file-in-project" "find-file-in-project.el" (21859 1184
+;;;;;;  623257 956000))
 ;;; Generated autoloads from find-file-in-project.el
 
 (autoload 'ffip-current-full-filename-match-pattern-p "find-file-in-project" "\
@@ -25,7 +25,7 @@ You can override this by setting the variable `ffip-project-root'.
 \(fn)" t nil)
 
 (autoload 'ffip-get-project-root-directory "find-file-in-project" "\
-Get the the full path of project root directory
+Get the full path of project root directory
 
 \(fn)" nil nil)
 
@@ -48,8 +48,8 @@ If no region is selected, you need provide one.
 
 ;;;***
 
-;;;### (autoloads nil nil ("find-file-in-project-pkg.el") (21850
-;;;;;;  32108 779069 320000))
+;;;### (autoloads nil nil ("find-file-in-project-pkg.el") (21859
+;;;;;;  1184 827779 268000))
 
 ;;;***
 
