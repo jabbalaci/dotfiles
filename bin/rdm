@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+RDM=/usr/share/redis-desktop-manager/bin/rdm
+if [ -f $RDM ]; then
+    $RDM &
+else
+    /usr/bin/rdm &
+fi
