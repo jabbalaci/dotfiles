@@ -256,9 +256,6 @@ source ~/.autoenv/activate.sh
 # http://unix.stackexchange.com/questions/119/colors-in-man-pages
 export PAGER=most
 
-# https://gist.github.com/insin/1425703
-source ~/.bash_prompt
-
 # shopt settings (normalize Ubuntu and Manjaro)
 shopt -s cdspell
 shopt -s dotglob
@@ -269,3 +266,6 @@ shopt -u sourcepath
 
 # Scala
 export PATH=$PATH:/opt/scala/bin
+
+# https://gist.github.com/insin/1425703
+source ~/.bash_prompt
