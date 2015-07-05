@@ -3,7 +3,7 @@
 ; ==================
 
 ; Elpy: http://elpy.readthedocs.org/en/latest/index.html
-    (elpy-enable)
+;    (elpy-enable)
 
 ;; stop Yasnippet auto-indent, http://xahlee.blogspot.hu/2012/04/emacs-stop-yasnippet-auto-indent.html
 ;; you can also try 'fixed' instead of 'nil'
@@ -26,7 +26,7 @@
 ;(global-flycheck-mode)
 ;(setq flycheck-check-syntax-automatically '(save mode-enabled))
 ;(add-hook 'python-mode-hook (lambda () (setq flycheck-checker 'python-pylint)))
-;(add-hook 'after-init-hook #'global-flycheck-mode)
+(add-hook 'after-init-hook #'global-flycheck-mode)
 
 ;; a "run script" for Python 2
     (defun run-python2-script ()

@@ -15,7 +15,8 @@
 (require 'init-buffers)
 
 (require 'init-programming)
-(require 'init-python)
+;(require 'init-python)
+(require 'init-py)
 
 (require 'init-colors)
 (require 'init-filetypes)
