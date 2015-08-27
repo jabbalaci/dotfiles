@@ -23,9 +23,9 @@
 ;                    '("\\.py\\'" dss/flymake-pycodecheck-init))
 ;       (load-library "flymake-cursor"))
 
-;(global-flycheck-mode)
-;(setq flycheck-check-syntax-automatically '(save mode-enabled))
-;(add-hook 'python-mode-hook (lambda () (setq flycheck-checker 'python-pylint)))
+(global-flycheck-mode)
+(setq flycheck-check-syntax-automatically '(save mode-enabled))
+(add-hook 'python-mode-hook (lambda () (setq flycheck-checker 'python-pylint)))
 ;(add-hook 'after-init-hook #'global-flycheck-mode)
 
 ;; a "run script" for Python 2

@@ -36,9 +36,9 @@ export TERM="xterm-256color"
 # colored less using pygmentize
 export LESS='-R'
 
-export JAVA_HOME=/opt/java
-export JDK_HOME=$JAVA_HOME
-export PATH=$JAVA_HOME/bin:$PATH
+#export JAVA_HOME=/opt/java
+#export JDK_HOME=$JAVA_HOME
+#export PATH=$PATH:$JAVA_HOME/bin
 
 SPIDEROAK="$HOME/SpiderOak Hive"
 MY_BIN="$HOME/bin"
@@ -127,7 +127,7 @@ alias pudb='python -m pudb'
 alias p2='python2'
 alias p3='python3'
 alias bpy='bpython'
-alias bpy3='/home/jabba/.virtualenvs/bpython_python3/bin/bpython'
+alias bpy2='bpython2'
 alias ipy='ipython'
 alias th='echo "cls; cd `pwd`"'
 alias kr='krusader &'
@@ -176,11 +176,12 @@ alias mdgo=mkdir_go
 
 on_function()
 {
-    a=`pwd`
+    ppwd=`which pwd`
+    a=`$ppwd`
     f=${a##*/}
     workon $f
     if [ $? -ne 0 ]; then
-        bak=`pwd`
+        bak=`$ppwd`
         a=`dirname $bak`
         f=${a##*/}
         workon $f
@@ -213,7 +214,7 @@ then
 fi
 
 ### Added by the Heroku Toolbelt
-export PATH="/usr/local/heroku/bin:$PATH"
+export PATH=$PATH:/usr/local/heroku/bin
 
 # START: virtualenvwrapper (works with Ubuntu and Manjaro)
 export WORKON_HOME=$HOME/.virtualenvs
@@ -265,10 +266,10 @@ shopt -s nocaseglob
 shopt -u sourcepath
 
 # Scala
-export PATH=$PATH:/opt/scala/bin
+#export PATH=$PATH:/opt/scala/bin
 
 # https://gist.github.com/insin/1425703
 source ~/.bash_prompt
 
 # https://github.com/cask/cask
-export PATH=$PATH:$HOME/.cask/bin
+#export PATH=$PATH:$HOME/.cask/bin
