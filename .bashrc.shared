@@ -176,12 +176,11 @@ alias mdgo=mkdir_go
 
 on_function()
 {
-    ppwd=`which pwd`
-    a=`$ppwd`
+    a=`ppwd`
     f=${a##*/}
     workon $f
     if [ $? -ne 0 ]; then
-        bak=`$ppwd`
+        bak=`ppwd`
         a=`dirname $bak`
         f=${a##*/}
         workon $f
