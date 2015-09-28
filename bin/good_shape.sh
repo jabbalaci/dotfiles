@@ -1,5 +1,7 @@
 #!/usr/bin/bash
 
+# for Ubuntu
+#
 # good_shape.sh
 
 sudo dpkg --configure -a\
