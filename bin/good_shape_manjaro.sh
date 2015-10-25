@@ -7,4 +7,5 @@
 sudo pacman-mirrors -g
 sudo pacman -Syy
 sudo pacman -Syu
+sudo pacman -R $(pacman -Qdtq)
 sudo pacman -Scc

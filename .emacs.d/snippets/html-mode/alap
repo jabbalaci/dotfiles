@@ -1,0 +1,13 @@
+# -*- mode: snippet -*-
+# name: alap
+# key: alap
+# --
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Title here...</title>
+  </head>
+  <body>
+    $0...
+  </body>
+</html>

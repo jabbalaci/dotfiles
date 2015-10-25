@@ -130,6 +130,7 @@ alias bpy2='bpython2'
 alias bpy3='bpython3'
 alias ipy='ipython'
 alias ipy3='ipython3'
+alias ipynb='ipython notebook'
 alias th='echo "cls; cd `pwd`"'
 alias kr='krusader &'
 alias kill9='kill -9'
@@ -190,7 +191,6 @@ on_function()
 }
 alias on=on_function
 alias off='deactivate'
-alias h='python2 $HOME/python/PrimCom/h.py'
 alias ydl='youtube-dl'
 alias black='gnome-screensaver-command -a'
 alias r='ranger'
@@ -273,3 +273,12 @@ source ~/.bash_prompt
 
 # https://github.com/cask/cask
 #export PATH=$PATH:$HOME/.cask/bin
+
+# http://linuxgazette.net/109/misc/marinov/acd_func.html
+source ~/bin/acd_func.sh
+alias l="cd --"
+
+# autojump
+# http://www.thinkingmedia.ca/2014/10/how-to-install-autojump-on-ubuntu-14/
+source /usr/share/autojump/autojump.bash
+alias jj="j --stat"
