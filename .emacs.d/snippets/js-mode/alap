@@ -1,0 +1,11 @@
+# -*- mode: snippet -*-
+# name: alap
+# key: alap
+# --
+"use strict";
+
+function main() {
+    $1console.log("hello");
+}
+
+main()

@@ -276,9 +276,15 @@ source ~/.bash_prompt
 
 # http://linuxgazette.net/109/misc/marinov/acd_func.html
 source ~/bin/acd_func.sh
-alias l="cd --"
+alias ll="cd --"
 
 # autojump
 # http://www.thinkingmedia.ca/2014/10/how-to-install-autojump-on-ubuntu-14/
 source /usr/share/autojump/autojump.bash
 alias jj="j --stat"
+
+# fish shell
+alias f='fish'
+
+# brackets text editor
+alias br="brackets &>/dev/null &"
