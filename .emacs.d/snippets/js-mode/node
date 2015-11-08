@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: node
+# key: node
+# --
+#!/usr/bin/env node
+
+$1
