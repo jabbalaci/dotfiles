@@ -287,4 +287,4 @@ alias jj="j --stat"
 alias f='fish'
 
 # brackets text editor
-alias br="brackets &>/dev/null &"
+# alias br="brackets &>/dev/null &"

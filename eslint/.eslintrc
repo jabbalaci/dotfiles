@@ -1,5 +1,6 @@
 {
     "rules": {
+        "strict": [2, "global"],
         "indent": [
             2,
             4
