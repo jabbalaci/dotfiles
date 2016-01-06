@@ -90,7 +90,7 @@ export PATH
 #export PATH="/opt/anaconda/bin:$PATH"
 
 # deactivate that the screen goes blank in 10 minutes
-# a rukkolás HappBot-hoz kell
+# a rukkola's HappBot-hoz kell
 #xset s 0 0
 
 alias md='mkdir'
@@ -176,29 +176,30 @@ fi
 }
 alias mdgo=mkdir_go
 
-on_function()
-{
-    a=`ppwd`
-    f=${a##*/}
-    workon $f
-    if [ $? -ne 0 ]; then
-        bak=`ppwd`
-        a=`dirname $bak`
-        f=${a##*/}
-        workon $f
-        cd $bak
-    fi
-}
-alias on=on_function
-alias off='deactivate'
+# on_function()
+# {
+#     a=`ppwd`
+#     f=${a##*/}
+#     workon $f
+#     if [ $? -ne 0 ]; then
+#         bak=`ppwd`
+#         a=`dirname $bak`
+#         f=${a##*/}
+#         workon $f
+#         cd $bak
+#     fi
+# }
+# alias on=on_function
+# alias off='deactivate'
+#alias off='exit'
 alias ydl='youtube-dl'
 alias black='gnome-screensaver-command -a'
 alias r='ranger'
 alias scala='scala -Dscala.color'
 
 # https://github.com/nvbn/thefuck
-alias fuck='eval $(thefuck $(fc -ln -1)); history -r'
-export THEFUCK_REQUIRE_CONFIRMATION='true'
+#alias fuck='eval $(thefuck $(fc -ln -1)); history -r'
+#export THEFUCK_REQUIRE_CONFIRMATION='true'
 
 # .xsession-errors can grow huge... remove it
 if [ ! -h $HOME/.xsession-errors ]
@@ -217,39 +218,39 @@ fi
 export PATH=$PATH:/usr/local/heroku/bin
 
 # START: virtualenvwrapper (works with Ubuntu and Manjaro)
-export WORKON_HOME=$HOME/.virtualenvs
-export PROJECT_HOME=$HOME/webapps
-export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
-if [ -f /usr/local/bin/virtualenv ]
-then
-    export VIRTUALENVWRAPPER_VIRTUALENV=/usr/local/bin/virtualenv
-else
-    if [ -f /usr/bin/virtualenv ]
-    then
-        export VIRTUALENVWRAPPER_VIRTUALENV=/usr/bin/virtualenv
-    else
-        echo "error: virtualenv not found"
-    fi
-fi
-#
-if [ -f /usr/local/bin/virtualenvwrapper.sh ]
-then
-    source /usr/local/bin/virtualenvwrapper.sh
-else
-    if [ -f /usr/bin/virtualenvwrapper.sh ]
-    then
-        source /usr/bin/virtualenvwrapper.sh
-    else
-        echo "error: virtualenvwrapper.sh not found"
-    fi
-fi
+#export WORKON_HOME=$HOME/.virtualenvs
+#export PROJECT_HOME=$HOME/webapps
+#export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
+#if [ -f /usr/local/bin/virtualenv ]
+#then
+#    export VIRTUALENVWRAPPER_VIRTUALENV=/usr/local/bin/virtualenv
+#else
+#    if [ -f /usr/bin/virtualenv ]
+#    then
+#        export VIRTUALENVWRAPPER_VIRTUALENV=/usr/bin/virtualenv
+#    else
+#        echo "error: virtualenv not found"
+#    fi
+#fi
+##
+#if [ -f /usr/local/bin/virtualenvwrapper.sh ]
+#then
+#    source /usr/local/bin/virtualenvwrapper.sh
+#else
+#    if [ -f /usr/bin/virtualenvwrapper.sh ]
+#    then
+#        source /usr/bin/virtualenvwrapper.sh
+#    else
+#        echo "error: virtualenvwrapper.sh not found"
+#    fi
+#fi
 # END: virtualenvwrapper
 
 # autoenv
 # https://github.com/kennethreitz/autoenv
 # installation:
 # git clone git://github.com/kennethreitz/autoenv.git ~/.autoenv
-source ~/.autoenv/activate.sh
+#source ~/.autoenv/activate.sh
 
 # fortune | cowthink
 
@@ -288,3 +289,7 @@ alias f='fish'
 
 # brackets text editor
 # alias br="brackets &>/dev/null &"
+
+# source my virtualenv functions and aliases
+# https://github.com/jabbalaci/virtualenv-tools
+source ~/Dropbox/home/virtualenv-tools/virtualenv.sh
