@@ -1,5 +1,5 @@
 [flake8]
-ignore = D101,D102,D205,D400,D401,D103,D100,D200,E302
-max-line-length = 100
+ignore = D101,D102,D205,D400,D401,D103,D100,D200,E302,E115
+max-line-length = 120
 #exclude = tests/*
 #max-complexity = 9

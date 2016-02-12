@@ -1,0 +1,22 @@
+# -*- mode: snippet -*-
+# name: conda2
+# key: conda2
+# --
+#!/opt/anaconda2/bin/python
+# encoding: utf-8
+
+"""
+Anaconda 2 project
+"""
+
+from __future__ import (absolute_import, division,
+                        print_function, unicode_literals)
+
+
+def main():
+    $0print('Anaconda 2')
+
+##############################################################################
+
+if __name__ == "__main__":
+    main()

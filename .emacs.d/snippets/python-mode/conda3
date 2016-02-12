@@ -1,0 +1,19 @@
+# -*- mode: snippet -*-
+# name: conda3
+# key: conda3
+# --
+#!/opt/anaconda3/bin/python
+# encoding: utf-8
+
+"""
+Anaconda 3 project
+"""
+
+
+def main():
+    $0print('Anaconda 3')
+
+##############################################################################
+
+if __name__ == "__main__":
+    main()
