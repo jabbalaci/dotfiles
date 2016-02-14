@@ -318,3 +318,6 @@ function gh() {
   echo "#" $giturl
   xdg-open $giturl
 }
+
+# screen nedds this to work correctly
+export TERM=xterm
