@@ -57,6 +57,11 @@
        nil "Edit all lines matching a given regexp" single
        ((:url . "http://elpa.gnu.org/packages/all.html")
 	(:keywords "matching"))])
+ (ampc .
+       [(0 2)
+	nil "Asynchronous Music Player Controller" single
+	((:url . "http://elpa.gnu.org/packages/ampc.html")
+	 (:keywords "ampc" "mpc" "mpd"))])
  (ascii-art-to-unicode .
 		       [(1 9)
 			nil "a small artist adjunct" single
@@ -492,7 +497,7 @@
 	   ((:url . "http://elpa.gnu.org/packages/minimap.html")
 	    (:keywords))])
  (multishell .
-	     [(1 1 4)
+	     [(1 1 5)
 	      nil "Easily use multiple shell buffers, local and remote." tar
 	      ((:keywords "processes")
 	       (:url . "https://github.com/kenmanheimer/EmacsMultishell"))])
@@ -559,7 +564,7 @@
 	     ((:url . "https://github.com/michael-heerdegen/on-screen.el")
 	      (:keywords "convenience"))])
  (org .
-      [(20160208)
+      [(20160215)
        nil "Outline-based notes management and organizer" tar nil])
  (osc .
       [(0 1)
@@ -744,6 +749,13 @@
 	nil "Quickly generate linear ranges in Emacs" tar
 	((:keywords "convenience")
 	 (:url . "https://github.com/abo-abo/tiny"))])
+ (tramp-theme .
+	      [(0 1 1)
+	       ((emacs
+		 (24 1)))
+	       "Custom theme for remote buffers" single
+	       ((:url . "http://elpa.gnu.org/packages/tramp-theme.html")
+		(:keywords "convenience" "faces"))])
  (transcribe .
 	     [(1 0 2)
 	      nil "Package for audio transcriptions" single
@@ -767,6 +779,15 @@
 		  [(0 1)
 		   nil "Unicode confusables table" tar
 		   ((:url . "http://elpa.gnu.org/packages/uni-confusables.html"))])
+ (url-http-ntlm .
+		[(2 0 1)
+		 ((cl-lib
+		   (0 5))
+		  (ntlm
+		   (2 0 0)))
+		 "NTLM authentication for the url library" tar
+		 ((:keywords "comm" "data" "processes" "hypermedia")
+		  (:url . "http://elpa.gnu.org/packages/url-http-ntlm.html"))])
  (vlf .
       [(1 7)
        nil "View Large Files" tar

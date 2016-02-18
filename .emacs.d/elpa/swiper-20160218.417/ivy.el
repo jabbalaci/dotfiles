@@ -709,9 +709,9 @@ If the text hasn't changed as a result, forward to `ivy-alt-done'."
   "Move cursor vertically down ARG candidates.
 If the input is empty, select the previous history element instead."
   (interactive "p")
-  (when (string= ivy-text "")
-    (ivy-previous-history-element 1))
-  (ivy-next-line arg))
+  (if (string= ivy-text "")
+      (ivy-previous-history-element 1)
+    (ivy-next-line arg)))
 
 (defun ivy-previous-line (&optional arg)
   "Move cursor vertically up ARG candidates."
@@ -1188,8 +1188,10 @@ candidates is updated after each input by calling COLLECTION.
 CALLER is a symbol to uniquely identify the caller to `ivy-read'.
 It is used, along with COLLECTION, to determine which
 customizations apply to the current completion session."
-  (let ((extra-actions (append (plist-get ivy--actions-list t)
-                               (plist-get ivy--actions-list this-command))))
+  (let ((extra-actions (delete-dups
+                        (append (plist-get ivy--actions-list t)
+                                (plist-get ivy--actions-list this-command)
+                                (plist-get ivy--actions-list caller)))))
     (when extra-actions
       (setq action
             (cond ((functionp action)
@@ -1197,7 +1199,9 @@ customizations apply to the current completion session."
                      ("o" ,action "default")
                      ,@extra-actions))
                   ((null action)
-                   (cons 1 extra-actions))
+                   `(1
+                     ("o" identity "default")
+                     ,@extra-actions))
                   (t
                    (delete-dups (append action extra-actions)))))))
   (let ((extra-sources (plist-get ivy--sources-list caller)))
@@ -1335,7 +1339,8 @@ This is useful for recursive `ivy-read'."
                            (equal initial-input default-directory)
                            (equal initial-input ""))
                  (setq coll (cons initial-input coll)))
-               (unless (ivy-state-action ivy-last)
+               (unless (and (ivy-state-action ivy-last)
+                            (not (equal (ivy--get-action ivy-last) 'identity)))
                  (setq initial-input nil))))
             ((eq collection 'internal-complete-buffer)
              (setq coll (ivy--buffer-list "" ivy-use-virtual-buffers)))
@@ -1433,11 +1438,11 @@ This is useful for recursive `ivy-read'."
 This interface conforms to `completing-read' and can be used for
 `completing-read-function'.
 
-PROMPT is a string to prompt with; normally it ends in a colon and a space.
-COLLECTION can be a list of strings, an alist, an obarray or a hash table.
+PROMPT is a string that normally ends in a colon and a space.
+COLLECTION is either a list of strings, an alist, an obarray, or a hash table.
 PREDICATE limits completion to a subset of COLLECTION.
-REQUIRE-MATCH is specified with a boolean value.  See `completing-read'.
-INITIAL-INPUT is a string that can be inserted into the minibuffer initially.
+REQUIRE-MATCH is a boolean value.  See `completing-read'.
+INITIAL-INPUT is a string inserted into the minibuffer initially.
 HISTORY is a list of previously selected inputs.
 DEF is the default value.
 INHERIT-INPUT-METHOD is currently ignored."
@@ -2034,15 +2039,14 @@ CANDIDATES are assumed to be static."
     (setq ivy--all-candidates res)))
 
 (defcustom ivy-sort-matches-functions-alist '((t . nil))
-  "An alist of functions used to sort the matching candidates.
+  "An alist of functions for sorting matching candidates.
 
-This is different from `ivy-sort-functions-alist', which is used
-to sort the whole collection only once.  The functions taken from
-here are instead used on each input change, but they are used
-only on already matching candidates, not on all of them.
+Unlike `ivy-sort-functions-alist', which is used to sort the
+whole collection only once, this alist of functions are used to
+sort only matching candidates after each change in input.
 
-The alist KEY is a collection function or t to match previously
-not matched collection functions.
+The alist KEY is either a collection function or t to match
+previously unmatched collection functions.
 
 The alist VAL is a sorting function with the signature of
 `ivy--prefix-sort'.")
@@ -2169,8 +2173,9 @@ Prefix matches to NAME are put ahead of the list."
 
 (defvar ivy-flx-limit 200
   "Used to conditionally turn off flx sorting.
-When the amount of matching candidates is larger than this
-number, no sorting will be done.")
+
+When the amount of matching candidates exceeds this limit, then
+no sorting is done.")
 
 (defun ivy--flx-sort (name cands)
   "Sort according to closeness to string NAME the string list CANDS."

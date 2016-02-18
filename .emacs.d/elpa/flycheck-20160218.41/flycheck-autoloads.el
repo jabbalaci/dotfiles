@@ -1,12 +1,10 @@
 ;;; flycheck-autoloads.el --- automatically extracted autoloads
 ;;
 ;;; Code:
-
+(add-to-list 'load-path (or (file-name-directory #$) (car load-path)))
 
-;;;### (autoloads (flycheck-def-option-var flycheck-def-config-file-var
-;;;;;;  flycheck-define-command-checker flycheck-define-error-level
-;;;;;;  global-flycheck-mode flycheck-mode flycheck-info) "flycheck"
-;;;;;;  "flycheck.el" (22205 59058 712344 793000))
+;;;### (autoloads nil "flycheck" "flycheck.el" (22214 2041 228695
+;;;;;;  510000))
 ;;; Generated autoloads from flycheck.el
 
 (autoload 'flycheck-info "flycheck" "\
@@ -229,15 +227,13 @@ Use this together with the `option', `option-list' and
 ;;;***
 
 ;;;### (autoloads nil nil ("flycheck-buttercup.el" "flycheck-ert.el"
-;;;;;;  "flycheck-pkg.el") (22205 59058 751118 390000))
+;;;;;;  "flycheck-pkg.el") (22214 2041 237846 818000))
 
 ;;;***
 
-(provide 'flycheck-autoloads)
 ;; Local Variables:
 ;; version-control: never
 ;; no-byte-compile: t
 ;; no-update-autoloads: t
-;; coding: utf-8
 ;; End:
 ;;; flycheck-autoloads.el ends here
