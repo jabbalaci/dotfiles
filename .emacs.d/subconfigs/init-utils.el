@@ -31,5 +31,8 @@
         ))
 
 
+;; open link under cursor
+(global-set-key (kbd "C-x C-o") 'browse-url)
+
 (provide 'init-utils)
 ;;; init-utils.el ends here

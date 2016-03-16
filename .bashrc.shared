@@ -2,6 +2,8 @@
 ## common settings ##
 #####################
 
+export GIT_EDITOR=vim
+
 # classic version
 #export EDITOR=/usr/bin/emacsclient
 #export ALTERNATE_EDITOR=/usr/bin/emacs

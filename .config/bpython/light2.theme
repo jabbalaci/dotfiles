@@ -7,13 +7,13 @@
 # ~/.bpython/config
 
 [syntax]
-keyword = M
+keyword = B
 name = r
 comment = b
 string = m
 error = r
 number = B
-operator = c
+operator = b
 paren = b
 punctuation = b
 token = g
@@ -24,5 +24,5 @@ token = g
 background = d
 output = b
 main = b
-prompt = r
+prompt = b
 prompt_more = g
