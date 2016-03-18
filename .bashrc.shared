@@ -321,5 +321,7 @@ function gh() {
   xdg-open $giturl
 }
 
+alias ssh='ssh -o ServerAliveInterval=60'
+
 # screen nedds this to work correctly
 export TERM=xterm

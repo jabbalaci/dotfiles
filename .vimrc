@@ -103,7 +103,7 @@ set spellfile=~/.vim/spellfile.{encoding}.add
 set scrolloff=2 " Show 2 lines of context around the cursor.
 set title " Set the terminal's title
 
-set t_Co=256
+"set t_Co=256
 if filereadable($HOME."/LIGHT_BACKGROUND")
     colorscheme trivial256    " for light background
     "colorscheme proton
