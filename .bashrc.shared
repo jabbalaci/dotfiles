@@ -17,18 +17,23 @@ export GIT_EDITOR=vim
 #############################
 # START: emacs/vim settings #
 #############################
-if [ -f $HOME/SLOW ];
-then
-    # if you have a slow machine
-    export EDITOR=/usr/bin/vim
-else
-    export EDITOR=/home/jabba/Dropbox/home/jabba/bin/emacs_try_client_first
-fi
+export EMACS=/home/jabba/Dropbox/home/jabba/bin/emacs_try_client_first
+
+# if [ -f $HOME/SLOW ];
+# then
+#     # if you have a slow machine
+#     export EDITOR=/usr/bin/vim
+# else
+#     export EDITOR=$EMACS
+# fi
+
+# let's switch to NeoVim
+export EDITOR=/usr/bin/nvim
 
 export VIEWER=$EDITOR
 alias vi=$EDITOR
-alias e=vi
-alias em=vi
+alias e=$EMACS
+alias em=$EMACS
 
 export TERM="xterm-256color"
 ###########################
@@ -325,3 +330,17 @@ alias ssh='ssh -o ServerAliveInterval=60'
 
 # screen nedds this to work correctly
 export TERM=xterm
+
+# kotlin
+export PATH=$PATH:/opt/kotlinc/bin
+
+# SDKMAN
+# https://github.com/sdkman/sdkman-cli
+# installation:
+# $ curl -s api.sdkman.io | bash
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+
+# NeoVim
+alias nvi='nvim'

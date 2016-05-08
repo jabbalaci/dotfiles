@@ -16,6 +16,7 @@
 
 (require 'init-programming)
 (require 'init-python)
+(require 'kotlin-mode)
 
 (require 'init-colors)
 (require 'init-filetypes)
