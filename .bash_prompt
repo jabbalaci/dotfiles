@@ -125,7 +125,7 @@ function set_virtualenv () {
 # by Adam Tajti
 function drawline () {
     #echo $(seq -s= `tput cols`|tr -d '[:digit:]' 2>&1)
-    echo $(seq -s= 78 | tr -d '[:digit:]')
+    echo $(seq -s= 72 | tr -d '[:digit:]')
 }
 
 # Set the full bash prompt.

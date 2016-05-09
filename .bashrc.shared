@@ -18,22 +18,19 @@ export GIT_EDITOR=vim
 # START: emacs/vim settings #
 #############################
 export EMACS=/home/jabba/Dropbox/home/jabba/bin/emacs_try_client_first
+alias e=$EMACS
+alias em=$EMACS
 
-# if [ -f $HOME/SLOW ];
-# then
-#     # if you have a slow machine
-#     export EDITOR=/usr/bin/vim
-# else
-#     export EDITOR=$EMACS
-# fi
-
-# let's switch to NeoVim
-export EDITOR=/usr/bin/nvim
+if [ -f $HOME/SLOW ];
+then
+    # if you have a slow machine
+    export EDITOR=/usr/bin/nvim
+else
+    export EDITOR=$EMACS
+fi
 
 export VIEWER=$EDITOR
 alias vi=$EDITOR
-alias e=$EMACS
-alias em=$EMACS
 
 export TERM="xterm-256color"
 ###########################
@@ -204,6 +201,12 @@ alias black='gnome-screensaver-command -a'
 alias r='ranger'
 alias scala='scala -Dscala.color'
 
+alias ..="cd .."
+alias ...="cd ..; cd .."
+alias ....="cd ..; cd ..; cd .."
+alias .....="cd ..; cd ..; cd ..; cd .."
+alias ......="cd ..; cd ..; cd ..; cd ..; cd .."
+
 # https://github.com/nvbn/thefuck
 #alias fuck='eval $(thefuck $(fc -ln -1)); history -r'
 #export THEFUCK_REQUIRE_CONFIRMATION='true'
@@ -344,3 +347,6 @@ export SDKMAN_DIR="$HOME/.sdkman"
 
 # NeoVim
 alias nvi='nvim'
+
+# if PhantomJS crashes
+export QT_QPA_PLATFORM=''

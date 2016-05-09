@@ -63,11 +63,62 @@ call plug#end()
 
 " =================================================================================
 
+set expandtab
+set tabstop=4
+set shiftwidth=4
+set softtabstop=4
+set number
+
+" color scheme
+if filereadable($HOME."/LIGHT_BACKGROUND")
+    " for light background
+    colorscheme trivial256
+    hi LineNr       term=bold cterm=bold ctermfg=2 guifg=Grey guibg=Grey90
+    "hi LineNr       term=bold cterm=bold ctermfg=2 guifg=Grey guibg=LightCyan
+    " type :hi to see some color combinations (if you want to change the color
+    " of the line numbers)
+else
+    " for dark background
+    colorscheme advantage
+    hi LineNr       term=bold cterm=bold ctermfg=2 guifg=DarkGrey guibg=#334C75
+    "hi LineNr       term=bold cterm=bold ctermfg=2 guifg=Grey
+    "guibg=Grey90
+    "colorscheme elflord
+endif
+
+" Ignore these files when completing
+set wildignore+=*.o,*.obj,.git,*.pyc
+
+"VimTip 66: Transfer text between two Vim 'sessions'
+" transfer/read and write one block of text between vim sessions
+" Usage:
+" `from' session:
+"     ma
+"     move to end-of-block
+"     xw
+"
+" `to' session:
+"     move to where I want block inserted
+"     xr
+"
+nmap xr   :r $HOME/.vimxfer<CR>
+nmap xR   :-r $HOME/.vimxfer<CR>
+nmap xw   :'a,.w! $HOME/.vimxfer<CR>
+vmap xr   c<esc>:r $HOME/.vimxfer<CR>
+vmap xR   c<esc>:-r $HOME/.vimxfer<CR>
+vmap xw   :w! $HOME/.vimxfer<CR>
+
+"VimTip 20: Are *.swp and *~ files littering your working directory?
+set backup
+set backupext=~
+set backupdir=~/tmp/nvim,./.backup,.,/tmp
+set directory=~/tmp/nvim,./.backup,.,/tmp
+
 " when re-opening a file, jump back to the previous position
 autocmd BufReadPost *
-            \ if line("'\"") > 0 && line("'\"") <= line("$") |
-            \   exe "normal g`\"" |
-            \ endif
+    \ if line("'\"") > 0 && line("'\"") <= line("$") |
+    \   exe "normal g`\"" |
+    \ endif
 
 "To define a mapping which uses the 'mapleader' variable, the special string
 "'<Leader>' can be used.  It is replaced with the string value of 'mapleader'.
@@ -105,9 +156,135 @@ inoremap <c-k> <Esc>:bd<CR>
 map <c-b><c-n> :bnext<CR>
 map <c-b><c-b> :bprevious<CR>
 nmap <Leader>c :enew<CR>
-map <c-b>- :split<CR>
-map <c-b>\| :vsplit<CR>
 map <c-x>\| :vsplit<CR>
+map <c-x>\ :vsplit<CR>
+map <c-x>/ :vsplit<CR>
 map <c-x>- :split<CR>
 map <c-x>3 :vsplit<CR>
 map <c-x>1 :only<CR>
+
+" save
+map <c-x><c-s> <ESC>:w<CR>
+imap <c-x><c-s> <ESC>:w<CR>i
+
+"############################################################################
+"#  START: Jabba's own config :)
+"############################################################################
+
+"this way Y is more logical
+map Y y$
+
+"VimTip 224: Shifting blocks visually
+:vnoremap < <gv
+:vnoremap > >gv
+
+"############################################################################
+"#  Function keys
+"############################################################################
+
+"switch spell check on/off (grammar check)
+setlocal spell spelllang=en_us      "let's use English by default
+set nospell                         "by default spell is off
+
+"change wrap
+map <F6> :set wrap!<CR>
+
+"change number
+map <F7> :set number!<CR>
+
+"quit
+"map <F10> :q<CR>
+
+"############################################################################
+"#  Navigation / Windows
+"############################################################################
+
+" centre the screen on the current search result
+nnoremap * *zz
+nnoremap # #zz
+nnoremap g* g*zz
+nnoremap g# g#zz
+
+"############################################################################
+"#  other
+"############################################################################
+
+set matchpairs+=<:>         " show matching <> (html mainly) as well
+
+" don't outdent hashes
+inoremap # #
+
+"====[ Make the 81st column stand out ]====================
+    highlight ColorColumn ctermbg=magenta
+    call matchadd('ColorColumn', '\%101v', 100)    " I set it to 100
+"    call matchadd('ColorColumn', '\%121v', 100)   " column 120
+"    call matchadd('ColorColumn', '\%81v', 100)    " column 80
+
+
+"====[ Make tabs, trailing whitespace, and non-breaking spaces visible ]======
+exec "set listchars=tab:\uBB\uBB,trail:\uB7,nbsp:~"
+set list
+
+" (http://unlogic.co.uk/posts/vim-python-ide.html)
+" Use l to toggle display of whitespace
+nmap l :set list!<CR>
+" And set some nice chars to do it with
+"set listchars=tab:»\ ,eol:¬
+" automatically change window's cwd to file's dir
+set autochdir
+
+" remove trailing whitespaces
+autocmd BufWritePre *.txt :%s/\s\+$//e
+autocmd BufWritePre *.md :%s/\s\+$//e
+autocmd BufWritePre *.h :%s/\s\+$//e
+autocmd BufWritePre *.tex :%s/\s\+$//e
+autocmd BufWritePre *.vim :%s/\s\+$//e
+
+" use Ctrl+Space for autocompletion
+" http://stackoverflow.com/questions/510503
+inoremap <expr> <C-Space> pumvisible() \|\| &omnifunc == '' ?
+\ "\<lt>C-n>" :
+\ "\<lt>C-x>\<lt>C-o><c-r>=pumvisible() ?" .
+\ "\"\\<lt>c-n>\\<lt>c-p>\\<lt>c-n>\" :" .
+\ "\" \\<lt>bs>\\<lt>C-n>\"\<CR>"
+imap <C-@> <C-Space>
+
+" when going back to a terminal, switch to insert mode automatically
+autocmd BufWinEnter,WinEnter term://* startinsert
+
+" terminal emulator
+" https://www.reddit.com/r/neovim/comments/3wqo0i/nvim_terminal/
+"""""""""""""""
+" this way ESC-0 works in the terminal in Midnight Commander to quit mc:
+tnoremap <esc><esc> <C-\><C-n>
+" Move between windows
+tnoremap <A-left> <C-\><C-n><C-w>h
+tnoremap <A-down> <C-\><C-n><C-w>j
+tnoremap <A-up> <C-\><C-n><C-w>k
+tnoremap <A-right> <C-\><C-n><C-w>l
+nnoremap <A-left> <C-w>h
+nnoremap <A-down> <C-w>j
+nnoremap <A-up> <C-w>k
+nnoremap <A-right> <C-w>l
+"
+tnoremap <A-h> <C-\><C-n><C-w>h
+tnoremap <A-j> <C-\><C-n><C-w>j
+tnoremap <A-k> <C-\><C-n><C-w>k
+tnoremap <A-l> <C-\><C-n><C-w>l
+nnoremap <A-h> <C-w>h
+nnoremap <A-j> <C-w>j
+nnoremap <A-k> <C-w>k
+nnoremap <A-l> <C-w>l
+
+" own shortcuts to open terminal
+nmap <c-x>t :vsplit<cr><c-w><c-w>:term<cr>
+nmap <c-x>T :split<cr><c-w><c-w>:term<cr>
+
+" This makes the cursor a pipe in insert-mode, and a block in normal-mode.
+" let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
+
+" trial and error
+" uppercase the current word
+imap <c-u> <esc><right>viwUi
+map <c-u> viwU
+
