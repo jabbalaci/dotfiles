@@ -350,3 +350,9 @@ alias nvi='nvim'
 
 # if PhantomJS crashes
 export QT_QPA_PLATFORM=''
+
+# https://github.com/junegunn/fzf
+# install:
+# $ git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+# $ ~/.fzf/install
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
