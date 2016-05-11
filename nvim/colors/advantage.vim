@@ -1,7 +1,7 @@
 " Vim color file based on northsky
 " Maintainer:   Joe Estock
-" Last Change:  
-" URL:			 
+" Last Change:
+" URL:
 
 
 " cool help screens

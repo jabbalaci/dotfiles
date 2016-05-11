@@ -11,6 +11,11 @@
 "     https://neovim.io/doc/user/
 "
 
+"To define a mapping which uses the 'mapleader' variable, the special string
+"'<Leader>' can be used.  It is replaced with the string value of 'mapleader'.
+"If 'mapleader' is not set or empty, a backslash is used instead.
+let mapleader = ","
+
 " Autoinstall vim-plug {{{
     " https://github.com/junegunn/vim-plug
     let s:vim_plug_dir=expand($HOME.'/.config/nvim/autoload')
@@ -31,11 +36,73 @@ call plug#begin('~/.config/nvim/plugged')
 "Plug 'https://github.com/junegunn/vim-github-dashboard.git'
 
 " ====================================================================
+" Color schemes
+" ====================================================================
+Plug 'freeo/vim-kalisi'
+
+" ====================================================================
 " Completion
 " ====================================================================
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 " {{{
     " Group dependencies, vim-snippets depends on ultisnips
+" }}}
+
+Plug 'jiangmiao/auto-pairs'
+" {{{
+" insert or delete brackets, parens, quotes in pair
+" }}}
+
+" Autocompletion for Python and C-like languages {{{
+" from here: https://github.com/euclio/vimrc/blob/master/plugins.vim
+if has('python') && executable('python2') && executable('cmake')
+  function! g:BuildYCM(info)
+    if a:info.status ==# 'installed' || a:info.force
+      let l:flags = ['--clang-completer']
+      if executable('npm')
+        call extend(l:flags, ['--tern-completer'])
+      endif
+      exec '!python2 ./install.py ' . join(l:flags)
+    endif
+  endfunction
+
+  Plug 'Valloric/YouCompleteMe', { 'do': function('BuildYCM') }
+  let g:ycm_autoclose_preview_window_after_completion=1
+  map <c-g>  :YcmCompleter GoToDefinitionElseDeclaration<CR>
+
+  let g:ycm_confirm_extra_conf=0          " Disable .ycm_extra_conf confirmation
+  let g:EclimCompletionMethod='omnifunc'  " Let YCM use Eclipse autocomplete
+
+"  if s:has_arch
+"    " Force YCM to use a Python 3 interpreter
+"    let g:ycm_server_python_interpreter='/usr/bin/python3'
+"  endif
+endif
+" }}}
+
+" ====================================================================
+" Syntax checking
+" ====================================================================
+Plug 'scrooloose/syntastic'
+" {{{
+    " for Python support install flake8:
+    " $ sudo pip install flake8
+    " $ sudo pip3 install flake8
+    " check file syntax on open:
+    let g:syntastic_check_on_open = 1
+" }}}
+
+" ====================================================================
+" Session management
+" ====================================================================
+Plug 'xolox/vim-misc' | Plug 'xolox/vim-session'
+" {{{
+    " allows you to save and restore the current session (restart vim)
+    " :SaveSession    -> save the session
+    " :OpenSession    -> load the saved session
+    let g:session_autosave = 'no'
+    let g:session_autoload = 'no'
+    let g:session_directory = '~/.config/nvim/sessions'
 " }}}
 
 " ====================================================================
@@ -59,6 +126,15 @@ Plug 'vim-airline/vim-airline-themes'
 
 " https://github.com/hkupty/nvimux
 Plug 'hkupty/nvimux'
+" {{{
+    " use Ctrl-a as prefix
+    "let g:nvimux_prefix='<C-a>'
+    map <c-b><c-n> :bnext<CR>
+    map <C-PageDown> :bnext<CR>
+    map <c-b><c-b> :bprevious<CR>
+    map <C-PageUp> :bprevious<CR>
+    nmap <Leader>c :enew<CR>
+" }}}
 
 " ====================================================================
 " Buffers
@@ -83,6 +159,8 @@ Plug 'scrooloose/nerdtree'
             execute ':NERDTreeFind'
         endif
     endfunction
+
+    let g:NERDTreeQuitOnOpen = 1
 
     "let g:NERDTreeMinimalUI = 1
     "let g:NERDTreeHijackNetrw = 0
@@ -135,15 +213,21 @@ set tabstop=4
 set shiftwidth=4
 set softtabstop=4
 set number
-set cursorline
+set scrolloff=2 " Show 2 lines of context around the cursor.
+
+au BufNewFile,BufRead *.js, *.html, *.css
+    \ set tabstop=2
+    \ set softtabstop=2
+    \ set shiftwidth=2
 
 " highlight the current line
+set cursorline
 autocmd WinEnter * setlocal cursorline
 autocmd WinLeave * setlocal nocursorline
 
 " color scheme
 if filereadable($HOME."/LIGHT_BACKGROUND")
-    " for light background
+    set background=light
     colorscheme trivial256
     hi LineNr       term=bold cterm=bold ctermfg=2 guifg=Grey guibg=Grey90
     hi CursorLine   guibg=#DBE6E0
@@ -152,12 +236,19 @@ if filereadable($HOME."/LIGHT_BACKGROUND")
     " type :hi to see some color combinations (if you want to change the color
     " of the line numbers)
 else
-    " for dark background
-    colorscheme advantage
+    set background=dark
+    " {{{
+        colorscheme kalisi
+        " black background:
+        hi Normal   guifg=#d0d0d0 guibg=Black  gui=none
+        " black background at the end of file too (with lines ~):
+        hi NonText  guifg=#958b7f guibg=Black gui=none
+    " }}}
+    "colorscheme advantage
+    "colorscheme elflord
     hi LineNr       term=bold cterm=bold ctermfg=2 guifg=DarkGrey guibg=#334C75
     "hi LineNr       term=bold cterm=bold ctermfg=2 guifg=Grey
     "guibg=Grey90
-    "colorscheme elflord
 endif
 
 " Ignore these files when completing
@@ -196,14 +287,6 @@ autocmd BufReadPost *
     \   exe "normal g`\"" |
     \ endif
 
-"To define a mapping which uses the 'mapleader' variable, the special string
-"'<Leader>' can be used.  It is replaced with the string value of 'mapleader'.
-"If 'mapleader' is not set or empty, a backslash is used instead.
-let mapleader = ","
-
-" use Ctrl-a as prefix
-"let g:nvimux_prefix='<C-a>'
-
 " use system clipboard
 set clipboard+=unnamedplus
 
@@ -214,12 +297,11 @@ set clipboard+=unnamedplus
 nnoremap <Leader>src :source $HOME/.config/nvim/init.vim<CR>
 nnoremap <Leader>erc :e $HOME/.config/nvim/init.vim<CR>
 
+" close buffer
 nnoremap <c-k> :bd<CR>
 inoremap <c-k> <Esc>:bd<CR>
 
-map <c-b><c-n> :bnext<CR>
-map <c-b><c-b> :bprevious<CR>
-nmap <Leader>c :enew<CR>
+" split buffer, maximize buffer
 map <c-x>\| :vsplit<CR>
 map <c-x>\ :vsplit<CR>
 map <c-x>/ :vsplit<CR>
@@ -269,6 +351,11 @@ nnoremap # #zz
 nnoremap g* g*zz
 nnoremap g# g#zz
 
+" tip: re-position the current line
+" zt  -> zoom to top
+" zz  -> zoom to center
+" zb  -> zoom to bootm
+
 "############################################################################
 "#  other
 "############################################################################
@@ -300,20 +387,22 @@ set autochdir
 
 " remove trailing whitespaces {{{
     autocmd BufWritePre *.txt :%s/\s\+$//e
+    autocmd BufWritePre *.py :%s/\s\+$//e
     autocmd BufWritePre *.md :%s/\s\+$//e
     autocmd BufWritePre *.h :%s/\s\+$//e
     autocmd BufWritePre *.tex :%s/\s\+$//e
     autocmd BufWritePre *.vim :%s/\s\+$//e
 " }}}
 
-" use Ctrl+Space for autocompletion
-" http://stackoverflow.com/questions/510503
-inoremap <expr> <C-Space> pumvisible() \|\| &omnifunc == '' ?
-\ "\<lt>C-n>" :
-\ "\<lt>C-x>\<lt>C-o><c-r>=pumvisible() ?" .
-\ "\"\\<lt>c-n>\\<lt>c-p>\\<lt>c-n>\" :" .
-\ "\" \\<lt>bs>\\<lt>C-n>\"\<CR>"
-imap <C-@> <C-Space>
+"  use Ctrl+Space for autocompletion {{{
+"" http://stackoverflow.com/questions/510503
+"inoremap <expr> <C-Space> pumvisible() \|\| &omnifunc == '' ?
+"\ "\<lt>C-n>" :
+"\ "\<lt>C-x>\<lt>C-o><c-r>=pumvisible() ?" .
+"\ "\"\\<lt>c-n>\\<lt>c-p>\\<lt>c-n>\" :" .
+"\ "\" \\<lt>bs>\\<lt>C-n>\"\<CR>"
+"imap <C-@> <C-Space>
+"" }}}
 
 " when going back to a terminal, switch to insert mode automatically
 autocmd BufWinEnter,WinEnter term://* startinsert
@@ -350,11 +439,30 @@ nmap <c-x>T :split<cr><c-w><c-w>:term<cr>
 " close window
 nmap <c-q> <c-w>q
 
+"VimTip 163: Toggle Search Highlighting {{{
+    " Map H to toggle search highlighting
+    "map H :let &hlsearch = !&hlsearch<CR>
+    "map H :set cursorline!<CR>:let &hlsearch = !&hlsearch<CR>
+    map H :set cursorline! hlsearch!<CR>
+"}}}
+
 " This makes the cursor a pipe in insert-mode, and a block in normal-mode.
 " let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
+
+" Avoid scrolling when switch buffers {{{
+" tip from romainl on IRC #vim
+augroup save_and_restore_buffer
+    autocmd!
+    autocmd BufLeave * let b:winview = winsaveview()
+    autocmd BufEnter * if exists('b:winview') | call winrestview(b:winview) | endif
+augroup END
+" }}}
 
 " trial and error
 " uppercase the current word
 imap <c-u> <esc><right>viwUi
 map <c-u> viwU
 
+" python << EOF
+" print "hello python"
+" EOF
