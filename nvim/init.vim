@@ -25,7 +25,7 @@ let mapleader = ","
     endif
 " }}}
 
-call plug#begin('~/.config/nvim/plugged')
+call plug#begin('~/nvim.local/plugged')
 
 " Make sure you use single quotes
 
