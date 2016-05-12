@@ -55,10 +55,19 @@ Plug 'jiangmiao/auto-pairs'
 
 " Autocompletion for Python and C-like languages {{{
 " from here: https://github.com/euclio/vimrc/blob/master/plugins.vim
+" Under Manjaro I had a problem with the automatic installation, YCM
+" didn't start, libtinfo.so.5 caused an import error for Python.
+" I found the solution here: https://github.com/Valloric/YouCompleteMe/issues/778
+" Steps to follow:
+" $ sudo pacman-key --refresh-keys
+" $ gpg --keyserver pgp.mit.edu --recv-keys C52048C0C0748FEE227D47A2702353E0F7E48EDB
+" $ yaourt -S libtinfo-5
 if has('python') && executable('python2') && executable('cmake')
   function! g:BuildYCM(info)
     if a:info.status ==# 'installed' || a:info.force
+      " compiling YCM with semantic support for C-family languages:
       let l:flags = ['--clang-completer']
+      " JavaScript support:
       if executable('npm')
         call extend(l:flags, ['--tern-completer'])
       endif
@@ -86,7 +95,7 @@ endif
 Plug 'scrooloose/syntastic'
 " {{{
     " for Python support install flake8:
-    " $ sudo pip install flake8
+    " $ sudo pip2 install flake8
     " $ sudo pip3 install flake8
     " check file syntax on open:
     let g:syntastic_check_on_open = 1
@@ -102,7 +111,7 @@ Plug 'xolox/vim-misc' | Plug 'xolox/vim-session'
     " :OpenSession    -> load the saved session
     let g:session_autosave = 'no'
     let g:session_autoload = 'no'
-    let g:session_directory = '~/.config/nvim/sessions'
+    let g:session_directory = '~/nvim.local/sessions'
 " }}}
 
 " ====================================================================
@@ -297,7 +306,7 @@ set clipboard+=unnamedplus
 nnoremap <Leader>src :source $HOME/.config/nvim/init.vim<CR>
 nnoremap <Leader>erc :e $HOME/.config/nvim/init.vim<CR>
 
-" close buffer
+" close (kill) buffer
 nnoremap <c-k> :bd<CR>
 inoremap <c-k> <Esc>:bd<CR>
 
@@ -309,7 +318,7 @@ map <c-x>- :split<CR>
 map <c-x>3 :vsplit<CR>
 map <c-x>1 :only<CR>
 
-" save
+" save current file
 map <c-x><c-s> <ESC>:w<CR>
 imap <c-x><c-s> <ESC>:w<CR>i
 
@@ -339,7 +348,7 @@ map <F6> :set wrap!<CR>
 map <F7> :set number!<CR>
 
 "quit
-"map <F10> :q<CR>
+map <F10> :q<CR>
 
 "############################################################################
 "#  Navigation / Windows
