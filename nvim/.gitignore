@@ -3,3 +3,5 @@
 .git
 plugged
 sessions
+*.pyc
+*.old
