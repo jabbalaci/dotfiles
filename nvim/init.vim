@@ -43,6 +43,7 @@ let maplocalleader = "\\"
 "   gx                -> open URL under cursor in your browser
 "   :retab            -> replace TABs with 4 spaces
 "   :set filetype?    -> current filetype
+"   :edit             -> reload the current file (if it was changed outside of vim)
 "
 " Help:
 "   :h help-context    -> v_ (visual mode commands), etc.
@@ -262,7 +263,7 @@ Plug 'neomake/neomake'
 " {{{
     " neomake is async => it doesn't block the editor
     " It's a syntastic alternative. Syntastic was slow for me on python files.
-    let g:neomake_python_enabled_makers = ['flake8', 'pep8']
+    let g:neomake_python_enabled_makers = ['flake8', 'pep8', 'vulture']
     " E501 is line length of 80 characters
     let g:neomake_python_flake8_maker = { 'args': ['--ignore=E501,E266'], }
     let g:neomake_python_pep8_maker = { 'args': ['--max-line-length=100', '--ignore=E266'], }
