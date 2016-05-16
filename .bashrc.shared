@@ -284,7 +284,13 @@ shopt -u sourcepath
 #export PATH=$PATH:/opt/scala/bin
 
 # https://gist.github.com/insin/1425703
-source ~/.bash_prompt
+if [ -n "$MYVIMRC" ]
+then
+    source ~/.bash_prompt_basic
+else
+    # source ~/.bash_prompt_basic
+    source ~/.bash_prompt
+fi
 
 # https://github.com/cask/cask
 #export PATH=$PATH:$HOME/.cask/bin

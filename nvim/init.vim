@@ -7,22 +7,30 @@
 "
 "
 " NeoVim config file of Jabba Laci (jabba.laci@gmail.com)
-" last change: 2016.05.15. (yyyy.mm.dd.)
+" last change: 2016.05.16. (yyyy.mm.dd.)
 "
-" To use it, copy it to
-"     ~/.config/nvim/init.vim
+" Copy it to
+"   ~/.config/nvim/init.vim
+"
+" Installation under Ubuntu:
+"   $ sudo add-apt-repository ppa:neovim-ppa/unstable
+"   $ sudo apt-get update
+"   $ sudo apt-get install neovim
+"   $ sudo pip install neovim
 "
 " HQ:
-"     https://neovim.io
+"   * https://neovim.io
 " Docs:
-"     https://neovim.io/doc/user/
-"
+"   * https://neovim.io/doc/user/ (from basic to advanced)
+"   * :h nvim
 " Links:
-" * http://vimcasts.org/ (vimcasts contains 68 free screencasts and 47 articles)
-" * http://vimawesome.com/ (list of awesome plugins)
-" * http://vim.spf13.com/ (it can give you ideas of must-have plugins)
-" * https://realpython.com/blog/python/vim-and-python-a-match-made-in-heaven/
-" * https://unlogic.co.uk/2013/02/08/vim-as-a-python-ide/
+"   * http://vimcasts.org/ (vimcasts contains 68 free screencasts and 47 articles)
+"   * http://vimawesome.com/ (list of awesome plugins)
+"   * http://vim.spf13.com/ (it can give you ideas of must-have plugins)
+"   * https://realpython.com/blog/python/vim-and-python-a-match-made-in-heaven/
+"   * https://unlogic.co.uk/2013/02/08/vim-as-a-python-ide/
+" Notes:
+"   * nvim --startuptime nvim.log    -> check what makes it slow to load
 "
 
 " <Leader>
@@ -36,22 +44,24 @@ let maplocalleader = "\\"
 "   :retab            -> replace TABs with 4 spaces
 "   :set filetype?    -> current filetype
 "
-" Jumps:
-"   H, M, L   -> high, middle, low: jump to the top / middle / bottom of the screen
-"   CTRL-e      Moves screen up one line
-"   CTRL-y      Moves screen down one line
-"   CTRL-u      Moves screen up ½ page
-"   CTRL-d      Moves screen down ½ page
-"   CTRL-b      Moves screen up one page      (remapped for me)
-"   CTRL-f      Moves screen down one page    (remapped for me)
-"
 " Help:
 "   :h help-context    -> v_ (visual mode commands), etc.
 "   :h i_CTRL-Y        -> What does Ctrl-y do in insert mode?
 "
 " Windows:
 "   Ctrl+w =           -> equal size
-"   Ctrl+w _           -> maximize window
+"   Ctrl+w _           -> maximize window's height (my map: F11)
+"
+" Variables:
+"                   (nothing) In a function: local to a function; otherwise: global
+"   |buffer-variable|    b:   Local to the current buffer.
+"   |window-variable|    w:   Local to the current window.
+"   |tabpage-variable|   t:   Local to the current tab page.
+"   |global-variable|    g:   Global.
+"   |local-variable|     l:   Local to a function.
+"   |script-variable|    s:   Local to a |:source|'ed Vim script.
+"   |function-argument|  a:   Function argument (only inside a function).
+"   |vim-variable|       v:   Global, predefined by Vim.
 "
 
 " Autoinstall vim-plug {{{
@@ -116,7 +126,6 @@ Plug 'Raimondi/delimitMate'
 " }}}
 
 Plug 'SirVer/ultisnips', { 'on': [] } | Plug 'honza/vim-snippets'
-
 " {{{
     " a bit slow, it will be loaded when the editor started
     " Group dependencies, vim-snippets depends on ultisnips
@@ -137,12 +146,12 @@ Plug 'SirVer/ultisnips', { 'on': [] } | Plug 'honza/vim-snippets'
     function! g:BuildYCM(info)
       if a:info.status ==# 'installed' || a:info.force
         " compiling YCM with semantic support for C-family languages:
-        let l:flags = ['--clang-completer']
+        let flags = ['--clang-completer']
         " JavaScript support:
         if executable('npm')
-          call extend(l:flags, ['--tern-completer'])
+          call extend(flags, ['--tern-completer'])
         endif
-        exec '!python2 ./install.py ' . join(l:flags)
+        exec '!python2 ./install.py ' . join(flags)
       endif
     endfunction
 
@@ -257,10 +266,10 @@ Plug 'neomake/neomake'
     " E501 is line length of 80 characters
     let g:neomake_python_flake8_maker = { 'args': ['--ignore=E501,E266'], }
     let g:neomake_python_pep8_maker = { 'args': ['--max-line-length=100', '--ignore=E266'], }
-" }}}
 
-" run neomake on the current file on every write:
-autocmd! BufWritePost * Neomake
+    " run neomake on the current file on every write:
+    autocmd! BufWritePost * Neomake
+" }}}
 
 " Plug 'nvie/vim-flake8'
 " " {{{
@@ -310,6 +319,8 @@ Plug 'vim-airline/vim-airline-themes'
     noremap <c-b><c-b> :bprevious<cr>
     noremap <C-PageUp> :bprevious<cr>
     nnoremap <Leader>c :enew<cr>
+    " switch buffers even if the buffer was not saved:
+    set hidden
 " }}}
 
 " ====================================================================
@@ -421,7 +432,7 @@ Plug 'shougo/unite.vim' | Plug 'shougo/neomru.vim'
        " for toggling (show / hide)
        " imap <silent><buffer><c-l>   <esc>:bd<cr>
        imap <silent><buffer><c-p>   <esc>:bd<cr>
-       imap <f3>                    <esc>:bd<cr>
+       imap <F3>                    <esc>:bd<cr>
     endfunction
     " custom mappings for the unite buffer
     autocmd FileType unite call s:unite_settings()
@@ -431,7 +442,7 @@ Plug 'shougo/unite.vim' | Plug 'shougo/neomru.vim'
     "nnoremap <Leader>r :<C-u>Unite -start-insert file_rec<cr>
     nnoremap <c-p> :Unite file file_rec buffer<cr>
     " nnoremap <c-l> :Unite line<cr>
-    noremap <f3> :Unite file_mru<cr>
+    noremap <F3> :Unite file_mru<cr>
 " }}}
 
 " Using a tagged release; wildcard allowed (requires git 1.9.2 or above)
@@ -517,6 +528,19 @@ set nostartofline
 
 " mouse {{{
     set mouse=a
+    function! ToggleMouse()
+      if &mouse == "a"
+        set mouse=
+        echo 'copy with mouse: ✔'
+        set nonumber
+      else
+        set mouse=a
+        echo 'copy with mouse: ✘'
+        set number
+      endif
+    endfunction
+
+    noremap <c-m>  :call ToggleMouse()<cr>
 " "}}}
 
 au BufNewFile,BufRead *.js, *.html, *.css
@@ -638,8 +662,24 @@ nnoremap <Leader>erc :vsplit $MYVIMRC<cr>
     " Ctrl-l is clear screen in bash but Ctrl-l was taken
     " so Alt-l is chosen to 'clear' the screen, i.e. keep the current window only
     nnoremap <A-l> :only<cr>
-    " maximize the current window
-    noremap <f11>    <c-w>_
+    " maximize the current window (highest possible, then widest possible)
+    " vertical to horizontal ( | -> -- )
+    noremap <c-w>-  <c-w>t<c-w>K
+    " horizontal to vertical ( -- -> | )
+    noremap <c-w>\|  <c-w>t<c-w>H
+    noremap <c-w>\  <c-w>t<c-w>H
+    noremap <c-w>/  <c-w>t<c-w>H
+    "noremap <F11>    <c-w>_<c-w>\|
+    function! ToggleWindow()
+      if exists("w:maximized")
+          call feedkeys("\<c-w>=", "n")
+          unlet w:maximized
+      else
+          call feedkeys("\<c-w>_\<c-w>\|", "n")
+          let w:maximized = 1
+      endif
+    endfunction
+    noremap <F11>  :call ToggleWindow()<cr>
 " }}}
 
 " save current file
@@ -670,9 +710,6 @@ noremap <F6> :set wrap!<cr>
 
 "change number
 noremap <F7> :set number!<cr>
-
-"quit
-noremap <F10> :q<cr>
 
 "############################################################################
 "#  Navigation / Windows
@@ -770,7 +807,8 @@ autocmd BufWinEnter,WinEnter term://* startinsert
 nnoremap <c-q> <c-w>q
 
 "VimTip 163: Toggle Search Highlighting {{{
-    nnoremap <Leader>h :set cursorline! hlsearch!<cr>
+    " nnoremap <Leader>h :set cursorline! hlsearch!<cr>
+    nnoremap H :set cursorline! hlsearch!<cr>
 "}}}
 
 " scroll in the 'background' {{{
@@ -807,7 +845,32 @@ augroup END
     command! -nargs=1 Go call Google(<f-args>)
 
     " :Google    -> open Google's search page
-    command! Google exec 'silent !xdg-open http://www.google.com'
+    " command! Google exec 'silent !xdg-open http://www.google.com'
+" }}}
+
+" Firefox bookmarks (works with other browsers too) {{{
+    function! Firefox(params)
+        let d = {
+        \ 'go': 'http://www.google.com',
+        \ 'wp': 'https://en.wikipedia.org',
+        \ 'red': 'http://www.reddit.com',
+        \ 'py': 'http://www.reddit.com/r/python',
+        \ 'prog': 'http://www.reddit.com/r/programming',
+        \ 'vim': 'http://www.reddit.com/r/vim',
+        \ 'nvim': 'http://www.reddit.com/r/neovim',
+        \ 'hn': 'https://news.ycombinator.com',
+        \ 'index': 'http://index.hu',
+        \ 'hup': 'http://hup.hu',
+        \ }
+        if has_key(d, a:params)
+            let url = d[a:params]
+            exec 'silent !xdg-open "' . url . '"'
+        else
+            echo "bookmark not found"
+      endif
+    endfunction
+
+    command! -nargs=1 FF call Firefox(<f-args>)
 " }}}
 
 " python << EOF
@@ -838,16 +901,21 @@ augroup END
 " {{{
     " from http://stackoverflow.com/a/9459366/232485
     function! HandleURL()
-      let s:uri = matchstr(getline("."), '[a-z]*:\/\/[^ >,;]*')
-      echo s:uri
-      if s:uri != ""
-        silent exec "!xdg-open '" . s:uri . "'"
+      let uri = matchstr(getline("."), '[a-z]*:\/\/[^ >,;]*')
+      echo uri
+      if uri != ""
+        silent exec "!xdg-open '" . uri . "'"
       else
         echo "no URI found in line"
       endif
     endfunction
 
     nnoremap <Leader>u :call HandleURL()<cr>
+" }}}
+
+" run python script {{{
+    nnoremap <silent> <F9> :exec '!python2' shellescape(@%, 1)<cr>
+    nnoremap <silent> <F10> :exec '!python3' shellescape(@%, 1)<cr>
 " }}}
 
 " some abbreviations {{{

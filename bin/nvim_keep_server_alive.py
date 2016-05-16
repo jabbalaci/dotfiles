@@ -2,14 +2,9 @@
 # encoding: utf-8
 
 """
-If the nvim server is available (i.e. listening on
-a specific socket), then let's connect to it.
-The focus is also put on the server instance.
+Keep the nvim server alive.
 
-This way only one nvim instance is used.
-
-See <https://github.com/mhinz/neovim-remote> for
-more info about support for `--remote` and friends.
+If the nvim server gets closed, restart it.
 """
 
 import os
@@ -19,17 +14,15 @@ import stat
 import sys
 from collections import OrderedDict
 from subprocess import PIPE, STDOUT, Popen
+from time import sleep
 
 NVIM_SERVER_WINDOW_TITLE = r'NVIM server.*Konsole'
 NVIM_LISTEN_ADDRESS = '/tmp/nvim_server.sock'
-
-DEBUG = False
+START_SCRIPT = '{home}/bin/nvim_start_server.sh'.format(home=os.path.expanduser("~"))
 
 required_commands = [
     '/usr/bin/wmctrl',
     '/usr/bin/xdotool',
-    '/usr/bin/nvim',
-    '/usr/bin/nvr',
 ]
 
 
@@ -112,80 +105,21 @@ def get_wid_by_title(title_regexp):
     return None
 
 
-def activate_window_by_id(wid):
-    """
-    Put the focus on and activate the the window with the given ID.
-    """
-    os.system('xdotool windowactivate {wid}'.format(wid=wid))
-
-
-def switch_to_window(title_regexp):
-    """
-    Put the focus on the window with the specified title.
-    """
-    wid = get_wid_by_title(title_regexp)
-    if wid:
-        if DEBUG:
-            print('# window id:', wid)
-        wid = int(wid, 16)
-        if DEBUG:
-            print('# switching to the other window')
-        activate_window_by_id(wid)
-    else:
-        if DEBUG:
-            print('# not found')
-
-
 ###############
 ## main part ##
 ###############
 
-def nvim_server_running():
-    """
-    Is the nvim server running?
-
-    The ideal solution is to run the server in a dedicated terminal.
-    """
-    if is_socket(NVIM_LISTEN_ADDRESS):    # and get_wid_by_title(NVIM_SERVER_WINDOW_TITLE):
-        return True
-    # else
-    print("# the nvim server is not running")
-    print("# tip: ~/bin/start_nvim_server.sh")
-    return False
-
-
 def main():
-    args = ' '.join(sys.argv[1:])
-    editor = 'nvim'
-    server_running = nvim_server_running()
-    if server_running:
-        editor = 'nvr --servername {addr}'.format(addr=NVIM_LISTEN_ADDRESS)
-    if DEBUG:
-        print("# editor:", editor)
-    #
-    cmd = '{ed} {args}'.format(ed=editor, args=args)
-    #
-    if len(args) == 0:
-        if server_running:
-            if get_wid_by_title(NVIM_SERVER_WINDOW_TITLE):
-                switch_to_window(NVIM_SERVER_WINDOW_TITLE)
+    try:
+        while True:
+            if is_socket(NVIM_LISTEN_ADDRESS):    # and get_wid_by_title(NVIM_SERVER_WINDOW_TITLE):
+                sleep(1)
             else:
-                print("# the nvim server's terminal is not visible")
-                print("# possible reason: you opened a new tab in the server's terminal")
-        else:
-            if DEBUG:
-                print("#", cmd)
-            os.system(cmd)
-    else:
-        if DEBUG:
-            print("#", cmd)
-        os.system(cmd)
-        if server_running:
-            if get_wid_by_title(NVIM_SERVER_WINDOW_TITLE):
-                switch_to_window(NVIM_SERVER_WINDOW_TITLE)
-            else:
-                print("# the nvim server's terminal is not visible")
-                print("# possible reason: you opened a new tab in the server's terminal")
+                cmd = "{script} 2>/dev/null &".format(script=START_SCRIPT)    # start in the bg
+                os.system(cmd)
+                sleep(5)
+    except KeyboardInterrupt:
+        print()
 
 ##############################################################################
 

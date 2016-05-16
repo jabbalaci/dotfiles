@@ -114,18 +114,18 @@ function set_virtualenv () {
   PYTHON_VIRTUALENV=""
 
   if [ -n "$VIRTUAL_ENV" ]; then
-      PYTHON_VIRTUALENV="${BOLD_BLUE}[`basename \"$VIRTUAL_ENV\"`]${COLOR_NONE} "
+      PYTHON_VIRTUALENV="${BOLD_BLUE}[`basename \"$VIRTUAL_ENV\"`]${COLOR_NONE}"
   fi
 
   if [ -n "$CONDA_ENV_PATH" ]; then
-      PYTHON_VIRTUALENV="${BOLD_BLUE}[`basename \"$CONDA_ENV_PATH\"`]${COLOR_NONE} "
+      PYTHON_VIRTUALENV="${BOLD_BLUE}[`basename \"$CONDA_ENV_PATH\"`]${COLOR_NONE}"
   fi
 }
 
 # by Adam Tajti
 function drawline () {
-    # echo $(seq -s= `tput cols`|tr -d '[:digit:]')
-    echo $(seq -s= 72 | tr -d '[:digit:]')
+    echo $(seq -s= `tput cols` | tr -d '[:digit:]')
+    # echo $(seq -s= 20 | tr -d '[:digit:]')
 }
 
 # Set the full bash prompt.
@@ -146,11 +146,9 @@ function set_bash_prompt () {
 
   # Set the bash prompt variable.
   if $I_HAVE_LIGHT_BACKGROUND ; then
-    PS1="${PYTHON_VIRTUALENV}${DARK_GRAY}[\t] ${BOLD_PURPLE}\w${COLOR_NONE} ${BRANCH}${PROMPT_SYMBOL} "
-    # PS1="${PYTHON_VIRTUALENV}${DARK_GRAY}\u@\h [\t] ${BOLD_PURPLE}\w${COLOR_NONE} ${BRANCH}${PROMPT_SYMBOL} "
+    PS1="${PYTHON_VIRTUALENV}${DARK_GRAY} ${BOLD_PURPLE}\w${COLOR_NONE} ${BRANCH}${PROMPT_SYMBOL} "
   else
-    PS1="${PYTHON_VIRTUALENV}${LIGHT_GREEN}[\t] ${BOLD_PURPLE}\w${COLOR_NONE} ${BRANCH}${PROMPT_SYMBOL} "
-    # PS1="${PYTHON_VIRTUALENV}${LIGHT_GREEN}\u@\h [\t] ${BOLD_PURPLE}\w${COLOR_NONE} ${BRANCH}${PROMPT_SYMBOL} "
+    PS1="${PYTHON_VIRTUALENV}${LIGHT_GREEN} ${BOLD_PURPLE}\w${COLOR_NONE} ${BRANCH}${PROMPT_SYMBOL} "
   fi
 
   # add a separator line
