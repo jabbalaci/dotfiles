@@ -14,6 +14,7 @@
 "
 " HQ:
 "   * https://neovim.io
+"   * https://neovim.io/news/archive/ (news)
 " Docs:
 "   * https://neovim.io/doc/user/ (from basic to advanced)
 "   * :h nvim
@@ -30,7 +31,7 @@
 "   3) $ make cmake
 "      $ make test
 "      $ sudo make install
-"   On all platforms:
+"   On all platforms (update this package frequently):
 "     $ sudo pip2/pip3 install neovim
 " Links:
 "   * http://vimcasts.org/ (vimcasts contains 68 free screencasts and 47 articles)
@@ -109,11 +110,41 @@ call plug#begin('~/nvim.local/plugged')
     " $ sudo pip3 install neovim-remote
 " }}}
 
-
 " ====================================================================
 " Color schemes
 " ====================================================================
 Plug 'freeo/vim-kalisi'
+
+" ====================================================================
+" Visuals
+" ====================================================================
+" Plug 'nathanaelkane/vim-indent-guides'
+" " {{{
+"     " :h indent-guide
+"     " <Leader>ig    -> toggle indent guide on/off
+"     let g:indent_guides_enable_on_vim_startup = 0
+" " }}}
+
+Plug 'Yggdroot/indentLine'
+" {{{
+    " :h indentLine.txt
+    let g:indentLine_char = '¦'
+    "
+    " let g:indentLine_char = '┆'
+    "
+    " let g:indentLine_char = '┊'
+    "
+    " let g:indentLine_char = '│'
+    " disable it
+    let g:indentLine_enabled = 1
+    " the indentlines will not show up in the cursorline:
+    let g:indentLine_concealcursor = ''
+    " When I enter insert mode, UltiSnips and YCM are loaded. At that
+    " moment the indent lines disappear :( With F5 I can bring them
+    " back. For the first time, F5 must be pressed twice, then it
+    " toggles the indent lines correctly.
+    nnoremap <F5>  :IndentLinesToggle<cr>
+"}}}
 
 " ====================================================================
 " Completion
@@ -262,7 +293,8 @@ Plug 'neomake/neomake'
     " It's a syntastic alternative. Syntastic was slow for me on python files.
     " $ sudo pip2/pip3 install flake8
     " $ sudo pip2/pip3 install vulture
-    let g:neomake_python_enabled_makers = ['flake8', 'pep8', 'vulture']
+    "let g:neomake_python_enabled_makers = ['flake8', 'pep8', 'vulture']
+    let g:neomake_python_enabled_makers = ['flake8', 'pep8']
     " E501 is line length of 80 characters
     let g:neomake_python_flake8_maker = { 'args': ['--ignore=E501,E266'], }
     let g:neomake_python_pep8_maker = { 'args': ['--max-line-length=100', '--ignore=E266'], }
@@ -461,7 +493,8 @@ Plug 'fisadev/vim-isort'
 " ====================================================================
 Plug 'majutsushi/tagbar'
 " {{{
-    " $ yaourt ctags
+    " $ yaourt ctags                  # Manjaro
+    " $ sudo apt-get install ctags    # Ubuntu
     nnoremap <F8> :TagbarToggle<cr>
 " }}}
 
@@ -491,7 +524,8 @@ call plug#end()    " vim-plug
 augroup load_us_ycm
   autocmd!
   autocmd InsertEnter * call plug#load('ultisnips', 'YouCompleteMe')
-                     \| call youcompleteme#Enable() | autocmd! load_us_ycm
+                     \| call youcompleteme#Enable()
+                     \| autocmd! load_us_ycm
 augroup END
 
 " these unite lines must be here, after vim-plug, otherwise vim drops an error when launched
