@@ -36,7 +36,7 @@ export VIEWER=$EDITOR
 alias vi=$EDITOR
 alias vih=/usr/bin/nvim    # edit with vi here, i.e. no remote
 
-export TERM="xterm-256color"
+export TERM=xterm-256color
 ################################
 # END: emacs/vim/nvim settings #
 ################################
@@ -344,7 +344,7 @@ function gh() {
 alias ssh='ssh -o ServerAliveInterval=60'
 
 # screen nedds this to work correctly
-export TERM=xterm
+# export TERM=xterm
 
 # kotlin
 export PATH=$PATH:/opt/kotlinc/bin

@@ -7,22 +7,31 @@
 "
 "
 " NeoVim config file of Jabba Laci (jabba.laci@gmail.com)
-" last change: 2016.05.16. (yyyy.mm.dd.)
+" last change: 2016.05.17. (yyyy.mm.dd.)
 "
-" Copy it to
+" Place of this configuration file:
 "   ~/.config/nvim/init.vim
-"
-" Installation under Ubuntu:
-"   $ sudo add-apt-repository ppa:neovim-ppa/unstable
-"   $ sudo apt-get update
-"   $ sudo apt-get install neovim
-"   $ sudo pip install neovim
 "
 " HQ:
 "   * https://neovim.io
 " Docs:
 "   * https://neovim.io/doc/user/ (from basic to advanced)
 "   * :h nvim
+" Most recent (bleedind edge) info on commits:
+"   * https://github.com/neovim/neovim/wiki/Following-HEAD
+" Installation (Ubuntu):
+"   The HQ suggests a PPA that contains the development version. If you want to
+"   build Neovim from source, here are the steps:
+"   1) Visit https://github.com/neovim/neovim and find the tagged version you need.
+"      Download the zip, uncompress it, and enter the project folder.
+"   2) Install the dependencies:
+"      $ sudo apt-get install libtool autoconf automake cmake libncurses5-dev g++
+"      Note: cmake is needed for YCM too.
+"   3) $ make cmake
+"      $ make test
+"      $ sudo make install
+"   On all platforms:
+"     $ sudo pip2/pip3 install neovim
 " Links:
 "   * http://vimcasts.org/ (vimcasts contains 68 free screencasts and 47 articles)
 "   * http://vimawesome.com/ (list of awesome plugins)
@@ -31,6 +40,7 @@
 "   * https://unlogic.co.uk/2013/02/08/vim-as-a-python-ide/
 " Notes:
 "   * nvim --startuptime nvim.log    -> check what makes it slow to load
+"   * :map H    -> What is mapped on H ?
 "
 
 " <Leader>
@@ -52,6 +62,12 @@ let maplocalleader = "\\"
 " Windows:
 "   Ctrl+w =           -> equal size
 "   Ctrl+w _           -> maximize window's height (my map: F11)
+"
+" Moving:
+"   reposition the current line:
+"     zt  -> zoom to top
+"     zz  -> zoom to center
+"     zb  -> zoom to bottom
 "
 " Variables:
 "                   (nothing) In a function: local to a function; otherwise: global
@@ -102,16 +118,6 @@ Plug 'freeo/vim-kalisi'
 " ====================================================================
 " Completion
 " ====================================================================
-" " use Ctrl+Space for autocompletion {{{
-"     " http://stackoverflow.com/questions/510503
-"     inoremap <expr> <C-Space> pumvisible() \|\| &omnifunc == '' ?
-"     \ "\<lt>C-n>" :
-"     \ "\<lt>C-x>\<lt>C-o><c-r>=pumvisible() ?" .
-"     \ "\"\\<lt>c-n>\\<lt>c-p>\\<lt>c-n>\" :" .
-"     \ "\" \\<lt>bs>\\<lt>C-n>\"\<cr>"
-"     imap <C-@> <C-Space>
-" " }}}
-
 Plug 'Raimondi/delimitMate'
 " {{{
     " This plug-in provides automatic closing of quotes, parenthesis, brackets, etc.
@@ -119,11 +125,6 @@ Plug 'Raimondi/delimitMate'
     " set matchpairs+=<:>         " show matching <> (html mainly) as well
     " !!! when specifying several file types, there is NO space between them !!!
     autocmd FileType html,vim set matchpairs+=<:>
-" }}}
-
-"Plug 'jiangmiao/auto-pairs'
-" {{{
-    " insert or delete brackets, parens, quotes in pair
 " }}}
 
 Plug 'SirVer/ultisnips', { 'on': [] } | Plug 'honza/vim-snippets'
@@ -139,7 +140,7 @@ Plug 'SirVer/ultisnips', { 'on': [] } | Plug 'honza/vim-snippets'
   " Under Manjaro 64-bit I had a problem with the automatic installation, YCM
   " didn't start, libtinfo.so.5 caused an import error for Python.
   " I found the solution here: https://github.com/Valloric/YouCompleteMe/issues/778
-  " Steps to follow:
+  " Steps to follow (Manjaro 64 bit):
   " $ sudo pacman-key --refresh-keys
   " $ gpg --keyserver pgp.mit.edu --recv-keys C52048C0C0748FEE227D47A2702353E0F7E48EDB
   " $ yaourt -S libtinfo-5
@@ -163,7 +164,7 @@ Plug 'SirVer/ultisnips', { 'on': [] } | Plug 'honza/vim-snippets'
         let g:ycm_add_preview_to_completeopt = 0
         set completeopt-=preview
     " }}}
-    nnoremap <c-g>  :YcmCompleter GoToDefinitionElseDeclaration<cr>
+    nnoremap <Leader>g  :YcmCompleter GoToDefinitionElseDeclaration<cr>
 
     let g:ycm_confirm_extra_conf=0          " Disable .ycm_extra_conf confirmation
     let g:ycm_global_ycm_extra_conf = "~/.config/nvim/.ycm_extra_conf.py"
@@ -186,6 +187,13 @@ Plug 'SirVer/ultisnips', { 'on': [] } | Plug 'honza/vim-snippets'
 
 " Using a non-master branch
 "Plug 'rdnetto/YCM-Generator', { 'branch': 'stable' }
+
+Plug 'davidhalter/jedi-vim'
+" {{{
+    " :h jedi-vim
+    " use YCM for code completion
+    let g:jedi#completions_enabled = 0
+" }}}
 
 " python with virtualenv support
 " thus YouCompleteMe will find the appropriate site packages
@@ -248,21 +256,12 @@ Plug 'tpope/vim-repeat'
 " ====================================================================
 " Syntax checking
 " ====================================================================
-"Plug 'scrooloose/syntastic'
-" {{{
-    " http://vimawesome.com/plugin/syntastic
-    " for Python support install flake8:
-    " $ sudo pip2 install flake8
-    " $ sudo pip3 install flake8
-    " check file syntax on open:
-    " it made opening slow for me:
-    "let g:syntastic_check_on_open = 1
-" }}}
-
 Plug 'neomake/neomake'
 " {{{
     " neomake is async => it doesn't block the editor
     " It's a syntastic alternative. Syntastic was slow for me on python files.
+    " $ sudo pip2/pip3 install flake8
+    " $ sudo pip2/pip3 install vulture
     let g:neomake_python_enabled_makers = ['flake8', 'pep8', 'vulture']
     " E501 is line length of 80 characters
     let g:neomake_python_flake8_maker = { 'args': ['--ignore=E501,E266'], }
@@ -271,12 +270,6 @@ Plug 'neomake/neomake'
     " run neomake on the current file on every write:
     autocmd! BufWritePost * Neomake
 " }}}
-
-" Plug 'nvie/vim-flake8'
-" " {{{
-"     autocmd FileType python map <buffer> <F3> :call Flake8()<cr>
-"     let python_highlight_all=1
-" " }}}
 
 " ====================================================================
 " Session management
@@ -298,7 +291,13 @@ Plug 'bling/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 " {{{
     " https://github.com/vim-airline/vim-airline
-    let $NVIM_TUI_ENABLE_TRUE_COLOR = 1
+    " Temporary solution. Remove it when all machines are upgraded to 0.1.5+ .
+    let build_version = system("nvim --version | head -1 | cut -d' ' -f2")
+    if build_version == "0.1.5-dev\n"
+        set termguicolors
+    else
+        let $NVIM_TUI_ENABLE_TRUE_COLOR = 1
+    endif
     " also install the system package 'powerline-fonts'
     let g:airline_powerline_fonts = 1
     " Enable the list of buffers
@@ -315,9 +314,9 @@ Plug 'vim-airline/vim-airline-themes'
     " https://github.com/hkupty/nvimux
     " use Ctrl-a as prefix
     "let g:nvimux_prefix='<C-a>'
-    noremap <c-b><c-n> :bnext<cr>
+    " noremap <c-b><c-n> :bnext<cr>
     noremap <C-PageDown> :bnext<cr>
-    noremap <c-b><c-b> :bprevious<cr>
+    " noremap <c-b><c-b> :bprevious<cr>
     noremap <C-PageUp> :bprevious<cr>
     nnoremap <Leader>c :enew<cr>
     " switch buffers even if the buffer was not saved:
@@ -446,22 +445,15 @@ Plug 'shougo/unite.vim' | Plug 'shougo/neomru.vim'
     noremap <F3> :Unite file_mru<cr>
 " }}}
 
-" Using a tagged release; wildcard allowed (requires git 1.9.2 or above)
-"Plug 'fatih/vim-go', { 'tag': '*' }
-
-" Plugin options
-"Plug 'nsf/gocode', { 'tag': 'v.20150303', 'rtp': 'vim' }
-
 " ====================================================================
 " Python
 " ====================================================================
 Plug 'fisadev/vim-isort'
 " {{{
     " https://github.com/fisadev/vim-isort
+    " $ sudo pip2/pip3 install isort
     " sort python imports using isort
     " select a block of imports with visual mode, and press Ctrl-i to sort them
-    " $ sudo pip2 install isort
-    " $ sudo pip3 install isort
 " }}}
 
 " ====================================================================
@@ -504,14 +496,16 @@ augroup END
 
 " these unite lines must be here, after vim-plug, otherwise vim drops an error when launched
 " https://github.com/Shougo/neobundle.vim/issues/330
-call unite#filters#matcher_default#use(['matcher_fuzzy'])
-call unite#custom#profile('default', 'context', {
-\   'prompt': '» ',
-\   'start_insert': 1,
-\   'vertical': 1,
-\   'direction': 'botright',
-\   'ignorecase': 1
-\ })
+" {{{
+    call unite#filters#matcher_default#use(['matcher_fuzzy'])
+    call unite#custom#profile('default', 'context', {
+    \   'prompt': '» ',
+    \   'start_insert': 1,
+    \   'vertical': 1,
+    \   'direction': 'botright',
+    \   'ignorecase': 1
+    \ })
+" }}}
 
 " =================================================================================
 
@@ -527,8 +521,14 @@ set nostartofline
 " ^^^ When 'on' the jump commands move the cursor to the first non-blank
 " of the line.  When off the cursor is kept in the same column (if possible).
 
+" top, middle, bottom
+nnoremap tt H
+nnoremap mm M
+nnoremap bb L
+
 " mouse {{{
     set mouse=a
+
     function! ToggleMouse()
       if &mouse == "a"
         set mouse=
@@ -541,7 +541,9 @@ set nostartofline
       endif
     endfunction
 
-    noremap <c-m>  :call ToggleMouse()<cr>
+    " Ctrl-m also affects <cr> !!!,
+    " so in Vim you can't map Ctrl-m
+    noremap M :call ToggleMouse()<cr>
 " "}}}
 
 au BufNewFile,BufRead *.js, *.html, *.css
@@ -555,10 +557,11 @@ autocmd FileType make set noexpandtab
 " disable automatic comment insertion
 autocmd FileType * setlocal formatoptions-=c  formatoptions-=r formatoptions-=o
 
-" highlight the current line
-set cursorline
-autocmd WinEnter * setlocal cursorline
-autocmd WinLeave * setlocal nocursorline
+" highlight the current line {{{
+    set cursorline
+    autocmd WinEnter * setlocal cursorline
+    autocmd WinLeave * setlocal nocursorline
+" }}}
 
 " color scheme
 if filereadable($HOME."/LIGHT_BACKGROUND")
@@ -629,12 +632,12 @@ autocmd BufReadPost *
 " use system clipboard
 set clipboard+=unnamedplus
 
-"VimTip 305: Best of VIM Tips (VIM's best Features)
-"MAKE IT EASY TO UPDATE/RELOAD_vimrc
-"src: source rc file
-"erc: edit rc file
-nnoremap <Leader>src :source $MYVIMRC<cr>
-nnoremap <Leader>erc :vsplit $MYVIMRC<cr>
+" VimTip 305: make it easy to update/reload .vimrc {{{
+    "src: source rc file
+    "erc: edit rc file
+    nnoremap <Leader>src :source $MYVIMRC<cr>
+    nnoremap <Leader>erc :vsplit $MYVIMRC<cr>
+" }}}
 
 " close (kill) window / buffer
 " {{{
@@ -683,9 +686,10 @@ nnoremap <Leader>erc :vsplit $MYVIMRC<cr>
     noremap <F11>  :call ToggleWindow()<cr>
 " }}}
 
-" save current file
-noremap <c-x><c-s> <ESC>:w<cr>
-inoremap <c-x><c-s> <ESC>:w<cr>i
+" save current file {{{
+    noremap <c-x><c-s> <ESC>:w<cr>
+    inoremap <c-x><c-s> <ESC>:w<cr>i
+" }}}
 
 "############################################################################
 "#  START: Jabba's own config :)
@@ -711,21 +715,6 @@ noremap <F6> :set wrap!<cr>
 
 "change number
 noremap <F7> :set number!<cr>
-
-"############################################################################
-"#  Navigation / Windows
-"############################################################################
-
-" centre the screen on the current search result
-nnoremap * *zz
-nnoremap # #zz
-nnoremap g* g*zz
-nnoremap g# g#zz
-
-" tip: re-position the current line
-" zt  -> zoom to top
-" zz  -> zoom to center
-" zb  -> zoom to bootm
 
 "############################################################################
 "#  other
@@ -789,9 +778,7 @@ autocmd BufWinEnter,WinEnter term://* startinsert
     " nnoremap <A-j> <C-w>j
     " nnoremap <A-k> <C-w>k
     " nnoremap <A-l> <C-w>l
-" }}}
 
-" terminal {{{
     nnoremap <c-x>t :vsplit<cr>:term<cr>
     nnoremap <c-x>T :split<cr>:term<cr>
 
@@ -802,6 +789,34 @@ autocmd BufWinEnter,WinEnter term://* startinsert
 
     " :T cmd    -> open the cmd command in the terminal, e.g. :T mc    -> open mc
     command! -nargs=1 T call Terminal(<f-args>)
+" }}}
+
+" centre the screen on the current search result {{{
+    "nnoremap n nzz
+    "nnoremap N Nzz
+    " nnoremap * *zz
+    " nnoremap # #zz
+    " nnoremap g* g*zz
+    " nnoremap g# g#zz
+" }}}
+
+"scroll half page left (CTRL-B) / right (CTRL-J) {{{
+    noremap  <c-b> zH
+    noremap! <c-b> zH
+    noremap  <c-j> zL
+    noremap! <c-j> zL
+" }}}
+
+"VimTip 38: Cursor one line at a time when :set wrap {{{
+    nnoremap j gj
+    nnoremap k gk
+    vnoremap j gj
+    vnoremap k gk
+    nnoremap <Down> gj
+    nnoremap <Up> gk
+    vnoremap <Down> gj
+    vnoremap <Up> gk
+    inoremap <Down> <C-o>gj
 " }}}
 
 " close window
@@ -915,8 +930,10 @@ augroup END
 " }}}
 
 " run python script {{{
-    nnoremap <silent> <F9> :exec '!python2' shellescape(@%, 1)<cr>
-    nnoremap <silent> <F10> :exec '!python3' shellescape(@%, 1)<cr>
+    " nnoremap <F9> :exec '!python2' shellescape(@%, 1)<cr>
+    " nnoremap <F10> :exec '!python3' shellescape(@%, 1)<cr>
+    au FileType python nnoremap <buffer> <F9> :echo system('python2 "' . expand('%') . '"')<cr>
+    au FileType python nnoremap <buffer> <F10> :echo system('python3 "' . expand('%') . '"')<cr>
 " }}}
 
 " some abbreviations {{{
