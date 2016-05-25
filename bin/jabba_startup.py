@@ -1,46 +1,20 @@
 #!/usr/bin/env python3
 # encoding: utf-8
 
-"""
-Keep the nvim server alive.
 
-If the nvim server gets closed, restart it.
-"""
-
-import atexit
 import os
 import re
 import shlex
 import stat
 import sys
-from collections import OrderedDict
 from subprocess import PIPE, STDOUT, Popen
 from time import sleep
 
-NVIM_SERVER_WINDOW_TITLE = r'NVIM server.*Konsole'
 NVIM_LISTEN_ADDRESS = '/tmp/nvim_server.sock'
-START_SCRIPT = '{home}/bin/nvim_start_server.sh'.format(home=os.path.expanduser("~"))
-PID_FILE = '/tmp/nvim_keep_server_alive.pid'
 
 required_commands = [
     '/usr/bin/wmctrl',
-    '/usr/bin/xdotool',
 ]
-
-
-############
-## helper ##
-############
-
-def is_socket(path):
-    """
-    Decide if a file is a socket or not.
-    """
-    try:
-        mode = os.stat(path).st_mode
-        return stat.S_ISSOCK(mode)
-    except FileNotFoundError:
-        return False
 
 
 def check_required_commands():
@@ -53,16 +27,16 @@ def check_required_commands():
             sys.exit(1)
 
 
-def cleanup():
+def is_socket(path):
+    """
+    Decide if a file is a socket or not.
+    """
     try:
-        os.unlink(PID_FILE)
+        mode = os.stat(path).st_mode
+        return stat.S_ISSOCK(mode)
     except FileNotFoundError:
-        pass
+        return False
 
-
-###################################
-## window and process management ##
-###################################
 
 def get_simple_cmd_output(cmd, stderr=STDOUT):
     """
@@ -87,7 +61,7 @@ def get_wmctrl_output():
     res = []
     for line in lines:
         pieces = line.split()
-        d = OrderedDict()
+        d = {}
         d['wid'] = pieces[0]
         d['desktop'] = int(pieces[1])
         d['pid'] = int(pieces[2])
@@ -114,29 +88,59 @@ def get_wid_by_title(title_regexp):
     return None
 
 
-###############
-## main part ##
-###############
+def wait_for_file(fname):
+    while True:
+        if is_socket(fname):
+            return
+        # else
+        sleep(1)
+
+
+def wait_for_window(title):
+    while True:
+        if get_wid_by_title(title):
+            return
+        # else
+        sleep(1)
+
 
 def main():
-    with open(PID_FILE, 'w') as f:
-        print(os.getpid(), file=f)
+    # Step 1
+    # start nvim server
+    cmd = "~/bin/nvim_keep_server_alive.py &"
+    print("# starting the nvim server...")
+    os.system(cmd)
+    wait_for_file(NVIM_LISTEN_ADDRESS)
+    print("# nvim server is running")
+    print()
 
-    try:
-        while True:
-            if is_socket(NVIM_LISTEN_ADDRESS):    # and get_wid_by_title(NVIM_SERVER_WINDOW_TITLE):
-                sleep(1)
-            else:
-                cmd = "{script} 2>/dev/null &".format(script=START_SCRIPT)    # start in the bg
-                os.system(cmd)
-                sleep(7)
-    except KeyboardInterrupt:
-        print()
+    # Step 2
+    # backup mozilla
+    cmd = "/trash/backup/firefox/make_backup.py"
+    print("# backing up the mozilla folder")
+    os.system(cmd)
+    print("# backup is done")
+    print()
+
+    # Step 3
+    # start Firefox
+    cmd = "/usr/bin/firefox &>/dev/null &"
+    print("# starting Firefox...")
+    os.system(cmd)
+    wait_for_window('Vimperator')
+    print("# Firefox is running")
+    print()
+
+    # Step 4
+    # start konsole
+    cmd = "/usr/bin/konsole &>/dev/null &"
+    os.system(cmd)
+    print("# starting konsole")
+    print()
 
 ##############################################################################
 
 if __name__ == "__main__":
     check_required_commands()
     #
-    atexit.register(cleanup)
     main()

@@ -1,0 +1,11 @@
+snippet '^" {{{' "triple brackets" r
+" {{{
+	$0
+" }}}
+endsnippet
+
+snippet '([^"]) {{{' "triple brackets" r
+`!p snip.rv = match.group(1)` {{{
+	$0
+" }}}
+endsnippet

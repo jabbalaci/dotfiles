@@ -7,10 +7,24 @@
 "
 "
 " NeoVim config file of Jabba Laci (jabba.laci@gmail.com)
-" last change: 2016.05.17. (yyyy.mm.dd.)
+" last change: 2016.05.25. (yyyy.mm.dd.)
+" repo: https://github.com/jabbalaci/dotfiles/blob/master/nvim/init.vim
 "
 " Place of this configuration file:
 "   ~/.config/nvim/init.vim
+"
+" F1:    NERDTreeToggleAndFind() [show current file]
+" F2:    NERDTreeToggle()
+" F3:    Unite file_mru
+" F4:    close empty buffers
+" F5:    :Autoformat
+" F6:    toggle wrap
+" F7:    toggle number
+" F8:    toggle tagbar
+" F9:    run with Python 2
+" F10:   run with Python 3
+" F11:   maximize window
+" F12:   yakuake [outside of neovim]
 "
 " HQ:
 "   * https://neovim.io
@@ -21,8 +35,9 @@
 " Most recent (bleedind edge) info on commits:
 "   * https://github.com/neovim/neovim/wiki/Following-HEAD
 " Installation (Ubuntu):
-"   The HQ suggests a PPA that contains the development version. If you want to
-"   build Neovim from source, here are the steps:
+"   The HQ suggests a PPA that contains the development version:
+"     * https://github.com/neovim/neovim/wiki/Installing-Neovim#ubuntu
+"   If you want to build Neovim from source, here are the steps:
 "   1) Visit https://github.com/neovim/neovim and find the tagged version you need.
 "      Download the zip, uncompress it, and enter the project folder.
 "   2) Install the dependencies:
@@ -42,6 +57,7 @@
 " Notes:
 "   * nvim --startuptime nvim.log    -> check what makes it slow to load
 "   * :map H    -> What is mapped on H ?
+"   * :verb set expandtab?    -> if expandtab is not OK, then find out who changed it for the last time (verbose)
 "
 
 " <Leader>
@@ -81,6 +97,12 @@ let maplocalleader = "\\"
 "   |function-argument|  a:   Function argument (only inside a function).
 "   |vim-variable|       v:   Global, predefined by Vim.
 "
+
+" create the required directories {{{
+    silent !mkdir ~/nvim.local > /dev/null 2>&1
+    silent !mkdir ~/nvim.local/tmp > /dev/null 2>&1
+    silent !mkdir ~/nvim.local/undo > /dev/null 2>&1
+" }}}
 
 " Autoinstall vim-plug {{{
     " https://github.com/junegunn/vim-plug
@@ -143,8 +165,16 @@ Plug 'Yggdroot/indentLine'
     " moment the indent lines disappear :( With F5 I can bring them
     " back. For the first time, F5 must be pressed twice, then it
     " toggles the indent lines correctly.
-    nnoremap <F5>  :IndentLinesToggle<cr>
+    " nnoremap <F5>  :IndentLinesToggle<cr>
+    " let g:indentLine_conceallevel = 0
 "}}}
+
+Plug 'elzr/vim-json'
+" {{{
+    " https://github.com/elzr/vim-json
+    " indentLine conceals quotes in json files; this puts them back:
+    let g:vim_json_syntax_conceal = 0
+" }}}
 
 " ====================================================================
 " Completion
@@ -158,12 +188,21 @@ Plug 'Raimondi/delimitMate'
     autocmd FileType html,vim set matchpairs+=<:>
 " }}}
 
-Plug 'SirVer/ultisnips', { 'on': [] } | Plug 'honza/vim-snippets'
+Plug 'valloric/MatchTagAlways'
 " {{{
+    " https://github.com/valloric/MatchTagAlways
+    " highlight the XML/HTML tags that enclose your cursor location
+" }}}
+
+" Plug 'SirVer/ultisnips', { 'on': [] } | Plug 'honza/vim-snippets'
+Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
+" {{{
+    " :UltiSnipsEdit    -> edit the custom snippet file of the current filetype
     " a bit slow, it will be loaded when the editor started
     " Group dependencies, vim-snippets depends on ultisnips
     " to avoid TAB confusion between UltiSnips and YouCompleteMe
     let g:UltiSnipsExpandTrigger="<C-Space>"
+    let g:UltiSnipsSnippetsDir = "~/.config/nvim/UltiSnips"
 " }}}
 
 " Autocompletion for Python and C-like languages {{{
@@ -188,7 +227,8 @@ Plug 'SirVer/ultisnips', { 'on': [] } | Plug 'honza/vim-snippets'
       endif
     endfunction
 
-    Plug 'Valloric/YouCompleteMe', { 'on': [], 'do': function('BuildYCM') }
+    " Plug 'Valloric/YouCompleteMe', { 'on': [], 'do': function('BuildYCM') }
+    Plug 'Valloric/YouCompleteMe', { 'do': function('BuildYCM') }
     " a bit slow, it will be loaded when the editor started
     let g:ycm_autoclose_preview_window_after_completion=1
     " no preview window {{{
@@ -219,12 +259,22 @@ Plug 'SirVer/ultisnips', { 'on': [] } | Plug 'honza/vim-snippets'
 " Using a non-master branch
 "Plug 'rdnetto/YCM-Generator', { 'branch': 'stable' }
 
-Plug 'davidhalter/jedi-vim'
-" {{{
-    " :h jedi-vim
-    " use YCM for code completion
-    let g:jedi#completions_enabled = 0
-" }}}
+let linux_distro = system("cat /etc/os-release | grep '^ID=' | cut -d= -f2")
+if linux_distro == "manjaro\n"
+    " under ubuntu I had problems with the YCM / jedi-vim combo :(
+    " let's disable jedi-vim on ubuntu
+    Plug 'davidhalter/jedi-vim'
+    " " {{{
+    "     " :h jedi-vim
+    "     " use YCM for code completion
+        " let g:jedi#completions_enabled = 0
+        " let g:jedi#auto_initialization = 0
+        " it is Ctrl+Space by default, but we need that in ultisnip, so remap it to something else
+        let g:jedi#completions_command = "<A-Space>"
+        " let g:auto_vim_configuration = 0
+        " let g:popup_on_dot = 0
+    " " }}}
+endif
 
 " python with virtualenv support
 " thus YouCompleteMe will find the appropriate site packages
@@ -242,6 +292,7 @@ Plug 'tomtom/tcomment_vim'
     " http://vimawesome.com/plugin/tcomment
     " gcc    -> toggle current line (press . to toggle subsequent lines)
     " gc     -> toggle selected lines
+    " Ctrl-/    -> also works but press it twice
 " }}}
 
 Plug 'tpope/vim-surround'
@@ -285,7 +336,22 @@ Plug 'tpope/vim-repeat'
 " }}}
 
 " ====================================================================
-" Syntax checking
+" Git
+" ====================================================================
+"Plug 'tpope/vim-fugitive'
+" {{{
+" }}}
+
+Plug 'airblade/vim-gitgutter'
+" {{{
+" }}}
+
+Plug 'Xuyuanp/nerdtree-git-plugin'
+" {{{
+" }}}
+
+" ====================================================================
+" Syntax
 " ====================================================================
 Plug 'neomake/neomake'
 " {{{
@@ -293,11 +359,11 @@ Plug 'neomake/neomake'
     " It's a syntastic alternative. Syntastic was slow for me on python files.
     " $ sudo pip2/pip3 install flake8
     " $ sudo pip2/pip3 install vulture
-    "let g:neomake_python_enabled_makers = ['flake8', 'pep8', 'vulture']
-    let g:neomake_python_enabled_makers = ['flake8', 'pep8']
+    let g:neomake_python_enabled_makers = ['flake8', 'pep8', 'vulture']
+    " let g:neomake_python_enabled_makers = ['flake8', 'pep8']
     " E501 is line length of 80 characters
-    let g:neomake_python_flake8_maker = { 'args': ['--ignore=E501,E266'], }
-    let g:neomake_python_pep8_maker = { 'args': ['--max-line-length=100', '--ignore=E266'], }
+    let g:neomake_python_flake8_maker = { 'args': ['--ignore=E115,E266,E501'], }
+    let g:neomake_python_pep8_maker = { 'args': ['--max-line-length=100', '--ignore=E115,E266'], }
 
     " run neomake on the current file on every write:
     autocmd! BufWritePost * Neomake
@@ -348,8 +414,15 @@ Plug 'vim-airline/vim-airline-themes'
     "let g:nvimux_prefix='<C-a>'
     " noremap <c-b><c-n> :bnext<cr>
     noremap <C-PageDown> :bnext<cr>
+    inoremap <C-PageDown> <esc>:bnext<cr>
+    noremap <C-right> :bnext<cr>
+    inoremap <C-right> <esc>:bnext<cr>
     " noremap <c-b><c-b> :bprevious<cr>
     noremap <C-PageUp> :bprevious<cr>
+    inoremap <C-PageUp> <esc>:bprevious<cr>
+    noremap <C-left> :bprevious<cr>
+    inoremap <C-left> <esc>:bprevious<cr>
+
     nnoremap <Leader>c :enew<cr>
     " switch buffers even if the buffer was not saved:
     set hidden
@@ -361,6 +434,20 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'vim-scripts/BufOnly.vim'
 " {{{
     " :BufOnly closes all buffers except the current one
+" }}}
+
+" ====================================================================
+" Formatter
+" ====================================================================
+Plug 'Chiel92/vim-autoformat'
+" {{{
+    " https://github.com/Chiel92/vim-autoformat
+    " Usage:
+    "   1) :Autoformat    -> entire file
+    "   2) select a region and then :Autoformat    -> format just the region
+    " for json, html, css, javascript:
+    "   $ sudo npm install -g js-beautify
+    noremap <F5> :Autoformat<cr>
 " }}}
 
 " ====================================================================
@@ -521,12 +608,12 @@ call plug#end()    " vim-plug
 " use `plug#load(names...)` function later to load the plugin manually. The
 " following example will load ultisnips and YouCompleteMe first time you
 " enter insert mode.
-augroup load_us_ycm
-  autocmd!
-  autocmd InsertEnter * call plug#load('ultisnips', 'YouCompleteMe')
-                     \| call youcompleteme#Enable()
-                     \| autocmd! load_us_ycm
-augroup END
+" Note: it saved me a sec. but it caused some problems, so I took it out
+" augroup load_us_ycm
+"   autocmd!
+"   autocmd InsertEnter * call plug#load('ultisnips', 'YouCompleteMe')
+"                      \| call youcompleteme#Enable() | autocmd! load_us_ycm
+" augroup END
 
 " these unite lines must be here, after vim-plug, otherwise vim drops an error when launched
 " https://github.com/Shougo/neobundle.vim/issues/330
@@ -544,6 +631,8 @@ augroup END
 " =================================================================================
 
 set nowrap
+set ttimeout
+set ttimeoutlen=100
 
 set expandtab
 set tabstop=4
@@ -555,10 +644,19 @@ set nostartofline
 " ^^^ When 'on' the jump commands move the cursor to the first non-blank
 " of the line.  When off the cursor is kept in the same column (if possible).
 
-" top, middle, bottom
-nnoremap tt H
-nnoremap mm M
-nnoremap bb L
+" movements {{{
+    " top, middle, bottom
+    nnoremap tt H
+    nnoremap mm M
+    nnoremap bb L
+
+    " beginning of line, end of line (non-blank in both cases)
+    nnoremap aa ^
+    nnoremap zz g_
+    " |    -> 1st column (blank)
+    " \\   -> last char (blank)
+    nnoremap \\ $
+" }}}
 
 " mouse {{{
     set mouse=a
@@ -580,10 +678,9 @@ nnoremap bb L
     noremap M :call ToggleMouse()<cr>
 " "}}}
 
-au BufNewFile,BufRead *.js, *.html, *.css
-    \ set tabstop=2
-    \ set softtabstop=2
-    \ set shiftwidth=2
+au BufNewFile,BufRead *.js set tabstop=2 softtabstop=2 shiftwidth=2
+au BufNewFile,BufRead *.html set tabstop=2 softtabstop=2 shiftwidth=2
+au BufNewFile,BufRead *.css set tabstop=2 softtabstop=2 shiftwidth=2
 
 " don't change TABs in makefiles
 autocmd FileType make set noexpandtab
@@ -598,7 +695,7 @@ autocmd FileType * setlocal formatoptions-=c  formatoptions-=r formatoptions-=o
 " }}}
 
 " color scheme
-if filereadable($HOME."/LIGHT_BACKGROUND")
+if filereadable($HOME . "/LIGHT_BACKGROUND")
     set background=light
     "colorscheme trivial256
     "colorscheme emacs
@@ -653,8 +750,12 @@ set wildignore+=*.o,*.obj,.git,*.pyc
 "VimTip 20: Are *.swp and *~ files littering your working directory? {{{
     set backup
     set backupext=~
-    set backupdir=~/tmp/nvim,./.backup,.,/tmp
-    set directory=~/tmp/nvim,./.backup,.,/tmp
+    set backupdir=~/nvim.local/tmp
+    set directory=~/nvim.local/tmp
+
+    " let's add undo
+    set undofile
+    set undodir=~/nvim.local/undo
 " }}}
 
 " when re-opening a file, jump back to the previous position
@@ -771,7 +872,7 @@ inoremap # #
 
 " (http://unlogic.co.uk/posts/vim-python-ide.html)
 " Use l to toggle display of whitespace
-nnoremap l :set list!<cr>
+nnoremap <Leader>l :set list!<cr>
 " And set some nice chars to do it with
 "set listchars=tab:»\ ,eol:¬
 " automatically change window's cwd to file's dir
@@ -973,4 +1074,50 @@ augroup END
 " some abbreviations {{{
     iabbrev tubi    https://ubuntuincident.wordpress.com/
     iabbrev pyadv   https://pythonadventures.wordpress.com/
+" }}}
+
+" " Hungarian accented characters {{{
+"     " they don't work all the time :(
+"     " árvíztűrő tükörfúrógép
+"     " ÁRVÍZTŰRŐ TÜKÖRFÚRÓGÉP
+"     iabbrev a' á
+"     iabbrev e' é
+"     iabbrev i' í
+"     iabbrev o' ó
+"     iabbrev o: ö
+"     iabbrev o" ő
+"     iabbrev u' ú
+"     iabbrev u: ü
+"     iabbrev u" ű
+"
+"     iabbrev A' Á
+"     iabbrev E' É
+"     iabbrev I' Í
+"     iabbrev O' Ó
+"     iabbrev O: Ö
+"     iabbrev O" Ő
+"     iabbrev U' Ú
+"     iabbrev U: Ü
+"     iabbrev U" Ű
+" " }}}
+
+" exit insert, dd line, enter insert
+inoremap <c-d> <esc>ddi
+
+" close empty buffers {{{
+    " tip from http://stackoverflow.com/a/6561076/232485
+    function! CloseEmptyBuffers()
+        let [i, n; empty] = [1, bufnr('$')]
+        while i <= n
+            if bufexists(i) && bufname(i) == ''
+                call add(empty, i)
+            endif
+            let i += 1
+        endwhile
+        if len(empty) > 0
+            exe 'bdelete' join(empty)
+        endif
+    endfunction
+
+    nnoremap <F4> :call CloseEmptyBuffers()<cr>
 " }}}

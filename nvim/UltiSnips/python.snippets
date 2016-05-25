@@ -1,12 +1,13 @@
-snippet "^#!" "shebang for python" r
-#!/usr/bin/env python
+snippet "^#!" "shebang for Python 3" r
+#!/usr/bin/env python3
 # encoding: utf-8
+
 $0
 endsnippet
 
-snippet "^def main" "main function" r
+snippet "^main" "main function" r
 def main():
-    $0pass
+    ${1:pass}
 
 ##############################################################################
 
@@ -38,7 +39,7 @@ if __name__ == "__main__":
     main()
 endsnippet
 
-snippet alap2 "basic skeleton, Python 2 with transition to Python 3" b
+snippet alap2 "basic skeleton, Python 2 -> Python 3" b
 #!/usr/bin/env python
 # encoding: utf-8
 
@@ -69,8 +70,18 @@ if __name__ == "__main__":
     main()
 endsnippet
 
-snippet future "__future__ imports for Python 2 to Python 3 transition" b
+snippet future "__future__ imports for Python 2 -> Python 3 transition" b
 from __future__ import (absolute_import, division,
                         print_function, unicode_literals)
 $0
+endsnippet
+
+snippet p "print" b
+print($0)
+endsnippet
+
+snippet '"""' "multiline comment" r
+"""
+$0
+"""
 endsnippet

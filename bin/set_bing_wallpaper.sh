@@ -10,7 +10,7 @@ if [ "$DESKTOP_SESSION" == "ubuntu" ]; then
     export DBUS_SESSION_BUS_ADDRESS=$(grep -z DBUS_SESSION_BUS_ADDRESS /proc/$PID/environ|cut -d= -f2-)
 fi
 
-$HOME/Dropbox/python/lib/jabbapylib2/apps/bing.py >> $LOG 2>&1
+python3 $HOME/Dropbox/python/lib/jabbapylib2/apps/bing.py >> $LOG 2>&1
 
 # in crontab, put the following lines:
 #
