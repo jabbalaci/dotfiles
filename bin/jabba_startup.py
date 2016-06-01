@@ -107,12 +107,12 @@ def wait_for_window(title):
 def main():
     # Step 1
     # start nvim server
-    cmd = "~/bin/nvim_keep_server_alive.py &"
-    print("# starting the nvim server...")
-    os.system(cmd)
-    wait_for_file(NVIM_LISTEN_ADDRESS)
-    print("# nvim server is running")
-    print()
+    # cmd = "~/bin/nvim_keep_server_alive.py &"
+    # print("# starting the nvim server...")
+    # os.system(cmd)
+    # wait_for_file(NVIM_LISTEN_ADDRESS)
+    # print("# nvim server is running")
+    # print()
 
     # Step 2
     # backup mozilla
@@ -136,6 +136,12 @@ def main():
     cmd = "/usr/bin/konsole &>/dev/null &"
     os.system(cmd)
     print("# starting konsole")
+    print()
+
+    # Step 5
+    # set the volume
+    print("# setting the volume")
+    os.system("~/bin/set_volume.sh")
     print()
 
 ##############################################################################

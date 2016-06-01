@@ -70,6 +70,20 @@ if __name__ == "__main__":
     main()
 endsnippet
 
+snippet conda3 "basic skeleton for Anaconda 3" b
+#!/opt/anaconda3/bin/python3
+# encoding: utf-8
+
+
+def main():
+    $0print('Anaconda3')
+
+##############################################################################
+
+if __name__ == "__main__":
+    main()
+endsnippet
+
 snippet future "__future__ imports for Python 2 -> Python 3 transition" b
 from __future__ import (absolute_import, division,
                         print_function, unicode_literals)
@@ -84,4 +98,16 @@ snippet '"""' "multiline comment" r
 """
 $0
 """
+endsnippet
+
+snippet ret "return" b
+return $0
+endsnippet
+
+snippet T "True"
+True
+endsnippet
+
+snippet F "False"
+False
 endsnippet

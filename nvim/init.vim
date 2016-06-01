@@ -16,13 +16,13 @@
 " F1:    NERDTreeToggleAndFind() [show current file]
 " F2:    NERDTreeToggle()
 " F3:    Unite file_mru
-" F4:    close empty buffers
+" F4:    toggle tagbar
 " F5:    :Autoformat
 " F6:    toggle wrap
 " F7:    toggle number
-" F8:    toggle tagbar
-" F9:    run with Python 2
-" F10:   run with Python 3
+" F8:    close empty buffers
+" F9:    run with Python (taking the interpreter from the first line)
+" F10:   --
 " F11:   maximize window
 " F12:   yakuake [outside of neovim]
 "
@@ -47,7 +47,7 @@
 "      $ make test
 "      $ sudo make install
 "   On all platforms (update this package frequently):
-"     $ sudo pip2/pip3 install neovim
+"     $ sudo pip2/pip3 install neovim -U
 " Links:
 "   * http://vimcasts.org/ (vimcasts contains 68 free screencasts and 47 articles)
 "   * http://vimawesome.com/ (list of awesome plugins)
@@ -58,6 +58,7 @@
 "   * nvim --startuptime nvim.log    -> check what makes it slow to load
 "   * :map H    -> What is mapped on H ?
 "   * :verb set expandtab?    -> if expandtab is not OK, then find out who changed it for the last time (verbose)
+"   * :set ft=json    -> treat the file as a json file (even if it has a different extension) [ft: filetype]
 "
 
 " <Leader>
@@ -129,13 +130,18 @@ call plug#begin('~/nvim.local/plugged')
 " ====================================================================
 " {{{
     " https://github.com/mhinz/neovim-remote
-    " $ sudo pip3 install neovim-remote
+    " $ sudo pip3 install neovim-remote -U
 " }}}
 
 " ====================================================================
 " Color schemes
 " ====================================================================
 Plug 'freeo/vim-kalisi'
+
+Plug 'junegunn/seoul256.vim'
+" {{{
+    " https://github.com/junegunn/seoul256.vim
+" }}}
 
 " ====================================================================
 " Visuals
@@ -214,7 +220,7 @@ Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
   " $ sudo pacman-key --refresh-keys
   " $ gpg --keyserver pgp.mit.edu --recv-keys C52048C0C0748FEE227D47A2702353E0F7E48EDB
   " $ yaourt -S libtinfo-5
-  if has('python') && executable('python2') && executable('cmake')
+  if has('python') && executable('python') && executable('cmake')
     function! g:BuildYCM(info)
       if a:info.status ==# 'installed' || a:info.force
         " compiling YCM with semantic support for C-family languages:
@@ -223,7 +229,7 @@ Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
         if executable('npm')
           call extend(flags, ['--tern-completer'])
         endif
-        exec '!python2 ./install.py ' . join(flags)
+        exec '!python ./install.py ' . join(flags)
       endif
     endfunction
 
@@ -249,12 +255,25 @@ Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
     " press Enter to close the popup. This behaviour is similar to other editors.
     imap <expr> <cr> pumvisible() ? "\<c-y>" : "<Plug>delimitMateCR"
 
-    "  if s:has_arch
-    "    " Force YCM to use a Python 3 interpreter
-    "    let g:ycm_server_python_interpreter='/usr/bin/python3'
-    "  endif
+    " let g:ycm_python_binary_path = '/usr/bin/python3'
+    " let g:ycm_server_python_interpreter = '/usr/bin/python3'
+
+    " if s:has_arch
+       " Force YCM to use a Python 3 interpreter
+       " let g:ycm_server_python_interpreter='/usr/bin/python3'
+     " endif
   endif
 " }}}
+
+" " deoplete, a YouCompleteMe alternative {{{
+"     function! DoRemote(arg)
+"       UpdateRemotePlugins
+"     endfunction
+"     Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
+"
+"     let g:deoplete#enable_at_startup = 1
+"     let g:deoplete#enable_smart_case = 1
+" " }}}
 
 " Using a non-master branch
 "Plug 'rdnetto/YCM-Generator', { 'branch': 'stable' }
@@ -271,6 +290,8 @@ if linux_distro == "manjaro\n"
         " let g:jedi#auto_initialization = 0
         " it is Ctrl+Space by default, but we need that in ultisnip, so remap it to something else
         let g:jedi#completions_command = "<A-Space>"
+        " with version 2 I had problems:
+        let g:jedi#force_py_version=3
         " let g:auto_vim_configuration = 0
         " let g:popup_on_dot = 0
     " " }}}
@@ -357,8 +378,8 @@ Plug 'neomake/neomake'
 " {{{
     " neomake is async => it doesn't block the editor
     " It's a syntastic alternative. Syntastic was slow for me on python files.
-    " $ sudo pip2/pip3 install flake8
-    " $ sudo pip2/pip3 install vulture
+    " $ sudo pip2/pip3 install flake8 -U
+    " $ sudo pip2/pip3 install vulture -U
     let g:neomake_python_enabled_makers = ['flake8', 'pep8', 'vulture']
     " let g:neomake_python_enabled_makers = ['flake8', 'pep8']
     " E501 is line length of 80 characters
@@ -570,7 +591,7 @@ Plug 'shougo/unite.vim' | Plug 'shougo/neomru.vim'
 Plug 'fisadev/vim-isort'
 " {{{
     " https://github.com/fisadev/vim-isort
-    " $ sudo pip2/pip3 install isort
+    " $ sudo pip2/pip3 install isort -U
     " sort python imports using isort
     " select a block of imports with visual mode, and press Ctrl-i to sort them
 " }}}
@@ -582,7 +603,7 @@ Plug 'majutsushi/tagbar'
 " {{{
     " $ yaourt ctags                  # Manjaro
     " $ sudo apt-get install ctags    # Ubuntu
-    nnoremap <F8> :TagbarToggle<cr>
+    nnoremap <F4> :TagbarToggle<cr>
 " }}}
 
 " ====================================================================
@@ -771,7 +792,8 @@ set clipboard+=unnamedplus
     "src: source rc file
     "erc: edit rc file
     nnoremap <Leader>src :source $MYVIMRC<cr>
-    nnoremap <Leader>erc :vsplit $MYVIMRC<cr>
+    nnoremap <Leader>erc :e $MYVIMRC<cr>
+    " nnoremap <Leader>erc :vsplit $MYVIMRC<cr>
 " }}}
 
 " close (kill) window / buffer
@@ -1065,10 +1087,31 @@ augroup END
 " }}}
 
 " run python script {{{
+    function! RunWithPython()
+        let first = getline(1)
+        let first = substitute(first, "^#!", "", "")
+        let first = substitute(first, "\n", "", "")
+        let exe = ""    " the Python binary to call
+
+        if first =~ "/usr/bin/env "
+            let exe = split(first)[-1]
+        elseif first == "/opt/anaconda3/bin/python3"
+            let exe = first
+        endif
+        if exe == ""
+            echo "Error: unknown Python interpreter in the first line."
+            return
+        endif
+        " echo exe
+        echo system(exe . " " . expand('%'))
+    endfunction
+
     " nnoremap <F9> :exec '!python2' shellescape(@%, 1)<cr>
     " nnoremap <F10> :exec '!python3' shellescape(@%, 1)<cr>
-    au FileType python nnoremap <buffer> <F9> :echo system('python2 "' . expand('%') . '"')<cr>
-    au FileType python nnoremap <buffer> <F10> :echo system('python3 "' . expand('%') . '"')<cr>
+    " au FileType python nnoremap <buffer> <F9> :echo system('python2 "' . expand('%') . '"')<cr>
+    " au FileType python nnoremap <buffer> <F10> :echo system('python3 "' . expand('%') . '"')<cr>
+    " au FileType python nnoremap <buffer> <F10> :echo system('/opt/anaconda3/bin/python3 "' . expand('%') . '"')<cr>
+    au FileType python nnoremap <buffer> <F9> :call RunWithPython()<cr>
 " }}}
 
 " some abbreviations {{{
@@ -1106,7 +1149,22 @@ inoremap <c-d> <esc>ddi
 
 " close empty buffers {{{
     " tip from http://stackoverflow.com/a/6561076/232485
+    function! NrBufs()
+        let i = bufnr('$')
+        let j = 0
+        while i >= 1
+            if buflisted(i)
+                let j+=1
+            endif
+            let i-=1
+        endwhile
+        return j
+    endfunction
+
     function! CloseEmptyBuffers()
+        if NrBufs() == 1
+            return
+        endif
         let [i, n; empty] = [1, bufnr('$')]
         while i <= n
             if bufexists(i) && bufname(i) == ''
@@ -1119,5 +1177,5 @@ inoremap <c-d> <esc>ddi
         endif
     endfunction
 
-    nnoremap <F4> :call CloseEmptyBuffers()<cr>
+    nnoremap <F8> :call CloseEmptyBuffers()<cr>
 " }}}

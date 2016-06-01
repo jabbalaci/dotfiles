@@ -136,9 +136,9 @@ alias p2='python2'
 alias p3='python3'
 alias bpy2='bpython2'
 alias bpy3='bpython3'
-alias ipy='ipython'
-alias ipy3='ipython3'
-alias ipynb='ipython notebook'
+# alias ipy='ipython'
+# alias ipy3='ipython3'
+# alias ipynb='ipython notebook'
 alias th='echo "cls; cd `pwd`"'
 alias kr='krusader &'
 alias kill9='kill -9'
@@ -151,7 +151,7 @@ alias killvlc='kill -9 `ps ux | grep vlc | grep -v grep | tr -s " " | cut -d" " 
 alias killmplayer='ps ux | grep mplayer | grep -v grep | tr -s " " | cut -d" " -f2 | xargs kill -9'
 alias k='konsole 2>/dev/null &'
 alias Q='tail -f $HOME/bin/copy_queue/daemon.log'
-alias sagi='sudo apt-get install'
+alias sagi='sudo apt install'
 alias pcat="pygmentize -f terminal256 -O style=native -g"
 alias beep="mplayer -ao alsa $HOME/bin/alert.wav &>/dev/null"
 alias pip_pypy='/opt/pypy/bin/pip'
@@ -160,7 +160,7 @@ alias top10dirs='du -hsx * | sort -rh | head -10'
 alias top10files='find . -type f -print0 | du -h --files0-from=- | sort -hr | head -n 10'
 alias ad='avidemux'
 alias mplayer='mplayer -vo x11'
-alias mozilla='acroread $HOME/mozilla.pdf 2>/dev/null &'
+alias mozilla='okular $HOME/mozilla.pdf 2>/dev/null &'
 alias t='clear; task'
 alias pip_pypy='/opt/pypy/bin/pip'
 # func_workon()
@@ -316,9 +316,9 @@ alias f='fish'
 # https://github.com/jabbalaci/virtualenv-tools
 source ~/Dropbox/home/virtualenv-tools/virtualenv.sh
 
-# using Anaconda 2
-alias ipy='/opt/anaconda2/bin/ipython'
-alias ipynb='/opt/anaconda2/bin/ipython notebook --notebook-dir ~/Dropbox/ipython_notebooks'
+# using Anaconda 3
+alias ipy='/opt/anaconda3/bin/ipython'
+alias ipynb='/opt/anaconda3/bin/jupyter notebook --notebook-dir ~/Dropbox/ipython_notebooks'
 
 # Opens the github page for the current git repository in your browser
 # git@github.com:jasonneylon/dotfiles.git
