@@ -124,7 +124,7 @@ def main():
 
     # Step 3
     # start Firefox
-    cmd = "/usr/bin/firefox &>/dev/null &"
+    cmd = "/home/jabba/bin/cpulimit_firefox.sh"    # starts in the background
     print("# starting Firefox...")
     os.system(cmd)
     wait_for_window('Vimperator')
@@ -141,7 +141,7 @@ def main():
     # Step 5
     # set the volume
     print("# setting the volume")
-    os.system("~/bin/set_volume.sh")
+    os.system("~/bin/vol 140")
     print()
 
 ##############################################################################
