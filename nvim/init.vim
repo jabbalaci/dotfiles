@@ -903,6 +903,7 @@ set autochdir
 " remove trailing whitespaces {{{
     autocmd BufWritePre *.txt :%s/\s\+$//e
     autocmd BufWritePre *.py :%s/\s\+$//e
+    autocmd BufWritePre *.php :%s/\s\+$//e
     autocmd BufWritePre *.md :%s/\s\+$//e
     autocmd BufWritePre *.h :%s/\s\+$//e
     autocmd BufWritePre *.tex :%s/\s\+$//e
