@@ -292,6 +292,7 @@ then
 else
     # source ~/.bash_prompt_basic
     source ~/.bash_prompt
+    # source ~/.bash_prompt_simple
 fi
 
 # https://github.com/cask/cask

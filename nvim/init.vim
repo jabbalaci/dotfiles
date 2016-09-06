@@ -182,6 +182,22 @@ Plug 'elzr/vim-json'
     let g:vim_json_syntax_conceal = 0
 " }}}
 
+Plug 'jabbalaci/python-syntax'
+" {{{
+    " https://github.com/hdima/python-syntax
+    " better Python syntax highlighting
+    let python_highlight_all = 1
+    let python_highlight_string_format = 0
+    let python_highlight_space_errors = 0
+    " let python_highlight_file_headers_as_comments = 1
+" }}}
+
+Plug 'jabbalaci/vim-operator-highlight'
+" {{{
+    " https://github.com/Valloric/vim-operator-highlight
+    let g:ophigh_color_gui = "#7382d0"
+" }}}
+
 " ====================================================================
 " Completion
 " ====================================================================
@@ -383,8 +399,8 @@ Plug 'neomake/neomake'
     let g:neomake_python_enabled_makers = ['flake8', 'pep8', 'vulture']
     " let g:neomake_python_enabled_makers = ['flake8', 'pep8']
     " E501 is line length of 80 characters
-    let g:neomake_python_flake8_maker = { 'args': ['--ignore=E115,E266,E501'], }
-    let g:neomake_python_pep8_maker = { 'args': ['--max-line-length=100', '--ignore=E115,E266'], }
+    let g:neomake_python_flake8_maker = { 'args': ['--ignore=E115,E266,E501,E302'], }
+    let g:neomake_python_pep8_maker = { 'args': ['--max-line-length=100', '--ignore=E115,E266,E302'], }
 
     " run neomake on the current file on every write:
     autocmd! BufWritePost * Neomake
@@ -412,7 +428,7 @@ Plug 'vim-airline/vim-airline-themes'
     " https://github.com/vim-airline/vim-airline
     " Temporary solution. Remove it when all machines are upgraded to 0.1.5+ .
     let build_version = system("nvim --version | head -1 | cut -d' ' -f2")
-    if build_version == "0.1.5-dev\n"
+    if build_version == "0.1.5\n" || build_version == "0.1.6-dev\n"
         set termguicolors
     else
         let $NVIM_TUI_ENABLE_TRUE_COLOR = 1
@@ -718,9 +734,10 @@ autocmd FileType * setlocal formatoptions-=c  formatoptions-=r formatoptions-=o
 " color scheme
 if filereadable($HOME . "/LIGHT_BACKGROUND")
     set background=light
-    "colorscheme trivial256
-    "colorscheme emacs
-    colorscheme emacs_jabba
+    " colorscheme trivial256_jabba
+    " colorscheme emacs
+    " colorscheme emacs_jabba
+    colorscheme jabba
     hi LineNr       term=bold cterm=bold ctermfg=2 guifg=Grey guibg=Grey90
     hi CursorLine   guibg=#DBE6E0
     hi NonText      guifg=Blue guibg=none gui=none
