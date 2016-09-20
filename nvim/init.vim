@@ -182,21 +182,23 @@ Plug 'elzr/vim-json'
     let g:vim_json_syntax_conceal = 0
 " }}}
 
-Plug 'jabbalaci/python-syntax'
-" {{{
-    " https://github.com/hdima/python-syntax
-    " better Python syntax highlighting
-    let python_highlight_all = 1
-    let python_highlight_string_format = 0
-    let python_highlight_space_errors = 0
-    " let python_highlight_file_headers_as_comments = 1
-" }}}
+if filereadable($HOME . "/LIGHT_BACKGROUND")
+    Plug 'jabbalaci/python-syntax'
+    " {{{
+        " https://github.com/hdima/python-syntax
+        " better Python syntax highlighting
+        let python_highlight_all = 1
+        let python_highlight_string_format = 0
+        let python_highlight_space_errors = 0
+        " let python_highlight_file_headers_as_comments = 1
+    " }}}
 
-Plug 'jabbalaci/vim-operator-highlight'
-" {{{
-    " https://github.com/Valloric/vim-operator-highlight
-    let g:ophigh_color_gui = "#7382d0"
-" }}}
+    Plug 'jabbalaci/vim-operator-highlight'
+    " {{{
+        " https://github.com/Valloric/vim-operator-highlight
+        let g:ophigh_color_gui = "#7382d0"
+    " }}}
+endif
 
 " ====================================================================
 " Completion
@@ -925,6 +927,7 @@ set autochdir
     autocmd BufWritePre *.h :%s/\s\+$//e
     autocmd BufWritePre *.tex :%s/\s\+$//e
     autocmd BufWritePre *.vim :%s/\s\+$//e
+    autocmd BufWritePre *.nfo :%s/\s\+$//e
 " }}}
 
 " when going back to a terminal, switch to insert mode automatically
