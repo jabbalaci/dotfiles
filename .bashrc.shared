@@ -2,7 +2,12 @@
 ## common settings ##
 #####################
 
-export GIT_EDITOR=vim
+export EDITOR=/usr/bin/nvim
+export VIEWER=$EDITOR
+export GIT_EDITOR=$EDITOR
+
+alias vi=$EDITOR
+alias vim=$EDITOR
 
 # classic version
 #export EDITOR=/usr/bin/emacsclient
@@ -17,26 +22,26 @@ export GIT_EDITOR=vim
 ##################################
 # BEGIN: emacs/vim/nvim settings #
 ##################################
-export EMACS=/home/jabba/Dropbox/home/jabba/bin/emacs_try_client_first
-alias e=$EMACS
-alias em=$EMACS
+#export EMACS=/home/jabba/Dropbox/home/jabba/bin/emacs_try_client_first
+#alias e=$EMACS
+#alias em=$EMACS
 
-export VI=/home/jabba/Dropbox/home/jabba/bin/nvim_try_remote_first.py
+#export VI=/home/jabba/Dropbox/home/jabba/bin/nvim_try_remote_first.py
 #export NVIM_LISTEN_ADDRESS=/tmp/nvimsocket
 
-if [ -f $HOME/SLOW ];
-then
-    # if you have a slow machine
-    export EDITOR=/usr/bin/nvim
-else
-    export EDITOR=$VI
-fi
+#if [ -f $HOME/SLOW ];
+#then
+#    # if you have a slow machine
+#    export EDITOR=/usr/bin/nvim
+#else
+#    export EDITOR=$VI
+#fi
 
-export VIEWER=$EDITOR
-alias vi=$EDITOR
-alias vih=/usr/bin/nvim    # edit with vi here, i.e. no remote
+
+#alias vih=/usr/bin/nvim    # edit with vi here, i.e. no remote
 
 export TERM=xterm-256color
+
 ################################
 # END: emacs/vim/nvim settings #
 ################################
@@ -183,6 +188,20 @@ else
 fi
 }
 alias mdgo=mkdir_go
+
+vagrant_multi()
+{
+    if [[ -z "$1" ]]
+    then
+        vagrant
+    else
+        for var in "$@"
+        do
+            vagrant "$var"
+        done
+    fi
+}
+alias vag=vagrant_multi
 
 # on_function()
 # {
