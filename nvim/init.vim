@@ -428,11 +428,11 @@ Plug 'bling/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 " {{{
     " https://github.com/vim-airline/vim-airline
-    " Temporary solution. Remove it when all machines are upgraded to 0.1.5+ .
-    let build_version = system("nvim --version | head -1 | cut -d' ' -f2")
-    if build_version == "0.1.5\n" || build_version == "0.1.6-dev\n"
+    let distro = system("cat /etc/issue | head -1 | cut -f 1 -d ' '")
+    if distro == "Manjaro\n"
         set termguicolors
     else
+        " Ubuntu
         let $NVIM_TUI_ENABLE_TRUE_COLOR = 1
     endif
     " also install the system package 'powerline-fonts'
@@ -487,6 +487,12 @@ Plug 'Chiel92/vim-autoformat'
     " for json, html, css, javascript:
     "   $ sudo npm install -g js-beautify
     noremap <F5> :Autoformat<cr>
+" }}}
+
+Plug 'avakhov/vim-yaml'
+" {{{
+    " https://github.com/avakhov/vim-yaml
+    " indent yaml
 " }}}
 
 " ====================================================================
@@ -923,6 +929,7 @@ set autochdir
     autocmd BufWritePre *.txt :%s/\s\+$//e
     autocmd BufWritePre *.py :%s/\s\+$//e
     autocmd BufWritePre *.php :%s/\s\+$//e
+    autocmd BufWritePre *.java :%s/\s\+$//e
     autocmd BufWritePre *.md :%s/\s\+$//e
     autocmd BufWritePre *.h :%s/\s\+$//e
     autocmd BufWritePre *.tex :%s/\s\+$//e

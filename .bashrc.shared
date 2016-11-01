@@ -84,7 +84,7 @@ export PATH
 #PATH=$PATH:/opt/wkhtmltopdf
 #export PATH
 
-export PYTHONPATH=$HOME/python/lib/jabbapylib2
+# export PYTHONPATH=$HOME/python/lib/jabbapylib2
 
 PYPY=/opt/pypy/bin
 PATH=$PATH:$PYPY
@@ -141,8 +141,8 @@ alias p3='python3'
 alias p='python3'
 alias bpy2='bpython2'
 alias bpy3='bpython3'
-# alias ipy='ipython'
-# alias ipy3='ipython3'
+alias ipy='ipython'
+alias ipy3='ipython3'
 # alias ipynb='ipython notebook'
 alias th='echo "cls; cd `pwd`"'
 alias kr='krusader &'
@@ -168,6 +168,7 @@ alias mplayer='mplayer -vo x11'
 alias mozilla='okular $HOME/mozilla.pdf 2>/dev/null &'
 alias t='clear; task'
 alias pip_pypy='/opt/pypy/bin/pip'
+alias ss='xfce4-screenshooter &'
 # func_workon()
 # {
 # if [[ -z "$1" ]]
@@ -332,13 +333,9 @@ alias f='fish'
 # brackets text editor
 # alias br="brackets &>/dev/null &"
 
-# source my virtualenv functions and aliases
-# https://github.com/jabbalaci/virtualenv-tools
-source ~/Dropbox/home/virtualenv-tools/virtualenv.sh
-
 # using Anaconda 3
-alias ipy='/opt/anaconda3/bin/ipython'
-alias ipynb='/opt/anaconda3/bin/jupyter notebook --notebook-dir ~/Dropbox/ipython_notebooks'
+#alias ipy='/opt/anaconda3/bin/ipython'
+alias ipynb='jupyter notebook --notebook-dir ~/Dropbox/ipython_notebooks'
 
 # Opens the github page for the current git repository in your browser
 # git@github.com:jasonneylon/dotfiles.git
@@ -388,3 +385,7 @@ export QT_QPA_PLATFORM=''
 # $ git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 # $ ~/.fzf/install
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+# source my virtualenv functions and aliases
+# https://github.com/jabbalaci/virtualenv-tools
+source ~/Dropbox/home/virtualenv-tools/virtualenv.sh
