@@ -105,6 +105,9 @@ let maplocalleader = "\\"
     silent !mkdir ~/nvim.local/undo > /dev/null 2>&1
 " }}}
 
+let g:python_host_prog = '/usr/bin/python2'
+let g:python3_host_prog = '/usr/bin/python3'
+
 " Autoinstall vim-plug {{{
     " https://github.com/junegunn/vim-plug
     let s:vim_plug_dir=expand($HOME.'/.config/nvim/autoload')
@@ -428,13 +431,15 @@ Plug 'bling/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 " {{{
     " https://github.com/vim-airline/vim-airline
-    let distro = system("cat /etc/issue | head -1 | cut -f 1 -d ' '")
-    if distro == "Manjaro\n"
-        set termguicolors
-    else
-        " Ubuntu
-        let $NVIM_TUI_ENABLE_TRUE_COLOR = 1
-    endif
+    " let distro = system("cat /etc/issue | head -1 | cut -f 1 -d ' '")
+    " if distro == "Manjaro\n"
+    "     set termguicolors
+    " else
+    "     " Ubuntu
+    "     set termguicolors
+    "     " let $NVIM_TUI_ENABLE_TRUE_COLOR = 1
+    " endif
+    set termguicolors
     " also install the system package 'powerline-fonts'
     let g:airline_powerline_fonts = 1
     " Enable the list of buffers
@@ -644,6 +649,15 @@ Plug 'majutsushi/tagbar'
 
 " Add plugins to &runtimepath
 " END
+
+" ====================================================================
+" Rust
+" ====================================================================
+Plug 'rust-lang/rust.vim'
+" {{{
+    " https://github.com/rust-lang/rust.vim
+" }}}
+
 call plug#end()    " vim-plug
 
 " https://github.com/junegunn/vim-plug/wiki/faq#loading-plugins-manually
