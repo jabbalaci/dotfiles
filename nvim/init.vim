@@ -658,6 +658,17 @@ Plug 'rust-lang/rust.vim'
     " https://github.com/rust-lang/rust.vim
 " }}}
 
+" ====================================================================
+" Markdown
+" ====================================================================
+" Plug 'suan/vim-instant-markdown'
+" doesn't work with neovim (yet), see https://github.com/suan/vim-instant-markdown/issues/110
+" " {{{
+"     " https://github.com/suan/vim-instant-markdown
+"     let g:instant_markdown_autostart = 0
+"     map <Leader>md :InstantMarkdownPreview<CR>
+" " }}}
+
 call plug#end()    " vim-plug
 
 " https://github.com/junegunn/vim-plug/wiki/faq#loading-plugins-manually
@@ -939,9 +950,10 @@ nnoremap <Leader>l :set list!<cr>
 " automatically change window's cwd to file's dir
 set autochdir
 
-" remove trailing whitespaces {{{
+" remove trailing whitespaces, strip {{{
     autocmd BufWritePre *.txt :%s/\s\+$//e
     autocmd BufWritePre *.py :%s/\s\+$//e
+    autocmd BufWritePre *.pl :%s/\s\+$//e
     autocmd BufWritePre *.php :%s/\s\+$//e
     autocmd BufWritePre *.java :%s/\s\+$//e
     autocmd BufWritePre *.md :%s/\s\+$//e
@@ -949,6 +961,8 @@ set autochdir
     autocmd BufWritePre *.tex :%s/\s\+$//e
     autocmd BufWritePre *.vim :%s/\s\+$//e
     autocmd BufWritePre *.nfo :%s/\s\+$//e
+    autocmd BufWritePre *.json :%s/\s\+$//e
+    autocmd BufWritePre *.rs :%s/\s\+$//e
 " }}}
 
 " when going back to a terminal, switch to insert mode automatically
@@ -1111,6 +1125,8 @@ augroup END
     nnoremap <Leader>dp :let @+ = expand("%:p:h") \| echo 'cb> ' . @+<cr>
     " *d*irectory *n*ame, ex. nvim
     nnoremap <Leader>dn :let @+ = expand("%:p:h:t") \| echo 'cb> ' . @+<cr>
+    " help
+    nnoremap <Leader>path :echo 'cb help> fn: file name; fp: file path; dn: dir. name; dp: dir. path'<cr>
 " }}}
 
 " {{{

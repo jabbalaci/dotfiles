@@ -8,6 +8,7 @@ export GIT_EDITOR=$EDITOR
 
 alias vi=$EDITOR
 alias vim=$EDITOR
+alias nvi=$EDITOR
 
 # classic version
 #export EDITOR=/usr/bin/emacsclient
@@ -59,12 +60,12 @@ MY_BIN=$MY_BIN:"$HOME/bin.python"
 MY_BIN=$MY_BIN:"$HOME/bin.secret"
 export PATH=$PATH:$MY_BIN
 
-export GOPATH=$HOME/Dropbox/go
-export GO=$GOPATH/src/github.com/jabbalaci
-export GOLIB=$GOPATH/src/github.com/jabbalaci/jabbagolib
+# export GOPATH=$HOME/Dropbox/go
+# export GO=$GOPATH/src/github.com/jabbalaci
+# export GOLIB=$GOPATH/src/github.com/jabbalaci/jabbagolib
 
-PATH=$PATH:$GOPATH/bin
-export PATH
+# PATH=$PATH:$GOPATH/bin
+# export PATH
 
 # add wpython.py
 #PATH=$PATH:$HOME/Dropbox/python/Wpython
@@ -93,8 +94,8 @@ export PATH
 #export PYTHONSTARTUP=$HOME/.pythonstartup.py
 
 # Android's Video directory
-export A='/media/jabba/FC1A-45A6/Video'
-export B='/media/jabba/GT70/Movies'
+# export A='/media/jabba/FC1A-45A6/Video'
+# export B='/media/jabba/GT70/Movies'
 
 PATH=$PATH:/opt/chromedriver
 export PATH
@@ -103,7 +104,7 @@ export PATH
 #export PATH="/opt/anaconda/bin:$PATH"
 
 # deactivate that the screen goes blank in 10 minutes
-# a rukkola's HappBot-hoz kell
+# a rukkola HappBot-hoz kell
 #xset s 0 0
 
 alias md='mkdir'
@@ -231,8 +232,6 @@ alias ....="cd ..; cd ..; cd .."
 alias .....="cd ..; cd ..; cd ..; cd .."
 alias ......="cd ..; cd ..; cd ..; cd ..; cd .."
 
-# alias vlc='vlc -f'
-
 # https://github.com/nvbn/thefuck
 #alias fuck='eval $(thefuck $(fc -ln -1)); history -r'
 #export THEFUCK_REQUIRE_CONFIRMATION='true'
@@ -251,7 +250,7 @@ then
 fi
 
 ### Added by the Heroku Toolbelt
-export PATH=$PATH:/usr/local/heroku/bin
+# export PATH=$PATH:/usr/local/heroku/bin
 
 # START: virtualenvwrapper (works with Ubuntu and Manjaro)
 #export WORKON_HOME=$HOME/.virtualenvs
@@ -330,7 +329,7 @@ source /usr/share/autojump/autojump.bash
 alias jj="j --stat"
 
 # fish shell
-alias f='fish'
+# alias f='fish'
 
 # brackets text editor
 # alias br="brackets &>/dev/null &"
@@ -366,18 +365,15 @@ alias ssh='ssh -o ServerAliveInterval=60'
 # export TERM=xterm
 
 # kotlin
-export PATH=$PATH:/opt/kotlinc/bin
+# export PATH=$PATH:/opt/kotlinc/bin
 
 # SDKMAN
 # https://github.com/sdkman/sdkman-cli
 # installation:
 # $ curl -s api.sdkman.io | bash
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="$HOME/.sdkman"
-[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
-
-# NeoVim
-alias nvi='nvim'
+# export SDKMAN_DIR="$HOME/.sdkman"
+# [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
 
 # if PhantomJS crashes
 export QT_QPA_PLATFORM=''
