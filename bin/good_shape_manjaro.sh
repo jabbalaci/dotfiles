@@ -1,13 +1,11 @@
-#!/usr/bin/bash
+#!/usr/bin/env bash
 
-# for Manjaro
-#
-# good_shape_manjaro.sh
+# no questions: --noconfirm
 
 #sudo pacman-mirrors -g
 #sudo pacman -Syy
 #sudo pacman -Syu
 #sudo pacman -R $(pacman -Qdtq)
 
-yaourt -Syua
+yaourt -Syua "$@"
 sudo pacman -Scc

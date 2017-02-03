@@ -407,6 +407,12 @@ Plug 'neomake/neomake'
     let g:neomake_python_flake8_maker = { 'args': ['--ignore=E115,E266,E501,E302'], }
     let g:neomake_python_pep8_maker = { 'args': ['--max-line-length=100', '--ignore=E115,E266,E302'], }
 
+    " I had a problem under Manjaro: problems were underlined, instead of coloring red
+    let distro = system("cat /etc/issue | head -1 | cut -f 1 -d ' '")
+    if distro == "Manjaro\n"
+        let g:neomake_highlight_columns = 0
+    endif
+
     " run neomake on the current file on every write:
     autocmd! BufWritePost * Neomake
 " }}}
@@ -423,6 +429,7 @@ Plug 'xolox/vim-misc' | Plug 'xolox/vim-session'
     let g:session_autoload = 'no'
     let g:session_directory = '~/nvim.local/sessions'
 " }}}
+
 
 " ====================================================================
 " Appearance
@@ -623,6 +630,22 @@ Plug 'fisadev/vim-isort'
     " $ sudo pip2/pip3 install isort -U
     " sort python imports using isort
     " select a block of imports with visual mode, and press Ctrl-i to sort them
+" }}}
+
+" ====================================================================
+" Julia
+" ====================================================================
+Plug 'JuliaEditorSupport/julia-vim'
+" {{{
+    " Plug 'JuliaEditorSupport/julia-vim'
+" }}}
+
+" ====================================================================
+" Scala
+" ====================================================================
+Plug 'derekwyatt/vim-scala'
+" {{{
+    " https://github.com/derekwyatt/vim-scala
 " }}}
 
 " ====================================================================
@@ -950,9 +973,10 @@ nnoremap <Leader>l :set list!<cr>
 " automatically change window's cwd to file's dir
 set autochdir
 
-" remove trailing whitespaces, strip {{{
+" remove trailing whitespaces, strip, trim {{{
     autocmd BufWritePre *.txt :%s/\s\+$//e
     autocmd BufWritePre *.py :%s/\s\+$//e
+    autocmd BufWritePre *.scala :%s/\s\+$//e
     autocmd BufWritePre *.pl :%s/\s\+$//e
     autocmd BufWritePre *.php :%s/\s\+$//e
     autocmd BufWritePre *.java :%s/\s\+$//e

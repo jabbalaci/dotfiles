@@ -387,3 +387,9 @@ export QT_QPA_PLATFORM=''
 # source my virtualenv functions and aliases
 # https://github.com/jabbalaci/virtualenv-tools
 source ~/Dropbox/home/virtualenv-tools/virtualenv.sh
+
+# Julia lang.
+alias jl='julia'
+
+# Scala lang.
+export JAVA_HOME=/usr/lib/jvm/java-8-jdk
