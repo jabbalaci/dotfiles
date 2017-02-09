@@ -1,0 +1,23 @@
+! from https://www.youtube.com/watch?v=W9_H_M-H-a4
+! https://unix.stackexchange.com/a/151046
+!
+! The .Xmodmap file will be loaded in when you open X11 sessions,
+! you should have this mapping in place next time you login or reboot.
+!
+! change Caps Lock to Hyper key
+!
+! to load xmodmap config:
+! $ xmodmap ~/.Xmodmap
+!
+! to reset the keyboard to default:
+! $ setxkbmap -layout hu    # or "en" if you have an English keyboard
+
+! unmap Caps Lock
+clear Lock
+keycode 66 = Hyper_L
+
+! leave mod4 as windows key _only_
+remove mod4 = Hyper_L
+
+! set mod3 to Caps Lock
+add mod3 = Hyper_L

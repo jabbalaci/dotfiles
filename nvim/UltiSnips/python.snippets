@@ -4,6 +4,10 @@ snippet "^#!" "shebang for Python 3" r
 $0
 endsnippet
 
+snippet "^env" "shebang with env" r
+#!/usr/bin/env $0
+endsnippet
+
 snippet "^main" "main function" r
 def main():
     ${1:pass}
@@ -24,8 +28,8 @@ $0if __name__ == "__main__":
     main()
 endsnippet
 
-snippet alap "basic skeleton, Python 2" b
-#!/usr/bin/env python
+snippet alap1 "basic skeleton, Python 2" b
+#!/usr/bin/env python2
 # coding: utf-8
 
 
@@ -39,7 +43,7 @@ if __name__ == "__main__":
 endsnippet
 
 snippet alap2 "basic skeleton, Python 2 -> Python 3" b
-#!/usr/bin/env python
+#!/usr/bin/env python2
 # coding: utf-8
 
 from __future__ import (absolute_import, division,
@@ -55,7 +59,7 @@ if __name__ == "__main__":
     main()
 endsnippet
 
-snippet alap3 "basic skeleton for Python 3" b
+snippet alap "basic skeleton for Python 3" b
 #!/usr/bin/env python3
 
 
