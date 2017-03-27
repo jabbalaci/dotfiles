@@ -956,7 +956,7 @@ inoremap # #
 "====[ Make the 81st column stand out ]==================== {{{
     highlight ColorColumn ctermbg=magenta
     call matchadd('ColorColumn', '\%101v', 100)    " I set it to 100
-    "call matchadd('ColorColumn', '\%121v', 100)   " column 120
+    " call matchadd('ColorColumn', '\%121v', 100)   " column 120
     "call matchadd('ColorColumn', '\%81v', 100)    " column 80
 " }}}
 
