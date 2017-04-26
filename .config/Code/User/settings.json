@@ -1,0 +1,32 @@
+{
+    "workbench.colorTheme": "Default Light+",
+    "editor.fontFamily": "Hack, 'Droid Sans Mono', 'Courier New', monospace, 'Droid Sans Fallback'",
+    "editor.fontSize": 18,
+    "editor.minimap.enabled": true,
+
+    "python.linting.pylintEnabled": false,
+    "python.linting.pylintArgs": [
+        "--errors-only"
+    ],
+    "terminal.integrated.shell.windows": "C:\\Windows\\Sysnative\\cmd.exe",
+    "code-runner.clearPreviousOutput": true,
+    "code-runner.showExecutionMessage": false,
+    "workbench.iconTheme": "vscode-icons",
+    "[markdown]": {
+        "editor.quickSuggestions": false
+    },
+    "window.zoomLevel": 0,
+    "trailing-spaces.includeEmptyLines": false,
+    "trailing-spaces.trimOnSave": true,
+    "files.insertFinalNewline": true,
+    "editor.roundedSelection": false,
+    "files.exclude": {
+        "**/.git": true,
+        ".vscode": true,
+        "**/__pycache__": true,
+        "**/**/*.pyc": true
+    },
+    "workbench.welcome.enabled": false,
+    "vsicons.dontShowNewVersionMessage": true
+    // "editor.rulers": [120],
+}

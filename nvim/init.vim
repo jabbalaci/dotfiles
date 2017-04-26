@@ -7,7 +7,7 @@
 "
 "
 " NeoVim config file of Jabba Laci (jabba.laci@gmail.com)
-" last change: 2016.05.25. (yyyy.mm.dd.)
+" last change: 2017.04.02. (yyyy.mm.dd.)
 " repo: https://github.com/jabbalaci/dotfiles/blob/master/nvim/init.vim
 "
 " Place of this configuration file:
@@ -232,6 +232,7 @@ Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
     let g:UltiSnipsSnippetsDir = "~/.config/nvim/UltiSnips"
 " }}}
 
+" Plug 'Valloric/YouCompleteMe'    " uncomment for installing YCM, then put it back to comment
 " Autocompletion for Python and C-like languages {{{
   " from here: https://github.com/euclio/vimrc/blob/master/plugins.vim
   " Under Manjaro 64-bit I had a problem with the automatic installation, YCM

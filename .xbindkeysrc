@@ -1,0 +1,142 @@
+# For the benefit of emacs users: -*- shell-script -*-
+
+# https://wiki.archlinux.org/index.php/Xbindkeys
+# Tip: After you made a change, execute `xbindkeys -p` to reload the configuration file and
+# apply the changes.
+
+# -------- Xbindkeys default readme {{{
+# -------------------------------------
+
+# Legends:
+# Mod4 = Super
+# Mod3 = Capslock = Hyper_L (custom rebind) (demo: https://www.youtube.com/watch?v=W9_H_M-H-a4)
+
+###########################
+# xbindkeys configuration #
+###########################
+#
+# Version: 1.8.6
+#
+# If you edit this file, do not forget to uncomment any lines
+# that you change.
+# The pound(#) symbol may be used anywhere for comments.
+#
+# To specify a key, you can use 'xbindkeys --key' or
+# 'xbindkeys --multikey' and put one of the two lines in this file.
+#
+# The format of a command line is:
+#    "command to start"
+#       associated key
+#
+#
+# A list of keys is in /usr/include/X11/keysym.h and in
+# /usr/include/X11/keysymdef.h
+# The XK_ is not needed.
+#
+# List of modifier:
+#   Release, Control, Shift, Mod1 (Alt), Mod2 (NumLock),
+#   Mod3 (CapsLock), Mod4, Mod5 (Scroll).
+#
+
+# The release modifier is not a standard X modifier, but you can
+# use it if you want to catch release events instead of press events
+
+# By defaults, xbindkeys does not pay attention with the modifiers
+# NumLock, CapsLock and ScrollLock.
+# Uncomment the lines above if you want to pay attention to them.
+
+#keystate_numlock = enable
+#keystate_capslock = enable
+#keystate_scrolllock= enable
+
+# Examples of commands:
+
+# set directly keycode (here control + f with my keyboard)
+#"xterm"
+#  c:41 + m:0x4
+
+# specify a mouse button
+#"xterm"
+#  control + b:2
+
+#"xterm -geom 50x20+20+20"
+#   Shift+Mod2+alt + s
+#
+## set directly keycode (here control+alt+mod2 + f with my keyboard)
+#"xterm"
+#  alt + c:0x29 + m:4 + mod2
+#
+## Control+Shift+a  release event starts rxvt
+#"rxvt"
+#  release+control+shift + a
+#
+## Control + mouse button 2 release event starts rxvt
+#"rxvt"
+#  Control + b:2 + Release
+
+##################################
+# End of xbindkeys configuration #
+##################################
+
+# }}}
+
+# -------- Jabba Laci {{{
+# -----------------------
+
+"xbindkeys_show"
+  Control + Shift + q
+
+# Gedit
+"gedit"
+    Mod3 + g    # Hyper_L + g
+
+# Konsole
+"konsole"
+    Mod3 + k    # Hyper_L + k
+
+# firefoX
+"firefox"
+    Mod3 + x    # Hyper_L + x
+
+# File manager
+"thunar"
+    Mod3 + f    # Hyper_L + f
+
+# kill an X window program (right mouse = kill, left mouse = cancel)
+# yaourt xkill
+"xkill"
+    Control + Shift + Escape
+
+# lock screen
+"xscreensaver-command -lock"
+    Control + Alt + l
+
+# Top
+# yaourt xterm
+"xterm -fg white -bg black -fa 'Monospace' -fs 14 -e top"
+    Mod3 + t    # Hyper_L + t
+
+# Htop
+# yaourt xterm
+"xterm -fg white -bg black -fa 'Monospace' -fs 14 -e htop"
+    Mod3 + h    # Hyper_L + h
+
+"xfce4-screenshooter"
+    Print
+
+# Chromium
+"chromium"
+    Mod3 + c    # Hyper_L + c
+
+# open current firefox tab in Palemoon
+"~/python/Bash-Utils/open_current_ff_tab_in_palemoon.sh"
+    Mod3 + p    # Hyper_L + p
+
+# copy current firefox tab's URL to the clipboard
+"~/python/Bash-Utils/copy_current_ff_tab_url_to_clipboard.sh"
+    Mod3 + y    # Hyper_L + y
+
+"rofi -combi-modi window,drun -show combi -color-window '#000000, #000000, #000000' -color-normal '#000000, #b3e774, #000000, #b3e774, #000000' -color-active '#000000, #b3e774, #000000, #b3e774, #000000' -color-urgent '#000000, #b3e774, #000000, #b3e774, #000000'"
+    Mod3 + r    # Hyper_L + r
+
+# }}}

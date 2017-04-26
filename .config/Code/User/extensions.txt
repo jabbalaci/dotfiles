@@ -1,0 +1,6 @@
+donjayamanne.python
+formulahendry.code-runner
+magicstack.MagicPython
+robertohuertasm.vscode-icons
+shardulm94.trailing-spaces
+tht13.python
