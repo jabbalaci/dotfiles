@@ -1,4 +1,5 @@
 .task
+.fzf/
 autokey/
 
 secret/
