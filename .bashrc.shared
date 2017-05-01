@@ -396,3 +396,9 @@ alias jl='julia'
 
 # Scala lang.
 export JAVA_HOME=/usr/lib/jvm/java-8-jdk
+
+# task spooler, multiple queue lists
+# idea from https://www.youtube.com/watch?v=WiP1OM7Kf10
+alias tsp-shortTasks='TS_SOCKET=/tmp/tsp_short_tasks tsp'
+alias tsp-mediumTasks='TS_SOCKET=/tmp/tsp_medium_tasks tsp'
+alias tsp-longTasks='TS_SOCKET=/tmp/tsp_long_tasks tsp'
