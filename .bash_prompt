@@ -119,8 +119,8 @@ function set_virtualenv () {
       PYTHON_VIRTUALENV="${BOLD_BLUE}[`basename \"$VIRTUAL_ENV\"`]${COLOR_NONE} "
   fi
 
-  if [ -n "$CONDA_ENV_PATH" ]; then
-      PYTHON_VIRTUALENV="${BOLD_BLUE}[`basename \"$CONDA_ENV_PATH\"`]${COLOR_NONE} "
+  if [ -n "$CONDA_DEFAULT_ENV" ]; then
+      PYTHON_VIRTUALENV="${BOLD_BLUE}[`basename \"$CONDA_DEFAULT_ENV\"`]${COLOR_NONE} "
   fi
 }
 

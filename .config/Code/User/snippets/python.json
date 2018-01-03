@@ -27,6 +27,57 @@
             "if __name__ == \"__main__\":",
             "    main()"
         ],
-        "description": "basic skeleton for Python 3"
+        "description": "basic Python 3 skeleton"
+    },
+
+    "mongo": {
+        "prefix": "mongo",
+        "body": [
+            "#!/usr/bin/env python3",
+            "",
+            "from pprint import pprint",
+            "",
+            "import pymongo",
+            "",
+            "# conn = pymongo.MongoClient('localhost', 27017)",
+            "conn = pymongo.MongoClient()    # connection",
+            "",
+            "db = conn['test']    # select database",
+            "coll = db['users']   # select collection",
+            "",
+            "",
+            "def main():",
+            "    doc = coll.find_one()",
+            "    pprint(doc)",
+            "",
+            "##############################################################################",
+            "",
+            "if __name__ == \"__main__\":",
+            "    main()"
+        ],
+        "description": "basic MongoDB skeleton (Python 3)"
+    },
+
+    "bottle": {
+        "prefix": "bottle",
+        "body": [
+            "#!/usr/bin/env python3",
+            "",
+            "import bottle",
+            "",
+            "",
+            "@bottle.route('/')",
+            "def index():",
+            "    context = {",
+            "        'name': 'Joe',",
+            "        'age': 20",
+            "    }",
+            "    return bottle.template('index', context)",
+            "",
+            "",
+            "bottle.debug(True)",
+            "bottle.run(host='localhost', port=8080, reloader=True)",
+        ],
+        "description": "basic Bottle skeleton (Python 3)"
     }
 }

@@ -98,6 +98,14 @@
 "firefox"
     Mod3 + x    # Hyper_L + x
 
+# simplescreenrecorder
+"simplescreenrecorder --start-hidden"
+    Mod3 + r    # Hyper_L + r
+
+# screenkey
+"screenkey"
+    Mod3 + s    # Hyper_L + s
+
 # File manager
 "thunar"
     Mod3 + f    # Hyper_L + f
@@ -118,25 +126,30 @@
 
 # Htop
 # yaourt xterm
-"xterm -fg white -bg black -fa 'Monospace' -fs 14 -e htop"
+# "xterm -fg white -bg black -fa 'Monospace' -fs 14 -e htop"
+"/home/jabba/Dropbox/python/firefox/last_tab/open_hungarian.sh"
     Mod3 + h    # Hyper_L + h
 
 "xfce4-screenshooter"
     Print
 
-# Chromium
-"chromium"
-    Mod3 + c    # Hyper_L + c
+# Code (Visual Studio Code)
+# "code"
+#     Mod3 + c    # Hyper_L + c
 
 # open current firefox tab in Palemoon
-"~/python/Bash-Utils/open_current_ff_tab_in_palemoon.sh"
-    Mod3 + p    # Hyper_L + p
+# "~/python/Bash-Utils/open_current_ff_tab_in_palemoon.sh"
+#     Mod3 + p    # Hyper_L + p
 
 # copy current firefox tab's URL to the clipboard
-"~/python/Bash-Utils/copy_current_ff_tab_url_to_clipboard.sh"
-    Mod3 + y    # Hyper_L + y
+# "~/python/Bash-Utils/copy_current_ff_tab_url_to_clipboard.sh"
+#     Mod3 + y    # Hyper_L + y
 
-"rofi -combi-modi window,drun -show combi -color-window '#000000, #000000, #000000' -color-normal '#000000, #b3e774, #000000, #b3e774, #000000' -color-active '#000000, #b3e774, #000000, #b3e774, #000000' -color-urgent '#000000, #b3e774, #000000, #b3e774, #000000'"
-    Mod3 + r    # Hyper_L + r
+# "~/python/Bash-Utils/focus_on_last_browser_tab.sh"
+#     Mod3 + l    # Hyper_L + l
+
+# Rofi
+# "rofi -combi-modi window,drun -show combi -color-window '#000000, #000000, #000000' -color-normal '#000000, #b3e774, #000000, #b3e774, #000000' -color-active '#000000, #b3e774, #000000, #b3e774, #000000' -color-urgent '#000000, #b3e774, #000000, #b3e774, #000000'"
+#     Mod3 + r    # Hyper_L + r
 
 # }}}

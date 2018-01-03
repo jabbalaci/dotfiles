@@ -2,8 +2,11 @@
 
 # no questions: --noconfirm
 
-#sudo pacman-mirrors -g
+#sudo pacman-mirrors -f 0
 #sudo pacman -Syy
+
+# run these two commands ^^^ together
+
 #sudo pacman -Syu
 #sudo pacman -R $(pacman -Qdtq)
 

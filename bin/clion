@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+cd /opt/clion/bin/
+echo "Starting CLion..."
+./clion.sh 2>/dev/null

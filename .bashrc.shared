@@ -50,9 +50,9 @@ export TERM=xterm-256color
 # colored less using pygmentize
 export LESS='-R'
 
-#export JAVA_HOME=/opt/java
-#export JDK_HOME=$JAVA_HOME
-#export PATH=$PATH:$JAVA_HOME/bin
+export JAVA_HOME=/opt/java
+export JDK_HOME=$JAVA_HOME
+export PATH=$JAVA_HOME/bin:$PATH
 
 SPIDEROAK="$HOME/SpiderOak Hive"
 MY_BIN="$HOME/bin"
@@ -143,9 +143,10 @@ alias p='python3'
 alias bpy2='bpython2'
 alias bpy3='bpython3'
 alias ipy='ipython'
-alias ipy3='ipython3'
+# alias ipy3='ipython3'
 # alias ipynb='ipython notebook'
-alias th='echo "cls; cd `pwd`"'
+# alias th='echo "cls; cd `pwd`"'
+alias th='thunar'
 alias kr='krusader &'
 alias kill9='kill -9'
 alias sshow_r='feh -zsZFD 5 .'
@@ -234,6 +235,9 @@ alias ......="cd ..; cd ..; cd ..; cd ..; cd .."
 
 alias nb='newsbeuter'
 alias ver='pacman -Qi'
+alias files='pacman -Ql'
+
+alias ssr='simplescreenrecorder 2>/dev/null &'
 
 # https://github.com/nvbn/thefuck
 #alias fuck='eval $(thefuck $(fc -ln -1)); history -r'
@@ -395,10 +399,28 @@ source ~/Dropbox/home/virtualenv-tools/virtualenv.sh
 alias jl='julia'
 
 # Scala lang.
-export JAVA_HOME=/usr/lib/jvm/java-8-jdk
+#export JAVA_HOME=/usr/lib/jvm/java-8-jdk
 
 # task spooler, multiple queue lists
 # idea from https://www.youtube.com/watch?v=WiP1OM7Kf10
 alias tsp-shortTasks='TS_SOCKET=/tmp/tsp_short_tasks tsp'
 alias tsp-mediumTasks='TS_SOCKET=/tmp/tsp_medium_tasks tsp'
 alias tsp-longTasks='TS_SOCKET=/tmp/tsp_long_tasks tsp'
+
+# nnn, https://github.com/jarun/nnn
+export NNN_TMPFILE="/tmp/nnn"
+n()
+{
+    if [ -n "$1" ]; then
+        nnn -d "$1"
+    else
+        nnn -d
+    fi
+
+    if [ -f $NNN_TMPFILE ]; then
+        . $NNN_TMPFILE
+        rm $NNN_TMPFILE
+    fi
+}
+export NNN_FALLBACK_OPENER=xdg-open
+export NNN_DE_FILE_MANAGER=thunar

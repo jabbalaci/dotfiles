@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+cd /opt/android-studio/bin
+echo "Starting Android Studio..."
+./studio.sh 2>/dev/null

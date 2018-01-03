@@ -2,8 +2,7 @@
     "workbench.colorTheme": "Default Light+",
     "editor.fontFamily": "Hack, 'Droid Sans Mono', 'Courier New', monospace, 'Droid Sans Fallback'",
     "editor.fontSize": 18,
-    "editor.minimap.enabled": true,
-
+    // "editor.minimap.enabled": true,
     "python.linting.pylintEnabled": false,
     "python.linting.pylintArgs": [
         "--errors-only"
@@ -26,7 +25,28 @@
         "**/__pycache__": true,
         "**/**/*.pyc": true
     },
-    "workbench.welcome.enabled": false,
-    "vsicons.dontShowNewVersionMessage": true
+    // "workbench.welcome.enabled": false,
+    "vsicons.dontShowNewVersionMessage": true,
+    "files.associations": {
+        "*.pyx": "python",
+        "*.tpl": "html"
+    },
+    "code-runner.executorMap": {
+        "python": "python3",
+        // "csharp": "echo '# calling mono\n' && cd $dir && csc /nologo $fileName && mono $dir$fileNameWithoutExt.exe",
+        "csharp": "echo '# calling dotnet run\n' && dotnet run"
+    },
+    // this one troubled me with C#
+    "editor.codeLens": false,
+    // "csharp.fallbackDebuggerLinuxRuntimeId": "ubuntu.16.04-x64",
+    // "workbench.panel.location": "bottom",
+    "git.enableSmartCommit": true,
+    "git.autofetch": true,
     // "editor.rulers": [120],
+    "macros": {
+        "commentLine": [
+            "editor.action.commentLine",
+            "cursorDown"
+        ]
+    }
 }

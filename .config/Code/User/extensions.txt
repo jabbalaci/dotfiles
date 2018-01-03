@@ -1,6 +1,10 @@
-donjayamanne.python
+James-Yu.latex-workshop
 formulahendry.code-runner
+geddski.macros
+hollowtree.vue-snippets
 magicstack.MagicPython
+mathiasfrohlich.Kotlin
+ms-python.python
 robertohuertasm.vscode-icons
 shardulm94.trailing-spaces
 tht13.python

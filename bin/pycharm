@@ -1,4 +1,5 @@
 #!/usr/bin/bash
 
 cd /opt/pycharm/bin
-./pycharm.sh "$@" 2>/dev/null &
+echo "Starting PyCharm..."
+./pycharm.sh "$@" 2>/dev/null

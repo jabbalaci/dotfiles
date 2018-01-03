@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+cd /opt/idea/bin/
+echo "Starting IntelliJ IDEA..."
+./idea.sh 2>/dev/null
