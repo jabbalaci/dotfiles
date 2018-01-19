@@ -424,3 +424,6 @@ n()
 }
 export NNN_FALLBACK_OPENER=xdg-open
 export NNN_DE_FILE_MANAGER=thunar
+
+# Anaconda3
+export PATH=/opt/anaconda3/bin:$PATH

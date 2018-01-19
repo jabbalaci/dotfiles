@@ -7,7 +7,7 @@
 "
 "
 " NeoVim config file of Jabba Laci (jabba.laci@gmail.com)
-" last change: 2017.04.02. (yyyy.mm.dd.)
+" last change: 2018.01.19. (yyyy.mm.dd.)
 " repo: https://github.com/jabbalaci/dotfiles/blob/master/nvim/init.vim
 "
 " Place of this configuration file:
@@ -560,34 +560,34 @@ Plug 'easymotion/vim-easymotion'
 " }}}
 
 " Plugin outside ~/.config/nvim/plugged with post-update hook
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim'
-" {{{
-    " Ctrl-f      -> find
-    " :Files      -> find files recursively from the current dir.
-    " :Files ~    -> find files recursively from the specified dir.
-    " :Colors     -> browse and preview color schemes
-    " :h fzf-vim-commands
-    "let g:fzf_command_prefix = 'Fzf'
-    let g:fzf_action = {
-          \ 'ctrl-s': 'split',
-          \ 'ctrl-v': 'vsplit'
-          \ }
-    " ^ Enter: open in new buffer
-    " let g:fzf_layout = { 'right': '50%' }
-    set splitbelow splitright
-    nnoremap <c-f> :FZF<cr>
-
-    " Open in horizontal split
-    " opens :Lines with some settings ('down')
-    nnoremap <silent> <c-l> :call fzf#vim#lines({
-    \   'down': '40%' })<cr>
-
-    " " Open files in vertical horizontal split
-    " nnoremap <silent> <Leader>v :call fzf#run({
-    " \   'right': winwidth('.') / 2,
-    " \   'sink':  'vertical botright split' })<cr>
-" }}}
+" Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+" Plug 'junegunn/fzf.vim'
+" " {{{
+"     " Ctrl-f      -> find
+"     " :Files      -> find files recursively from the current dir.
+"     " :Files ~    -> find files recursively from the specified dir.
+"     " :Colors     -> browse and preview color schemes
+"     " :h fzf-vim-commands
+"     "let g:fzf_command_prefix = 'Fzf'
+"     let g:fzf_action = {
+"           \ 'ctrl-s': 'split',
+"           \ 'ctrl-v': 'vsplit'
+"           \ }
+"     " ^ Enter: open in new buffer
+"     " let g:fzf_layout = { 'right': '50%' }
+"     set splitbelow splitright
+"     nnoremap <c-f> :FZF<cr>
+"
+"     " Open in horizontal split
+"     " opens :Lines with some settings ('down')
+"     nnoremap <silent> <c-l> :call fzf#vim#lines({
+"     \   'down': '40%' })<cr>
+"
+"     " " Open files in vertical horizontal split
+"     " nnoremap <silent> <Leader>v :call fzf#run({
+"     " \   'right': winwidth('.') / 2,
+"     " \   'sink':  'vertical botright split' })<cr>
+" " }}}
 
 "Plug 'ctrlpvim/ctrlp.vim'
 " {{{
@@ -636,7 +636,7 @@ Plug 'fisadev/vim-isort'
 " ====================================================================
 " Julia
 " ====================================================================
-Plug 'JuliaEditorSupport/julia-vim'
+" Plug 'JuliaEditorSupport/julia-vim'
 " {{{
     " Plug 'JuliaEditorSupport/julia-vim'
 " }}}
@@ -647,6 +647,14 @@ Plug 'JuliaEditorSupport/julia-vim'
 Plug 'derekwyatt/vim-scala'
 " {{{
     " https://github.com/derekwyatt/vim-scala
+" }}}
+
+" ====================================================================
+" Nim
+" ====================================================================
+Plug 'zah/nim.vim'
+" {{{
+    " https://github.com/zah/nim.vim/
 " }}}
 
 " ====================================================================

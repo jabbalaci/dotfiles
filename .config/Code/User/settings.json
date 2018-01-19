@@ -48,5 +48,10 @@
             "editor.action.commentLine",
             "cursorDown"
         ]
-    }
+    },
+    // Configure editor settings to be overridden for [nim] language.
+    "[nim]":  {
+        "editor.insertSpaces": true,
+        "editor.tabSize": 2
+    },
 }

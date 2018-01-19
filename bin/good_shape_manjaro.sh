@@ -2,10 +2,9 @@
 
 # no questions: --noconfirm
 
-#sudo pacman-mirrors -f 0
-#sudo pacman -Syy
+# sudo pacman-mirrors -f 0 && sudo pacman -Syy
 
-# run these two commands ^^^ together
+# these ^^^ must be used together
 
 #sudo pacman -Syu
 #sudo pacman -R $(pacman -Qdtq)
