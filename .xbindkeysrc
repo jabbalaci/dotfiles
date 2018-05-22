@@ -98,6 +98,22 @@
 "firefox"
     Mod3 + x    # Hyper_L + x
 
+# Palemoon
+"palemoon"
+    Mod3 + p    # Hyper_L + p
+
+# IntelliJ IDEA
+"/opt/idea/bin/idea.sh"
+    Mod3 + i    # Hyper_L + i
+
+# PyCharm
+"/home/jabba/bin/pycharm"
+    Mod3 + c    # Hyper_L + c
+
+# vuze
+"vuze"
+    Mod3 + v    # Hyper_L + v
+
 # simplescreenrecorder
 "simplescreenrecorder --start-hidden"
     Mod3 + r    # Hyper_L + r

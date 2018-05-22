@@ -1,0 +1,5 @@
+#!/usr/bin/bash
+
+cd /opt/rider/bin
+echo "Starting Rider..."
+./rider.sh "$@" 2>/dev/null

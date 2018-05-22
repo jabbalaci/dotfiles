@@ -4,3 +4,5 @@ autokey/
 
 secret/
 .ipython
+bin/reset_jetbrains.sh
+nimcache

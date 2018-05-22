@@ -87,9 +87,9 @@ export PATH=$PATH:$MY_BIN
 
 # export PYTHONPATH=$HOME/python/lib/jabbapylib2
 
-PYPY=/opt/pypy/bin
-PATH=$PATH:$PYPY
-export PATH
+# PYPY=/opt/pypy/bin
+# PATH=$PATH:$PYPY
+# export PATH
 
 #export PYTHONSTARTUP=$HOME/.pythonstartup.py
 
@@ -223,9 +223,9 @@ alias vag=vagrant_multi
 # alias off='deactivate'
 #alias off='exit'
 alias ydl='youtube-dl'
-alias black='gnome-screensaver-command -a'
+alias blackness='gnome-screensaver-command -a'
 alias r='ranger'
-alias scala='scala -Dscala.color'
+# alias scala='scala -Dscala.color'
 
 alias ..="cd .."
 alias ...="cd ..; cd .."
@@ -396,7 +396,7 @@ export QT_QPA_PLATFORM=''
 source ~/Dropbox/home/virtualenv-tools/virtualenv.sh
 
 # Julia lang.
-alias jl='julia'
+# alias jl='julia'
 
 # Scala lang.
 #export JAVA_HOME=/usr/lib/jvm/java-8-jdk
@@ -425,5 +425,8 @@ n()
 export NNN_FALLBACK_OPENER=xdg-open
 export NNN_DE_FILE_MANAGER=thunar
 
+# disable the .NET Core Tools telemetry feature
+DOTNET_CLI_TELEMETRY_OPTOUT=1
+
 # Anaconda3
-export PATH=/opt/anaconda3/bin:$PATH
+#export PATH=/opt/anaconda3/bin:$PATH
