@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+cmd="pip install pipenv --user -U"
+
+echo "# $cmd"
+$cmd

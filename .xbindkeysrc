@@ -86,8 +86,12 @@
 "xbindkeys_show"
   Control + Shift + q
 
-# Gedit
+# gEdit
 "gedit"
+    Mod3 + e    # Hyper_L + e
+
+# Gimp
+"gimp"
     Mod3 + g    # Hyper_L + g
 
 # Konsole
@@ -97,6 +101,10 @@
 # firefoX
 "firefox"
     Mod3 + x    # Hyper_L + x
+
+# JiVE Image Viewer
+"/home/jabba/bin/jive"
+    Mod3 + j # Hyper_L + j
 
 # Palemoon
 "palemoon"
@@ -123,7 +131,8 @@
     Mod3 + s    # Hyper_L + s
 
 # File manager
-"thunar"
+# nautilus is better for my tablet; I had problems with thunar
+"nautilus"
     Mod3 + f    # Hyper_L + f
 
 # kill an X window program (right mouse = kill, left mouse = cancel)

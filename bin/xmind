@@ -1,2 +1,4 @@
-cd /opt/xmind-portable/XMind_Linux_64bit/
+# cd /opt/xmind-portable/XMind_Linux_64bit/
+
+cd ~/Dropbox/xmind-portable/XMind_Linux_64bit/
 ./XMind 2>/dev/null &

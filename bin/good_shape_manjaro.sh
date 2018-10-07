@@ -3,6 +3,7 @@
 # no questions: --noconfirm
 
 # sudo pacman-mirrors -f 0 && sudo pacman -Syy
+# sudo pacman-mirrors --fasttrack && sudo pacman -Syyu    # if download is slow
 
 # these ^^^ must be used together
 

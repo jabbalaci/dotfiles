@@ -17,10 +17,34 @@
 	"alap": {
 		"prefix": "alap",
 		"body": [
-			"import strutils",
+			"import strutils    # strip, split, join",
+			"import strformat   # &\"Hello {name}!\"",
+			"import sequtils    # toSeq, map, filter",
+			"import math        # sum",
 			"",
-			"$0",
+			"import pykot       # input, toInt, toStr, toFloat",
+			"",
+			"proc main() =",
+			"  echo \"hello\"$0",
+			"",
+			"#############################################################################",
+			"",
+			"main()",
 		],
 		"description": "basic Nim skeleton"
+	},
+	"sequence": {
+		"prefix": "@",
+		"body": [
+			"@[$0]",
+		],
+		"description": "empty sequence"
+	},
+	"pure": {
+		"prefix": "pure",
+		"body": [
+			"proc name$0(): ??? {.noSideEffect.} =",
+		],
+		"description": "pure function with no side effect"
 	},
 }

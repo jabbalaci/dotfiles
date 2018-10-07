@@ -6,8 +6,12 @@
     "when": "editorTextFocus"
   },
   {
-    "key": "ctrl+shift+f9",
+    "key": "shift+f10",
     "command": "code-runner.run"
+  },
+  {
+    "key": "escape",
+    "command": "workbench.action.closePanel"
   },
   {
     "key": "ctrl+alt+n",

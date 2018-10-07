@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
-cd /opt/pycharm/bin
+# cd /opt/pycharm/bin
+# echo "Starting PyCharm..."
+# ./pycharm.sh "$@" 2>/dev/null
+
+cd /var/lib/snapd/snap/bin
 echo "Starting PyCharm..."
-./pycharm.sh "$@" 2>/dev/null
+./pycharm* "$@" 2>/dev/null

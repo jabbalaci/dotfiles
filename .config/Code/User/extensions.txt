@@ -1,12 +1,14 @@
-James-Yu.latex-workshop
+alefragnani.Bookmarks
+alefragnani.project-manager
 daltonjorge.scala
 formulahendry.code-runner
 geddski.macros
-hollowtree.vue-snippets
+James-Yu.latex-workshop
+kosz78.nim
 magicstack.MagicPython
-mathiasfrohlich.Kotlin
 ms-python.python
 ms-vscode.cpptools
+nobuhito.printcode
 robertohuertasm.vscode-icons
 shardulm94.trailing-spaces
 tht13.python

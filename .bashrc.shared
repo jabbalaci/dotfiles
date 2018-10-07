@@ -139,6 +139,7 @@ alias gt='gthumb &'
 alias pudb='python -m pudb'
 alias p2='python2'
 alias p3='python3'
+alias p36='python3.6'
 alias p='python3'
 alias bpy2='bpython2'
 alias bpy3='bpython3'
@@ -430,3 +431,13 @@ DOTNET_CLI_TELEMETRY_OPTOUT=1
 
 # Anaconda3
 #export PATH=/opt/anaconda3/bin:$PATH
+
+# pipenv
+alias pe='pipenv'
+
+# pip install <pkg> --user
+# installs in this folder
+export PATH=~/.local/bin:$PATH
+
+# Nim
+export PATH=~/.nimble/bin:$PATH

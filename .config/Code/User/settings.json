@@ -58,7 +58,6 @@
         "editor.insertSpaces": true,
         "editor.tabSize": 2
     },
-    "explorer.confirmDelete": false,
     "telemetry.enableTelemetry": false,
     "workbench.startupEditor": "newUntitledFile",
 }

@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+cmd="choosenim update self"
+echo "# $cmd"
+$cmd
+
+cmd="choosenim update stable"
+echo "# $cmd"
+$cmd
