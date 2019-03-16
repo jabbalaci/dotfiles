@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
 
-cd /opt/idea/bin/
+cd /var/lib/snapd/snap/bin
 echo "Starting IntelliJ IDEA..."
-./idea.sh 2>/dev/null
+./intellij-idea-community 2>/dev/null

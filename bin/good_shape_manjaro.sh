@@ -15,5 +15,9 @@ then
     set -- "--noconfirm"
 fi
 
-yaourt -Syua "$@"
+# yaourt -Syua "$@"
+yay
+
+# sudo pacman -Syyuu "$@"
+
 sudo pacman -Scc

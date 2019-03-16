@@ -1,0 +1,11 @@
+{
+	"alap": {
+		"prefix": "alap",
+		"body": [
+			"fn main() {",
+			"    println!(\"$0rust\");",
+			"}"
+		],
+		"description": "basic Rust skeleton"
+	}
+}

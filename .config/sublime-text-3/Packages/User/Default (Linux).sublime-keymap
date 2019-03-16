@@ -1,0 +1,130 @@
+[
+	{ "keys": ["ctrl+b"], "command": "toggle_side_bar" },
+	{ "keys": ["shift+f10"], "command": "build" },
+	{ "keys": ["ctrl+alt+n"], "command": "advanced_new_file_new"},
+	{
+		"keys": ["ctrl+keypad_divide"],
+		"command": "chain",
+		"args": {
+			"commands": [
+				["toggle_comment", { "block": false }],
+				["move", {"by": "lines", "forward": true}]
+			]
+		}
+	},
+
+	{ "keys": ["alt+up"], "command": "travel_to_pane", "args": {"direction": "up"} },
+	{ "keys": ["alt+right"], "command": "travel_to_pane", "args": {"direction": "right"} },
+	{ "keys": ["alt+down"], "command": "travel_to_pane", "args": {"direction": "down"} },
+	{ "keys": ["alt+left"], "command": "travel_to_pane", "args": {"direction": "left"} },
+
+	{ "keys": ["ctrl+k", "up"], "command": "create_pane", "args": {"direction": "up"} },
+	{ "keys": ["ctrl+k", "right"], "command": "create_pane", "args": {"direction": "right"} },
+	{ "keys": ["ctrl+k", "down"], "command": "create_pane", "args": {"direction": "down"} },
+	{ "keys": ["ctrl+k", "left"], "command": "create_pane", "args": {"direction": "left"} },
+
+	{ "keys": ["ctrl+k", "ctrl+v"], "command": "clone_file_to_pane", "args": {"direction": "right"} },
+	{ "keys": ["ctrl+k", "ctrl+h"], "command": "clone_file_to_pane", "args": {"direction": "down"} },
+	{ "keys": ["ctrl+k", "ctrl+w"], "command": "destroy_pane", "args": {"direction": "self"} },
+
+	{
+		"keys": ["ctrl+alt+t"],
+		"command": "toggle_terminus_panel", "args": {
+            "config_name": "Default",
+            "cwd": "${file_path:${folder}}"
+        }
+    },
+    { "keys": ["ctrl+shift+t"], "command": "reopen_last_file" },
+
+    { "keys": ["shift+escape"], "command": "hide_panel", "args": {"cancel": true},
+		"context":
+		[
+			{ "key": "panel_visible", "operator": "equal", "operand": true }
+		]
+	},
+
+	{ "keys": ["ctrl+space"], "command": "insert_best_completion", "args": {"default": "\t", "exact": false},
+		"context":
+		[
+			{ "key": "setting.tab_completion", "operator": "equal", "operand": true },
+			{ "key": "preceding_text", "operator": "not_regex_match", "operand": ".*\\b[0-9]+$", "match_all": true }
+		]
+	},
+
+	{
+	    "keys": ["ctrl+enter"],
+	    "command": "shell_command",
+	    "args": {
+	      "prompt": "shell command: ",
+	      "region": "stdin",
+	      "target": "point"
+	    }
+  	},
+
+  	// color pick: "Ctrl + Shift + c"
+
+  	{ "keys": ["ctrl+alt+c"], "command": "show_panel", "args": {"panel": "console", "toggle": true} },
+
+  	{ "keys": ["ctrl+shift+w"], "command": "insert_snippet", "args": { "name": "Packages/XML/Snippets/long-tag.sublime-snippet" } },
+
+  	{
+		"keys": ["alt+shift+1"],
+		"command": "set_layout",
+		"args":
+		{
+			"cols": [0.0, 1.0],
+			"rows": [0.0, 1.0],
+			"cells": [[0, 0, 1, 1]]
+		}
+	},
+	{
+		"keys": ["ctrl+k", "1"],
+		"command": "set_layout",
+		"args":
+		{
+			"cols": [0.0, 1.0],
+			"rows": [0.0, 1.0],
+			"cells": [[0, 0, 1, 1]]
+		}
+	},
+	{
+		"keys": ["ctrl+k", "2"],
+		"command": "set_layout",
+		"args":
+		{
+			"cols": [0.0, 0.5, 1.0],
+			"rows": [0.0, 1.0],
+			"cells": [[0, 0, 1, 1], [1, 0, 2, 1]]
+		}
+	},
+	{
+		"keys": ["ctrl+k", "3"],
+		"command": "set_layout",
+		"args":
+		{
+			"cols": [0.0, 0.33, 0.66, 1.0],
+			"rows": [0.0, 1.0],
+			"cells": [[0, 0, 1, 1], [1, 0, 2, 1], [2, 0, 3, 1]]
+		}
+	},
+	{
+		"keys": ["ctrl+k", "4"],
+		"command": "set_layout",
+		"args":
+		{
+			"cols": [0.0, 0.5, 1.0],
+			"rows": [0.0, 0.5, 1.0],
+			"cells":
+			[
+				[0, 0, 1, 1], [1, 0, 2, 1],
+				[0, 1, 1, 2], [1, 1, 2, 2]
+			]
+		}
+	},
+
+	{ "keys": ["ctrl+k", "f", "p"], "command": "copy_file_path" },
+	{ "keys": ["ctrl+k", "f", "n"], "command": "copy_file_name" },
+	{ "keys": ["ctrl+k", "d", "p"], "command": "copy_dir_path" },
+	{ "keys": ["ctrl+k", "d", "n"], "command": "copy_dir_name" },
+	{ "keys": ["ctrl+k", "ctrl+u"], "command": "swap_views" },
+]

@@ -105,7 +105,7 @@ let maplocalleader = "\\"
     silent !mkdir ~/nvim.local/undo > /dev/null 2>&1
 " }}}
 
-let g:python_host_prog = '/usr/bin/python2'
+" let g:python_host_prog = '/usr/bin/python2'
 let g:python3_host_prog = '/usr/bin/python3'
 
 " Autoinstall vim-plug {{{
@@ -321,7 +321,7 @@ endif
 
 " python with virtualenv support
 " thus YouCompleteMe will find the appropriate site packages
-py << EOF
+py3 << EOF
 import os
 import sys
 if 'VIRTUAL_ENV' in os.environ:
@@ -996,6 +996,9 @@ set autochdir
     autocmd BufWritePre *.nfo :%s/\s\+$//e
     autocmd BufWritePre *.json :%s/\s\+$//e
     autocmd BufWritePre *.rs :%s/\s\+$//e
+    autocmd BufWritePre *.nim :%s/\s\+$//e
+    autocmd BufWritePre *.sh :%s/\s\+$//e
+    autocmd BufWritePre *.zsh :%s/\s\+$//e
 " }}}
 
 " when going back to a terminal, switch to insert mode automatically
@@ -1090,6 +1093,11 @@ augroup save_and_restore_buffer
     autocmd BufEnter * if exists('b:winview') | call winrestview(b:winview) | endif
 augroup END
 " }}}
+
+augroup oh_my_zsh
+  au!
+  autocmd BufNewFile,BufRead *.zsh-theme   set syntax=zsh
+augroup END
 
 " trial and error
 " uppercase the current word

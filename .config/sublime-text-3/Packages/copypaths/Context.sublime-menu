@@ -1,0 +1,27 @@
+[
+    {
+        "id": "cnCopyPaths",
+        "caption": "Copy Paths",
+        "children": [
+            {
+                "caption": "File Path",
+                "command": "copy_file_path"
+            },
+            {
+                "caption": "File Name",
+                "command": "copy_file_name"
+            },
+            {
+                "caption": "-"
+            },
+            {
+                "caption": "Dir. Path",
+                "command": "copy_dir_path"
+            },
+            {
+                "caption": "Dir. Name",
+                "command": "copy_dir_name"
+            }
+        ]
+    }
+]

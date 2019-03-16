@@ -1,5 +1,6 @@
 # fish config file
 
 alias d="ls -al"
-alias vi="vim"
+alias vi="nvim"
 alias k='konsole &'
+alias p='python3'

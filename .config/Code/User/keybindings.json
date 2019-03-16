@@ -91,5 +91,13 @@
     "key": "ctrl+alt+j",
     "command": "-bookmarks.jumpToPrevious",
     "when": "editorTextFocus"
+  },
+  {
+    "key": "ctrl+e",
+    "command": "clojureVSCode.eval"
+  },
+  {
+    "key": "ctrl+shift+e",
+    "command": "clojureVSCode.evalAndShowResult"
   }
 ]

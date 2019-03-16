@@ -27,15 +27,17 @@
     },
     // "workbench.welcome.enabled": false,
     "vsicons.dontShowNewVersionMessage": true,
-    "files.associations": {
-        "*.pyx": "python",
-        "*.tpl": "html"
-    },
     "code-runner.executorMap": {
         "python": "python3",
+        // "coconut": "coconut --quiet --keep-lines --line-numbers $fileName && python3 $fileNameWithoutExt.py",
         // "csharp": "echo '# calling mono\n' && cd $dir && csc /nologo $fileName && mono $dir$fileNameWithoutExt.exe",
-        "csharp": "echo '# calling dotnet run\n' && dotnet run"
+        "csharp": "echo '# calling dotnet run\n' && dotnet run",
+        "clojure": "lein run",
+        // "rust": "cd $dir && rustc $fileName && $dir$fileNameWithoutExt && strip -s $dir$fileNameWithoutExt"
     },
+    // "files.associations": {
+        // "*.coco": "python"
+    // },
     // this one troubled me with C#
     "editor.codeLens": false,
     // "csharp.fallbackDebuggerLinuxRuntimeId": "ubuntu.16.04-x64",
@@ -50,14 +52,21 @@
         ]
     },
     // Configure editor settings to be overridden for [nim] language.
-    "[nim]":  {
+    "[nim]": {
         "editor.insertSpaces": true,
         "editor.tabSize": 2
     },
-    "[scala]":  {
+    "[scala]": {
         "editor.insertSpaces": true,
         "editor.tabSize": 2
     },
     "telemetry.enableTelemetry": false,
     "workbench.startupEditor": "newUntitledFile",
+    // tabnine suggests this:
+    "editor.wordBasedSuggestions": false,
+    "window.titleBarStyle": "custom",
+    "explorer.confirmDragAndDrop": false,
+    "editor.parameterHints.enabled": false,
+    "editor.cursorSmoothCaretAnimation": true,
+    "terminal.integrated.scrollback": 1000,
 }

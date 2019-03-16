@@ -1,0 +1,32 @@
+{
+	"bootstrapped": true,
+	"in_process_packages":
+	[
+	],
+	"installed_packages":
+	[
+		"A File Icon",
+		"AdvancedNewFile",
+		"Anaconda",
+		"BracketHighlighter",
+		"Chain of Command",
+		"Clickable URLs",
+		"Color Highlighter",
+		"ColorPicker",
+		"Colorsublime",
+		"Dayle Rees Color Schemes",
+		"Emmet",
+		"Markdown Extended",
+		"NimLime",
+		"Origami",
+		"Package Control",
+		"PackageResourceViewer",
+		"Pretty JSON",
+		"ShellCommand",
+		"SideBarEnhancements",
+		"SublimeCodeIntel",
+		"TabNine",
+		"Terminal",
+		"Terminus"
+	]
+}

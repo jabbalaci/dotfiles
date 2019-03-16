@@ -1,0 +1,15 @@
+<snippet>
+<scope>source.python</scope>
+<tabTrigger>alap</tabTrigger>
+<content><![CDATA[
+#!/usr/bin/env python3
+
+def main():
+    print("$0Py3")
+
+##############################################################################
+
+if __name__ == "__main__":
+    main()
+]]></content>
+</snippet>
