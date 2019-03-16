@@ -12,4 +12,4 @@ class SwapViewsCommand(sublime_plugin.WindowCommand):
             self.window.run_command('carry_file_to_pane', {"direction": "left"})
             self.window.focus_view(view)    # ???
         else:
-            self.window.status_message("Warning: two groups are needed")
+            self.window.status_message("Warning: two columns are needed")
