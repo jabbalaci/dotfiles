@@ -1,0 +1,7 @@
+[
+    {
+        "id": "cnOpenPythonRepl",
+        "caption": "Python REPL",
+        "command": "open_python_repl"
+    }
+]

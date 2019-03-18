@@ -21,12 +21,17 @@
 		"Origami",
 		"Package Control",
 		"PackageResourceViewer",
+		"Path Tools",
 		"Pretty JSON",
 		"ShellCommand",
 		"SideBarEnhancements",
+		"Status Bar File Size",
 		"SublimeCodeIntel",
+		"SublimeREPL",
 		"TabNine",
 		"Terminal",
-		"Terminus"
+		"Terminus",
+		"Theme - Flatland",
+		"Themr"
 	]
 }

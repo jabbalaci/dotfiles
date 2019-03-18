@@ -1,6 +1,7 @@
 {
 	"always_show_minimap_viewport": true,
 	"bold_folder_labels": true,
+	"caret_extra_width": 2,
 	"color_scheme": "Packages/Colorsublime - Themes/Espresso_Soda.tmTheme",
 	"draw_minimap_border": true,
 	"ensure_newline_at_eof_on_save": true,

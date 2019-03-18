@@ -122,9 +122,56 @@
 		}
 	},
 
-	{ "keys": ["ctrl+k", "f", "p"], "command": "copy_file_path" },
-	{ "keys": ["ctrl+k", "f", "n"], "command": "copy_file_name" },
-	{ "keys": ["ctrl+k", "d", "p"], "command": "copy_dir_path" },
-	{ "keys": ["ctrl+k", "d", "n"], "command": "copy_dir_name" },
+	// { "keys": ["ctrl+k", "f", "p"], "command": "copy_file_path" },
+	// { "keys": ["ctrl+k", "f", "n"], "command": "copy_file_name" },
+	// { "keys": ["ctrl+k", "d", "p"], "command": "copy_dir_path" },
+	// { "keys": ["ctrl+k", "d", "n"], "command": "copy_dir_name" },
+
 	{ "keys": ["ctrl+k", "ctrl+u"], "command": "swap_views" },
+
+	// vertical split
+	{
+		"keys": ["ctrl+k", "v"],
+		"command": "chain",
+		"args": {
+			"commands": [
+				["create_pane", {"direction": "right"}],
+				["clone_file_to_pane", {"direction": "right"}],
+			]
+		}
+	},
+	{
+		"keys": ["ctrl+k", "ctrl+v"],
+		"command": "chain",
+		"args": {
+			"commands": [
+				["create_pane", {"direction": "right"}],
+				["clone_file_to_pane", {"direction": "right"}],
+			]
+		}
+	},
+	// horizontal split
+	{
+		"keys": ["ctrl+k", "h"],
+		"command": "chain",
+		"args": {
+			"commands": [
+				["create_pane", {"direction": "down"}],
+				["clone_file_to_pane", {"direction": "down"}],
+			]
+		}
+	},
+	{
+		"keys": ["ctrl+k", "ctrl+h"],
+		"command": "chain",
+		"args": {
+			"commands": [
+				["create_pane", {"direction": "down"}],
+				["clone_file_to_pane", {"direction": "down"}],
+			]
+		}
+	},
+
+	{ "keys": ["ctrl+q"], "command": "toggle_record_macro" },
+	{ "keys": ["ctrl+alt+q"], "command": "run_macro" },
 ]
