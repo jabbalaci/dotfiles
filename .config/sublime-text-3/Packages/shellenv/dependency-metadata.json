@@ -1,1 +1,0 @@
-{"description": "Access a user's environmental variables as defined in their shell", "version": "1.4.2", "url": "https://github.com/codexns/shellenv/issues", "platforms": ["*"], "sublime_text": "*"}
