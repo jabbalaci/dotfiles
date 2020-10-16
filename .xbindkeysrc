@@ -106,8 +106,12 @@
 "/home/jabba/bin/jive"
     Mod3 + j # Hyper_L + j
 
-# Palemoon
-"palemoon"
+# Joplin Notes
+"/bin/joplin-desktop"
+    Mod3 + n # Hyper_L + n    # notes
+
+# Opera
+"opera"
     Mod3 + p    # Hyper_L + p
 
 # IntelliJ IDEA
@@ -146,7 +150,10 @@
 
 # Top
 # yaourt xterm
-"xterm -fg white -bg black -fa 'Monospace' -fs 14 -e top"
+# "xterm -fg white -bg black -fa 'Monospace' -fs 14 -e top"
+
+# Text, Sublime Text
+"subl"
     Mod3 + t    # Hyper_L + t
 
 # Htop

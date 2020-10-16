@@ -1,0 +1,1 @@
+{"version": "0.5.2", "url": "https://github.com/packagecontrol/ptyprocess/issues", "platforms": ["*"], "description": "Python ptyprocess module", "sublime_text": ">=3000"}

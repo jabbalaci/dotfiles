@@ -146,6 +146,8 @@ Plug 'junegunn/seoul256.vim'
     " https://github.com/junegunn/seoul256.vim
 " }}}
 
+Plug 'dart-lang/dart-vim-plugin'
+
 " ====================================================================
 " Visuals
 " ====================================================================

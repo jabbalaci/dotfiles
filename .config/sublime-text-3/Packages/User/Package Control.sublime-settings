@@ -7,7 +7,6 @@
 	[
 		"A File Icon",
 		"AdvancedNewFile",
-		"Anaconda",
 		"BracketHighlighter",
 		"Chain of Command",
 		"Clickable URLs",
@@ -15,6 +14,7 @@
 		"ColorPicker",
 		"Colorsublime",
 		"Dayle Rees Color Schemes",
+		"DeleteBlankLines",
 		"Emmet",
 		"Markdown Extended",
 		"NimLime",
@@ -23,6 +23,7 @@
 		"PackageResourceViewer",
 		"Path Tools",
 		"Pretty JSON",
+		"Rust Enhanced",
 		"ShellCommand",
 		"SideBarEnhancements",
 		"Status Bar File Size",
@@ -32,6 +33,7 @@
 		"Terminal",
 		"Terminus",
 		"Theme - Flatland",
-		"Themr"
+		"Themr",
+		"TOML"
 	]
 }

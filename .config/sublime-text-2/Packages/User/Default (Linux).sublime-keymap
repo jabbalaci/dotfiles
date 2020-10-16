@@ -1,8 +1,0 @@
-[
-    // { "keys": ["ctrl+shift+l"], "command": "sublimelinter", "args": {"action": "lint"} }
-
-    // Enable background linting
-    { "keys": ["ctrl+shift+l"], "command": "sublimelinter_lint", "args": {"action": "on"} },
-    // Disable linting
-    { "keys": ["ctrl+shift+d"], "command": "sublimelinter_disable", "args": {"action": "off"} }
-]

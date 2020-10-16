@@ -93,6 +93,14 @@
     "when": "editorTextFocus"
   },
   {
+    "key": "ctrl+n",
+    "command": "extension.simpleNewFile"
+  },
+  {
+    "key": "ctrl+alt+n",
+    "command": "-extension.simpleNewFile"
+  },
+  {
     "key": "ctrl+e",
     "command": "clojureVSCode.eval"
   },

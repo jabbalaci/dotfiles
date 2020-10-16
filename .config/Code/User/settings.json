@@ -1,7 +1,7 @@
 {
     "workbench.colorTheme": "Default Light+",
     "editor.fontFamily": "Hack, 'Droid Sans Mono', 'Courier New', monospace, 'Droid Sans Fallback'",
-    "editor.fontSize": 18,
+    "editor.fontSize": 16,
     // "editor.minimap.enabled": true,
     "python.linting.pylintEnabled": false,
     "python.linting.pylintArgs": [
@@ -10,12 +10,11 @@
     "terminal.integrated.shell.windows": "C:\\Windows\\Sysnative\\cmd.exe",
     "code-runner.clearPreviousOutput": true,
     "code-runner.showExecutionMessage": false,
-    "workbench.iconTheme": "vscode-icons",
     "[markdown]": {
         "editor.quickSuggestions": false
     },
-    "window.zoomLevel": 0,
-    "trailing-spaces.includeEmptyLines": false,
+    "window.zoomLevel": 1,
+    // "trailing-spaces.includeEmptyLines": false,
     "trailing-spaces.trimOnSave": true,
     "files.insertFinalNewline": true,
     "editor.roundedSelection": false,
@@ -23,10 +22,13 @@
         "**/.git": true,
         ".vscode": true,
         "**/__pycache__": true,
-        "**/**/*.pyc": true
+        "**/**/*.pyc": true,
+        "**/.classpath": true,
+        "**/.project": true,
+        "**/.settings": true,
+        "**/.factorypath": true
     },
     // "workbench.welcome.enabled": false,
-    "vsicons.dontShowNewVersionMessage": true,
     "code-runner.executorMap": {
         "python": "python3",
         // "coconut": "coconut --quiet --keep-lines --line-numbers $fileName && python3 $fileNameWithoutExt.py",
@@ -69,4 +71,10 @@
     "editor.parameterHints.enabled": false,
     "editor.cursorSmoothCaretAnimation": true,
     "terminal.integrated.scrollback": 1000,
+    "vsicons.dontShowNewVersionMessage": true,
+    "C_Cpp.updateChannel": "Insiders",
+    "workbench.iconTheme": "vscode-icons",
+    "tabnine.experimentalAutoImports": true,
+    "editor.suggestSelection": "first",
+    "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue"
 }

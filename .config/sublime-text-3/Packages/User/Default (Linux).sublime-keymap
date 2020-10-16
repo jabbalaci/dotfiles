@@ -12,6 +12,16 @@
 			]
 		}
 	},
+	{
+		"keys": ["ctrl+6"],    // for the small Asus laptop
+		"command": "chain",
+		"args": {
+			"commands": [
+				["toggle_comment", { "block": false }],
+				["move", {"by": "lines", "forward": true}]
+			]
+		}
+	},
 
 	{ "keys": ["alt+up"], "command": "travel_to_pane", "args": {"direction": "up"} },
 	{ "keys": ["alt+right"], "command": "travel_to_pane", "args": {"direction": "right"} },
@@ -129,6 +139,8 @@
 
 	{ "keys": ["ctrl+k", "ctrl+u"], "command": "swap_views" },
 
+    { "keys": ["ctrl+e"], "command": "move_to", "args": {"extend": false, "to": "eof"}},
+
 	// vertical split
 	{
 		"keys": ["ctrl+k", "v"],
@@ -174,4 +186,43 @@
 
 	{ "keys": ["ctrl+q"], "command": "toggle_record_macro" },
 	{ "keys": ["ctrl+alt+q"], "command": "run_macro" },
+
+
+	// Copy the following into Preferences > Key Bindings -- User
+	// Thanks to:
+	// http://sublimetext.userecho.com/topic/86166-backtick-quoting-selected-text-does-not-work-like-single-quotes-and-double-quotes/
+
+	// Auto-pair backticks
+  { "keys": ["`"], "command": "insert_snippet", "args": {"contents": "`$0`"}, "context":
+    [
+      { "key": "setting.auto_match_enabled", "operator": "equal", "operand": true },
+      { "key": "selection_empty", "operator": "equal", "operand": true, "match_all": true },
+      { "key": "following_text", "operator": "regex_contains", "operand": "^(?:\t| |\\)|]|\\}|>|$)", "match_all": true },
+      { "key": "preceding_text", "operator": "not_regex_contains", "operand": "[`a-zA-Z0-9_]$", "match_all": true },
+      { "key": "eol_selector", "operator": "not_equal", "operand": "string.quoted.single", "match_all": true }
+    ]
+  },
+  { "keys": ["`"], "command": "insert_snippet", "args": {"contents": "`${0:$SELECTION}`"}, "context":
+    [
+      { "key": "setting.auto_match_enabled", "operator": "equal", "operand": true },
+      { "key": "selection_empty", "operator": "equal", "operand": false, "match_all": true }
+    ]
+  },
+  { "keys": ["`"], "command": "move", "args": {"by": "characters", "forward": true}, "context":
+    [
+      { "key": "setting.auto_match_enabled", "operator": "equal", "operand": true },
+      { "key": "selection_empty", "operator": "equal", "operand": true, "match_all": true },
+      { "key": "following_text", "operator": "regex_contains", "operand": "^`", "match_all": true }
+    ]
+  },
+  { "keys": ["backspace"], "command": "run_macro_file", "args": {"file": "res://Packages/Default/Delete Left Right.sublime-macro"}, "context":
+    [
+      { "key": "setting.auto_match_enabled", "operator": "equal", "operand": true },
+      { "key": "selection_empty", "operator": "equal", "operand": true, "match_all": true },
+      { "key": "preceding_text", "operator": "regex_contains", "operand": "`$", "match_all": true },
+      { "key": "following_text", "operator": "regex_contains", "operand": "^`", "match_all": true }
+    ]
+  },
+
+  { "keys": ["f8"], "command": "toggle_white_space" }
 ]

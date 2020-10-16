@@ -1,0 +1,9 @@
+<snippet>
+    <scope>source.rust</scope>
+    <tabTrigger>alap</tabTrigger>
+    <content><![CDATA[
+fn main() {
+    println!("$0rust");
+}
+    ]]></content>
+</snippet>

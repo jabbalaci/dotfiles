@@ -1,0 +1,3 @@
+rustup self update
+rustup install stable
+rustup default stable

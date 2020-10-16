@@ -1,9 +1,12 @@
 {
 	"always_show_minimap_viewport": true,
+	"auto_complete": false,
+	"auto_find_in_selection": true,
 	"bold_folder_labels": true,
 	"caret_extra_width": 2,
-	"color_scheme": "Packages/Colorsublime - Themes/Espresso_Soda.tmTheme",
+	"color_scheme": "Packages/User/Color Highlighter/themes/Espresso_Soda.tmTheme",
 	"draw_minimap_border": true,
+	"draw_white_space": "none",
 	"ensure_newline_at_eof_on_save": true,
 	"folder_exclude_patterns":
 	[
@@ -18,12 +21,14 @@
 		"__pycache__"
 	],
 	"font_face": "Hack",
-	"font_size": 15,
+	"font_size": 14,
+	"high_visibility_enabled_by_default": true,
 	"highlight_line": true,
 	"highlight_modified_tabs": true,
 	"hot_exit": false,
 	"ignored_packages":
 	[
+		"Rust",
 		"Vintage"
 	],
 	"indent_guide_options":
@@ -31,8 +36,8 @@
 		"draw_normal",
 		"draw_active"
 	],
-	"line_padding_bottom": 3,
-	"line_padding_top": 3,
+	"line_padding_bottom": 2,
+	"line_padding_top": 2,
 	"margin": 0,
 	"match_brackets": false,
 	"match_brackets_angle": false,

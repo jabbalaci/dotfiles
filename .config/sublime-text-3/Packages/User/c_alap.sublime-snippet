@@ -1,0 +1,14 @@
+<snippet>
+    <scope>source.c</scope>
+    <tabTrigger>alap</tabTrigger>
+    <content><![CDATA[
+#include <stdio.h>
+
+int main()
+{
+    printf("$0hello\n");
+
+    return 0;
+}
+    ]]></content>
+</snippet>
